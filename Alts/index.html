@@ -29,7 +29,7 @@ Welcome to these pages for my alts, here are the pages that I have right now:
         .forEach((pui) => {
           var page          
           page = pui.replace(/-/g, ' ');
-          if(pui != 'index') document.getElementById('foo').innerHTML += '<div><button type="button" onclick="window.location.href = "/' + pui + '.html";' + page + '</button></div>';
+          if(pui != 'index') document.getElementById('foo').innerHTML += '<div><a href="/' + pui + '.html">' + page + '</a></div>';
         })
     });
   </script>
