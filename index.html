@@ -5,9 +5,7 @@
     <div class="nav">
       <img src="https://cdn2.scratch.mit.edu/get_image/user/61820378_32x32.png">
       Hey there
-      <p><a href="/index.html">Home</a>
-      <a href="/ClippyCat.html">Clippy Cat copys</a>
-      <a href="/Blog/">Blog</a></p>
+      <p id="nav"></p>
     </div>
     Hey! I'm 
     <a href="https://scratch.mit.edu/users/steve0greatness">Steve0Greatness</a>
@@ -52,7 +50,7 @@
         .forEach((pui) => {
           var page          
           page = pui.replace(/-/g, ' ');
-          if(pui != 'index') document.getElementById('foo').innerHTML += '<a href="https://Steve0Greatness.github.io/Blog/' + pui + '.html">' + page + '</a>';
+          if(pui != 'index') document.getElementById('nav').innerHTML += '<a href="https://Steve0Greatness.github.io/Blog/' + pui + '.html">' + page + '</a>';
         })
     });
   </script>
