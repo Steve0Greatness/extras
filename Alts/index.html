@@ -23,16 +23,13 @@ Welcome to these pages for my alts, here are the pages that I have right now:
         .catch(reject)
       });
     }
-    function embed(purl) {
-       document.getElementById('off').innerHTML = '<embed type="text/html" src="/' + purl + '.html" width="50" height="200">';
-    }
     getPages()
       .then((pages) => {
         pages.map((pui) => pui.path.slice(0, -5))
         .forEach((pui) => {
           var page          
           page = pui.replace(/-/g, ' ');
-          if(pui != 'index') document.getElementById('foo').innerHTML += '<div><button type="button" onclick=' + embed(pui) + '>' + page + '</button></div>';
+          if(pui != 'index') document.getElementById('foo').innerHTML += '<div><button type="button" onclick="window.location.href = "/' + pui + '.html";' + page + '</button></div>';
         })
     });
   </script>
