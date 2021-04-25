@@ -7,6 +7,7 @@
     <a href="https://Steve0Greatness.github.io">◀ Go back</a>
   </div>
 </div>
+  <div id="off"></div>
 Welcome to these pages for my alts, here are the pages that I have right now:
 <div id="foo"></div>
 </body>
@@ -22,13 +23,16 @@ Welcome to these pages for my alts, here are the pages that I have right now:
         .catch(reject)
       });
     }
+    function embed(purl) {
+       document.getElementById('off').innerHTML = '<embed type="text/html" src="/'purl'.html" width="50" height="200">';
+    }
     getPages()
       .then((pages) => {
         pages.map((pui) => pui.path.slice(0, -5))
         .forEach((pui) => {
           var page          
           page = pui.replace(/-/g, ' ');
-          if(pui != 'index') document.getElementById('foo').innerHTML += '<div><a href="https://Steve0Greatness.github.io/Blog/' + pui + '.html">' + page + '</a></div>';
+          if(pui != 'index') document.getElementById('foo').innerHTML += '<button type="button" onclick=''>'page'</button>';
         })
     });
   </script>
