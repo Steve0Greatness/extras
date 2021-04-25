@@ -24,7 +24,7 @@ Welcome to these pages for my alts, here are the pages that I have right now:
       });
     }
     function embed(purl) {
-       document.getElementById('off').innerHTML = '<embed type="text/html" src="/'purl'.html" width="50" height="200">';
+       document.getElementById('off').innerHTML = '<embed type="text/html" src="/' + purl + '.html" width="50" height="200">';
     }
     getPages()
       .then((pages) => {
@@ -32,7 +32,7 @@ Welcome to these pages for my alts, here are the pages that I have right now:
         .forEach((pui) => {
           var page          
           page = pui.replace(/-/g, ' ');
-          if(pui != 'index') document.getElementById('foo').innerHTML += '<div><button type="button" onclick='embed(pui)'>'page'</button></div>';
+          if(pui != 'index') document.getElementById('foo').innerHTML += '<div><button type="button" onclick=' + embed(pui)'>' + page + '</button></div>';
         })
     });
   </script>
@@ -40,3 +40,4 @@ Welcome to these pages for my alts, here are the pages that I have right now:
   a (
   color: #FFDC04;
   )
+</style>
