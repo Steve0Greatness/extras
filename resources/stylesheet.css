@@ -1,0 +1,33 @@
+.code {
+  background-color: #ccc;
+  color: #000;
+}
+
+.H1 {
+  font-size: 40px;
+}
+
+.nav {
+	background-color: #0F0089;
+}
+
+header {
+  text-align: center;
+  background: #3700FF;
+}
+
+a {
+	color: #F7E45D;
+}
+
+body {
+  background-color: #0044F7;
+  color: #C2FFBA;
+}
+
+button {
+	background-color: #F09;
+	color: #0FF;
+  border: solid 2px #fff;
+  margin: 2px;
+}
