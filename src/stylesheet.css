@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Open+Sans&display=swap');
+
+:root {
+  --mainFont: "Open Sans";
+  --secFont: Jomhuria;
+}
+
+.H1 {
+  font-size: 40px;
+}
+
+.nav {
+	background-color: #0F0089;
+}
+
+header {
+  text-align: center;
+  background: #3700FF;
+}
+
+a {
+	color: #F7E45D;
+}
+
+body {
+  background-color: #0044F7;
+  color: #C2FFBA;
+  font-family: var(--mainFont);
+}
+
+button {
+	background-color: #F09;
+	color: #0FF;
+  border: solid 2px #fff;
+  margin: 3px;
+  font-family: var(--secFont);
+  font-size: 25px;
+}
+
+.notice {
+  background: #f25;
+  color: #ccc;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#index {
+  background: #caf;
+  display: block;
+}
+a.indexed {
+  color: #fb0;
+  text-decoration: none;
+  font-weight: 3px;
+}
+#index.hidden {
+  display: none;
+}
+.notFound {
+  font-family: cursive;
+  font-size: 50px;
+  text-align: center;
+}

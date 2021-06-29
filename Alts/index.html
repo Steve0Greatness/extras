@@ -1,39 +1,11 @@
-<body style="background-color: #A202C5;
-             color: #FFECEC;">
-    <div style="background-color: #6900BF;
-                text-align: center;">
-  <img src="https://cdn2.scratch.mit.edu/get_image/user/61820378_16x16.png"> Alts
-  <div>
-    <a href="../">◀ Go back</a>
-  </div>
-</div>
-Welcome to these pages for my alts, here are the pages that I have right now:
-<div id="foo" style="background-color: #000AFF;"></div>
+<html id="page">
+
+<body>
+	<header id="header"></header>
+	Welcome to these pages for my alts, here are the pages that I have right now:
+	<div id="index"></div>
+	<script src="../src/script.js">
+	</script>
 </body>
-<script type="text/Javascript">
-    function getPages() {
-      return new Promise((resolve, reject) => {
-        fetch(`https://api.github.com/repos/Steve0Greatness/Steve0Greatness.github.io/git/trees/4af8a183821f66ecf76346f8cfe71872262d12ac`)
-        .then((resp) => resp.json())
-        .then(({tree}) => {
-          const pages = tree.filter((file) => file.path.endsWith('.html'));
-          resolve(pages);
-        })
-        .catch(reject)
-      });
-    }
-    getPages()
-      .then((pages) => {
-        pages.map((pui) => pui.path.slice(0, -5))
-        .forEach((pui) => {
-          var page          
-          page = pui.replace(/-/g, ' ');
-          if(pui != 'index') document.getElementById('foo').innerHTML += '<div><a href="/Alts/' + pui + '.html">' + page + '</a></div>';
-        })
-    });
-  </script>
-<style>
-  a {
-    color: #FFDC04;
-  }
-</style>
+
+</html>

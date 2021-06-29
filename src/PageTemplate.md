@@ -1,3 +1,5 @@
+This is the template for the pages(the html files other than the ones in Extra_Projects):
+```html
 <html id="page">
 
 <body>
@@ -18,3 +20,5 @@
 </body>
 
 </html>
+```
+use in new pages
