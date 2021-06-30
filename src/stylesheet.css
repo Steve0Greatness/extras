@@ -47,13 +47,13 @@ button {
 }
 
 #index {
-  background: #caf;
+  background: #0bf;
   display: block;
 }
 a.indexed {
-  color: #fb0;
+  color: #05c;
   text-decoration: none;
-  font-weight: 3px;
+  font-weight: bold;
 }
 #index.hidden {
   display: none;
@@ -62,4 +62,14 @@ a.indexed {
   font-family: cursive;
   font-size: 50px;
   text-align: center;
+}
+::selection {
+  background: #f51;
+  color: #059;
+  width: fit-content;
+}
+.altRating {
+  font-size: 20px;
+  color: #ccc;
+  font-weight: bold;
 }

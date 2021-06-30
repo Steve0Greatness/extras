@@ -8,10 +8,16 @@ document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
       <a target="_parent" href="../Blog">
           <button type="button">Blog</button>
       </a>
+      <a target="_parent" href="../Alts">
+          <button type="button">My Alts</button>
+      </a>
+      <a target="_parent" href="../extra_projects">
+          <button type="button">Addition personal projects</button>
+      </a>
   </div>`;
-function getPages() {
+function getPages(url) {
   return new Promise((resolve, reject) => {
-    fetch(`https://api.github.com/repos/Steve0Greatness/Steve0Greatness.github.io/git/trees/4af8a183821f66ecf76346f8cfe71872262d12ac`)
+    fetch(url)
       .then((resp) => resp.json())
       .then(({ tree }) => {
         const pages = tree.filter((file) => file.path.endsWith('.html'));
@@ -20,14 +26,6 @@ function getPages() {
       .catch(reject)
   });
 }
-getPages().then((pages) => {
-  pages.map((pui) => pui.path.slice(0, -5))
-    .forEach((pui) => {
-      var page
-      page = pui.replace(/-/g, ' ');
-      if (pui != 'index') document.getElementById('index').innerHTML += '<div><a href="/Alts/' + pui + '.html" class="indexed">' + page + '</a></div>';
-    })
-});
 var pageName = window.location.pathname.replace('/', ' ') + 'Steve0Greatness'
 pageName = pageName.replace('/', '--').replace('.html', '')
 console.log(pageName)
