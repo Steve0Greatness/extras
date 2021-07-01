@@ -1,6 +1,6 @@
 Here is the template for these pages. do with them as you will
 ```html
-<html id="page">
+<html id="page" class="n">
  
 <body>
 <header id="header"></header>
