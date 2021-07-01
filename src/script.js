@@ -8,7 +8,7 @@ document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
       <a target="_parent" href="../Blog">
           <button type="button">Blog</button>
       </a>
-      <a target="_parent" href="../Alts">
+      <a target="_parent" href="../alts">
           <button type="button">My Alts</button>
       </a>
       <a target="_parent" href="../extra_projects">
