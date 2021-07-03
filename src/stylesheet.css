@@ -22,20 +22,20 @@ html.n {
   --selTxtCo: #059;
 }
 html.d {
-  --navCo: #a01;
-  --headCo: #701;
-  --linkCo: #0b4;
-  --maCo: #410;
+  --navCo: #111;
+  --headCo: #333;
+  --linkCo: #0a0;
+  --maCo: #222;
   --maTxtCo: #ccc;
-  --buCo: #fba;
-  --buTxtCo: #33f;
-  --buBoCo: #fcb;
-  --noteCo: #5f0;
+  --buCo: #444;
+  --buTxtCo: #aaa;
+  --buBoCo: #100;
+  --noteCo: #dea;
   --noteTxtCo: #222;
-  --inCo: #fa9;
-  --inlinkCo: #511;
-  --selCo: #059;
-  --selTxtCo: #bff;
+  --inCo: #111;
+  --inlinkCo: #ad0;
+  --selCo: #ed0;
+  --selTxtCo: #555;
 }
 
 .H1 {
@@ -68,6 +68,7 @@ button {
   margin: 3px;
   font-family: var(--secFont);
   font-size: 25px;
+  cursor: pointer;
 }
 
 .notice {
@@ -89,6 +90,7 @@ a.indexed {
 }
 .hidden {
   display: none;
+  cursor: not-allowed;
 }
 .notFound {
   font-family: cursive;
@@ -98,10 +100,9 @@ a.indexed {
 ::selection {
   background: var(--selCo);
   color: var(--selTxtCo);
-  width: fit-content;
+  padding: 2px;
 }
 .altRating {
   font-size: 20px;
   color: var(--noteTxteCo);
-  font-weight: bold;
 }

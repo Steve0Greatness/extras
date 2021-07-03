@@ -5,7 +5,7 @@ document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
       <a target="_parent" href="../">
           <button type="button">Home</button>
       </a>
-      <a target="_parent" href="../Blog">
+      <a target="_parent" href="../src/blog.html">
           <button type="button">Blog</button>
       </a>
       <a target="_parent" href="../alts">
@@ -14,7 +14,16 @@ document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
       <a target="_parent" href="../extra_projects">
           <button type="button">Addition personal projects</button>
       </a>
+      <button type="button" onclick="lightSwitch()">Light Switch</button>
   </div>`;
+var pageName = window.location.pathname.replace('/', ' ') + 'Steve0Greatness'
+pageName = pageName.replace('/', '--').replace('.html', '')
+console.log(pageName)
+document.getElementsByTagName('head')[0].innerHTML += `
+  <title>${pageName}</title>
+	<link rel="shortcut icon" href="https://cdn2.scratch.mit.edu/get_image/user/61820378_16x16.png">
+	<link rel="stylesheet" type="text/css" href="../src/stylesheet.css">`;
+
 function getPages(url) {
   return new Promise((resolve, reject) => {
     fetch(url)
@@ -26,10 +35,26 @@ function getPages(url) {
       .catch(reject)
   });
 }
-var pageName = window.location.pathname.replace('/', ' ') + 'Steve0Greatness'
-pageName = pageName.replace('/', '--').replace('.html', '')
-console.log(pageName)
-document.getElementsByTagName('head')[0].innerHTML += `
-  <title>${pageName}</title>
-	<link rel="shortcut icon" href="../src/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="../src/stylesheet.css">`
+
+function lightSwitch() {
+  if (localStorage.getItem('theme') == 'null') {
+    localStorage.setItem('theme', 'n')
+    document.getElementById('page') = 'n'
+  }
+  var theme = localStorage.getItem('theme')
+  var html = document.getElementById('page')
+  if (theme != 'd') {
+    html.className = 'd'
+    localStorage.setItem('theme', 'd')
+    console.log()
+  } else {
+    html.className = 'n'
+    localStorage.setItem('theme', 'n')
+  }
+  theme = localStorage.getItem('theme')
+}
+
+var theme = localStorage.getItem('theme')
+var html = document.getElementById('page')
+html.className = theme
+console.log(html, theme)
