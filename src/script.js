@@ -1,3 +1,9 @@
+var url = window.location.href;
+if (url.includes('https://blog.')) {
+  url = "https://Steve0Greatnessgithubio.stevesgreatness.repl.co"
+} else {
+  url = ".."
+}
 if (localStorage.getItem('theme') == 'null' || localStorage.getItem('theme') == '') {
   localStorage.setItem('theme', 'n')
   document.getElementById('page').className = 'n'
@@ -7,26 +13,20 @@ document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
   <img src="https://cdn2.scratch.mit.edu/get_image/user/61820378_32x32.png"/> 
   Hey there<span style="font-style: italic;">!</span></h1>
   <div class="nav">
-      <a target="_parent" href="../">
+      <a target="_parent" href="${url}/">
           <button type="button">Home</button>
       </a>
-      <a target="_parent" href="../src/blog.html">
+      <a target="_parent" href="${url}/src/blog.html">
           <button type="button">Blog</button>
       </a>
-      <a target="_parent" href="../alts">
+      <a target="_parent" href="${url}/alts">
           <button type="button">My Alts</button>
       </a>
-      <a target="_parent" href="../extra_projects">
+      <a target="_parent" href="${url}/extra_projects">
           <button type="button">Addition personal projects</button>
       </a>
       <button type="button" onclick="lightSwitch()">Light Switch</button>
   </div>`;
-var url = window.location.href;
-if (url.includes('https://blog.')) {
-  url = "https://Steve0Greatnessgithubio.stevesgreatness.repl.co"
-} else {
-  url = ".."
-}
 
 var pageName = window.location.pathname.replace('/', ' ') + 'Steve0Greatness'
 pageName = pageName.replace('/', '--').replace('.html', '')
@@ -70,9 +70,3 @@ var theme = localStorage.getItem('theme')
 var html = document.getElementById('page')
 html.className = theme
 console.log(html, theme)
-
-this.addEventListener('keypress', event => {
-  if (event.keyCode == 13) {
-    alert('hi.')
-  }
-})
