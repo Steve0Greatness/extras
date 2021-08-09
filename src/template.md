@@ -3,9 +3,9 @@ This is the template for the pages(the html files other than the ones in Extra_P
 <html id="page">
 
 <body>
-<header id="header"></header>
+	<header id="header"></header>
 	
-  <script src="../src/script.js"></script>
+  <script src="/src/script.js"></script>
 </body>
 
 </html>

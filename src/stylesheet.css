@@ -4,8 +4,9 @@
 :root {
   --mainFont: "Open Sans";
   --secFont: Jomhuria;
+	font-display: optional;
 }
-html.n {
+html.l {
   --navCo: #0F0089;
   --headCo: #3700FF;
   --linkCo: #F7E45D;
@@ -21,7 +22,7 @@ html.n {
   --selCo: #f51;
   --selTxtCo: #059;
 }
-html.d {
+html.n {
   --navCo: #111;
   --headCo: #333;
   --linkCo: #0a0;
@@ -105,4 +106,33 @@ a.indexed {
 .altRating {
   font-size: 20px;
   color: var(--noteTxteCo);
+}
+.code {
+	background: var(--buTxtCo); 
+	color: var(--buCo);
+}
+.code.block {
+	display: block;
+	padding: 5px;
+}
+.bigHead {
+	animation: fadeIn 1s;
+	font-size: 24px;
+	font-weight: bold;
+}
+.bigHead.not {
+	color: limegreen; 
+}
+.bigHead.am {
+	color: red; 
+}
+@keyframes fadeIn {
+	from {
+		font-size: 48px;
+		opacity: 0;
+	}
+	to {
+		font-size: 24px;
+		opacity: 1;
+	}
 }

@@ -1,0 +1,17 @@
+# start of file
+user-agent: *
+disallow: /src/
+
+user-agent: magicsearchbot
+disallow: /alts/
+
+user-agent: magicsearchbot
+allow: /
+
+user-agent: magicsearchbot
+allow: /extra_projects/
+
+user-agent: magicsearchbot
+disallow: /404.html
+
+sitemap: /src/sitemap.txt

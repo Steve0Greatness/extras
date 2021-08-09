@@ -1,6 +1,7 @@
 Here is the template for these pages. do with them as you will
 ```html
-<html id="page" class="n">
+<!DOCTYPE html>
+<html id="page" class="n" lang="en">
  
 <body>
 <header id="header"></header>
