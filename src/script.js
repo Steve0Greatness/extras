@@ -76,3 +76,10 @@ if (window.location.pathname == "/extra_projects/Am-I-Banned.html") {
 
 }
 document.cookie = "SameSite=Strict; promo_shown=1; Max-Age=2600000; Secure"
+
+function showThenHideNote(num) {
+	var n = document.getElementById('note' + num)
+	n.style = ""
+	setTimeout(function() {n.style = "animation: fadeOut 3s;"}, 3000)
+	setTimeout(function() {n.style = "opacity: 0;"}, 6000)
+}

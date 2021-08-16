@@ -21,6 +21,8 @@ html.l {
   --inlinkCo: #05c;
   --selCo: #f51;
   --selTxtCo: #059;
+	--taCo: #cf4;
+	--taTxtCo: black;
 }
 html.n {
   --navCo: #111;
@@ -37,6 +39,8 @@ html.n {
   --inlinkCo: #ad0;
   --selCo: #ed0;
   --selTxtCo: #555;
+	--taCo: black;
+	--taTxtCo: white;
 }
 
 .H1 {
@@ -134,5 +138,27 @@ a.indexed {
 	to {
 		font-size: 24px;
 		opacity: 1;
+	}
+}
+textarea {
+	color: var(--taTxtCo);
+	background: var(--taCo);
+	border: var(--maTxtCo) 3px solid;
+	width: 100%;
+	height: 500px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.note {
+	background: var(--linkCo);
+	color: black;
+	padding: 2px;
+}
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+	to { 
+		opacity: 0;
 	}
 }
