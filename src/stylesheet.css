@@ -109,7 +109,8 @@ a.indexed {
 }
 .altRating {
   font-size: 20px;
-  color: var(--noteTxteCo);
+  color: var(--noteCo);
+	background: var(--noteTxtCo);
 }
 .code {
 	background: var(--buTxtCo); 

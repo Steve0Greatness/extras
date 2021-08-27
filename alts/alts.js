@@ -1,8 +1,26 @@
-getPages('https://api.github.com/repos/Steve0Greatness/Steve0Greatness.github.io/git/trees/d5b34f6c6a50a52e8cd11282e3497ae6709a9523').then((pages) => {
-  pages.map((pui) => pui.path.slice(0, -5))
-    .forEach((pui) => {
-      var page
-      page = pui.replace(/-/g, ' ');
-      if (pui != 'index') document.getElementById('index').innerHTML += '<div><a href="./' + pui + '.html" class="indexed">' + page + '</a></div>';
-    })
-});
+fetch('./alts.json')
+	.then(response => response.json())
+	.then(data => {
+		let name = ["Anonymouslysignedin", "Awesomecolors82", "fc-", "Foruninasnew2scratch", "ghadskjfjdfskl", "HatShirtPantsShoes", "ninjad-on-the-forums", "NotSteve0Greatness", "QWERTYamongus", "S0G", "Scratch_C0", "ScratchNewsWorldWide", "Steve-Ist-Gut", "Steve0Comics", "SteveDOTEdu", "Steves_Greatness", "test-account4newidea", "The-Best-Charry", "This_User"]
+		let x = window.location.search;
+		let ind
+		let l
+		if (x == '' || x == null) {
+			ind = document.getElementById('index')
+			l = name.length
+			for (let i = 0; i < l; i++) {
+				ind.innerHTML = ind.innerHTML + `<a href="?${name[i]}">${name[i]}</a><br>`
+			}
+		} else {
+			x = x.slice(1)
+			console.log(data[x])
+			document.getElementById("cc").innerHTML = data[x]["desc"]
+			document.getElementById('altRating').innerHTML = data[x]["rate"]
+			ind = document.getElementById('index')
+			l = name.length
+			ind.innerHTML = `<a href="?">🠔 index</a><br>`
+			for (let i = 0; i < l; i++) {
+				ind.innerHTML = ind.innerHTML + `<a href="?${name[i]}">${name[i]}</a><br>`
+			}
+		}
+	});

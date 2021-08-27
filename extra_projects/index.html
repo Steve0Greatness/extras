@@ -2,18 +2,19 @@
 <html id="page" class="n" lang="en">
  
 <body>
-<header id="header"></header>
+	<header id="header"></header>
   Index of pages
+	<div id="index">
+	</div>
   <script src="../src/script.js"></script>
-  <script>getPages('https://api.github.com/repos/Steve0Greatness/Steve0Greatness.github.io/git/trees/5b2e620eb7a21a17865632b14e3edffbab8cb37e').then((pages) => {
-  pages.map((pui) => pui.path.slice(0, -5))
-    .forEach((pui) => {
-      var page
-      page = pui.replace(/-/g, ' ');
-      if (pui != 'index') document.getElementById('index').innerHTML += '<div><a href="../extra_projects/' + pui + '.html" class="indexed">' + page + '</a></div>';
-    })
-});</script>
-  <div id="index">
+  <script type="text/javascript">
+		let ep = ["Am-I-Banned", "QuoteSignature", "SecretLives"]
+		for (let i = 0; i < ep.length; i++) {
+			let link = "<a href='" + ep[i] + ".html'>" + ep[i] + "</a> <br>"
+			let ind = document.getElementById('index')
+			ind.innerHTML = ind.innerHTML + link
+		}
+	</script>
 </body>
  
 </html>
