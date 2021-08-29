@@ -88,7 +88,7 @@ button {
   background: var(--inCo);
   display: block;
 }
-a.indexed {
+a.indexed, #index a {
   color: var(--inlinkCo);
   text-decoration: none;
   font-weight: bold;
