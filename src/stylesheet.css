@@ -7,22 +7,23 @@
 	font-display: optional;
 }
 html.l {
-  --navCo: #0F0089;
-  --headCo: #3700FF;
-  --linkCo: #F7E45D;
-  --maCo: #0044F7;
-  --maTxtCo: #C2FFBA;
-  --buCo: #F09;
-  --buTxtCo: #0FF;
-  --buBoCo: #fff;
-  --noteCo: #f25;
-  --noteTxtCo: #ccc;
-  --inCo: #0bf;
-  --inlinkCo: #05c;
-  --selCo: #f51;
-  --selTxtCo: #059;
-	--taCo: #cf4;
+  --navCo: #999;
+	--headCo: #aaa;
+	--linkCo: #00b;
+	--maCo: #cecece;
+	--maTxtCo: black;
+	--buCo: #efefef;
+	--buTxtCo: #223;
+	--buBoCo: white;
+	--noteCo: #f25;
+	--noteTxtCo: #cecece;
+	--inCo: #fff;
+	--inlinkCo: #088;
+	--selCo: #ff05;
+	--selTxtCo: #007;
+	--taCo: #ECECEB;
 	--taTxtCo: black;
+	--linkLeCo: #F7E45D;
 }
 html.n {
   --navCo: #111;
@@ -41,6 +42,7 @@ html.n {
   --selTxtCo: #555;
 	--taCo: black;
 	--taTxtCo: white;
+	--linkLeCo: var(--linkCo);
 }
 
 .H1 {
@@ -151,7 +153,7 @@ textarea {
 	margin-bottom: 15px;
 }
 .note {
-	background: var(--linkCo);
+	background: var(--linkLeCo);
 	color: black;
 	padding: 2px;
 }

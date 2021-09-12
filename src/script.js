@@ -2,7 +2,7 @@ var url = window.location.origin;
 if (url.includes('https://blog.')) {
 	url = "https://Steve0Greatnessgithubio.stevesgreatness.repl.co"
 } else {
-	url = ".."
+	url = ""
 }
 if (localStorage.getItem('theme') == null || localStorage.getItem('theme') == '' || localStorage.getItem('theme') == 'd') {
 	localStorage.setItem('theme', 'n')
@@ -20,10 +20,10 @@ document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
           <button type="button">Blog</button>
       </a>
       <a target="_parent" href="${url}/alts">
-          <button type="button">My Alts</button>
+          <button type="button">Alts</button>
       </a>
       <a target="_parent" href="${url}/extra_projects">
-          <button type="button">Addition personal projects</button>
+          <button type="button">Extras</button>
       </a>
       <button type="button" onclick="lightSwitch()">Light Switch</button>
   </div>`;

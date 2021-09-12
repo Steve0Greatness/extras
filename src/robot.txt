@@ -3,9 +3,6 @@ user-agent: *
 disallow: /src/
 
 user-agent: magicsearchbot
-disallow: /alts/
-
-user-agent: magicsearchbot
 allow: /
 
 user-agent: magicsearchbot
