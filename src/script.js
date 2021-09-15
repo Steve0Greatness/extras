@@ -1,28 +1,28 @@
-var url = window.location.origin;
+/*var url = window.location.origin;
 if (url.includes('https://blog.')) {
 	url = "https://Steve0Greatnessgithubio.stevesgreatness.repl.co"
 } else {
 	url = ""
-}
+}*/
 if (localStorage.getItem('theme') == null || localStorage.getItem('theme') == '' || localStorage.getItem('theme') == 'd') {
 	localStorage.setItem('theme', 'n')
 	document.getElementById('page').className = 'n'
 }
 
 document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
-  <img src="https://cdn2.scratch.mit.edu/get_image/user/61820378_32x32.png" alt='S0G ' width="32" height="32"> 
+  <img src="https://cdn2.scratch.mit.edu/get_image/user/61820378_32x32.png" alt='S0G' width="32" height="32" id="logo"> 
   Hey there<span style="font-style: italic;">!</span></h1>
   <div class="nav">
-      <a target="_parent" href="${url}/">
+      <a target="_parent" href="/">
           <button type="button">Home</button>
       </a>
-      <a target="_parent" href="${url}/src/blog.html">
+      <a target="_parent" href="/blog">
           <button type="button">Blog</button>
       </a>
-      <a target="_parent" href="${url}/alts">
+      <a target="_parent" href="/alts">
           <button type="button">Alts</button>
       </a>
-      <a target="_parent" href="${url}/extra_projects">
+      <a target="_parent" href="/extra_projects">
           <button type="button">Extras</button>
       </a>
       <button type="button" onclick="lightSwitch()">Light Switch</button>
@@ -36,7 +36,7 @@ document.getElementsByTagName('head')[0].innerHTML += `
 	<meta name="description" content="Site of Steve0Greatness">
   <title id="title">${pageName}</title>
 	<link rel="shortcut icon" href="https://cdn2.scratch.mit.edu/get_image/user/61820378_16x16.png">
-	<link rel="stylesheet" type="text/css" href="${url}/src/stylesheet.css">`;
+	<link rel="stylesheet" type="text/css" href="/src/stylesheet.css">`;
 
 function getPages(url) {
 	return new Promise((resolve, reject) => {
