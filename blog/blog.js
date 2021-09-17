@@ -1,7 +1,7 @@
 fetch('./blog.json')
 	.then(response => response.json())
 	.then(data => {
-		let hash = window.location.search
+		let hash = location.search
 		console.log(hash)
 		let names = ["Why-inspect-element-is-a-useful-tool", "How-To-make-mockups", "How-to-copy-and-paste-on-mobile", "dividing-by-0", "What-about-the-second-site?", "Changing_the_Dark-mode"]
 		let content = document.getElementById('content')
@@ -13,7 +13,7 @@ fetch('./blog.json')
 		}
 		if (hash != null || hash != "") {
 			if (names.indexOf(hash.slice(1)) != -1) {
-				content.innerHTML = data[hash.slice(1)]["pC"]
+				content.innerHTML = `<h1>${hash.slice(1)}</h1><h2>${data[hash.slice(1)]["pD"]}</h2><div id="article">${data[hash.slice(1)]["pC"]}</div>`
 				ind.innerHTML = ind.innerHTML + "<a href='?'>- back</a>"
 			}
 		}
