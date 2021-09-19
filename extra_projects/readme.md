@@ -1,0 +1,1 @@
+this is for projects that aren't blog posts, and aren't on other platforms other than this site.
