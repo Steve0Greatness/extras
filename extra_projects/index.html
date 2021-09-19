@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html id="page" class="n" lang="en">
- 
+
 <body>
 	<header id="header"></header>
-  Index of pages
+	Index of pages
 	<div id="index">
 	</div>
-  <script src="../src/script.js"></script>
-  <script type="text/javascript">
-		let ep = ["Am-I-Banned", "QuoteSignature", "SecretLives", "uselessFacts"]
-		for (let i = 0; i < ep.length; i++) {
-			let link = "<a href='" + ep[i] + ".html'>" + ep[i] + "</a> <br>"
-			let ind = document.getElementById('index')
-			ind.innerHTML = ind.innerHTML + link
-		}
+	<script src="../src/script.js">
+	</script>
+	<script type="text/javascript">
+		fetch("./api.json")
+			.then(blob => blob.json())
+			.then(data => {
+				var ind = document.getElementById('index')
+				for (let i = 0; i < data.length; i++) {
+					let link = "<a href='./" + data[i]["fileName"] + "'>" + data[i]["name"] + "</a> <br>"
+					ind.innerHTML += link
+				}
+			})
 	</script>
 </body>
- 
+
 </html>

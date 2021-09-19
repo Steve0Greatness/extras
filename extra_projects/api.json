@@ -1,0 +1,30 @@
+[
+	{
+		"name": "Secret Lives",
+		"fileName": "SecretLives.html",
+		"desc": "This is based off of the 4/1/21 joke that Scratch did.",
+		"status": null,
+		"date": "5/4/21"
+	},
+	{
+		"name": "Am I Banned?",
+		"fileName": "Am-I-Banned.html",
+		"desc": "Check to see if I'm banned on Scratch",
+		"status": "not banned",
+		"date": "8/8/21"
+	},
+	{
+		"name": "Quote Signature",
+		"fileName": "QuoteSignature.html",
+		"desc": "Quote my signature on Scratch.",
+		"status": null,
+		"date": "8/16/21"
+	},
+	{
+		"name": "Useless facts.",
+		"fileName": "uselessFacts.html",
+		"desc": "Facts that you don't need to know.",
+		"status": 1,
+		"date": "9/11/21"
+	}
+]
