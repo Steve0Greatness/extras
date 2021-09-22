@@ -1,20 +1,20 @@
 fetch('./blog.json')
 	.then(response => response.json())
 	.then(data => {
+		var ind = document.getElementById('index')
 		let hash = location.search
 		console.log(hash)
 		let names = data["names"]
 		let content = document.getElementById('content')
 		for (let i = 0; i < names.length; i++) {
 			let x = data[names[i]]
-			var ind = document.getElementById('index')
 			console.log(i, names[i], x)
-			ind.innerHTML = ind.innerHTML + `<a href="?${names[i]}">${names[i]}</a> <span style="padding-left: 15px;">${x["pD"]}</span> <br>`
+			ind.innerHTML = ind.innerHTML + `<tr><td><a href="?${names[i]}">${x["name"]}</a></td> <td><span style="padding-left: 15px;">${x["pD"]}</span></td> </tr>`
 		}
 		if (hash != null || hash != "") {
 			if (names.indexOf(hash.slice(1)) != -1) {
-				content.innerHTML = `<h1>${hash.slice(1)}</h1><h2>${data[hash.slice(1)]["pD"]}</h2><div id="article">${data[hash.slice(1)]["pC"]}</div>`
-				ind.innerHTML = ind.innerHTML + "<a href='?'>- back</a>"
+				content.innerHTML = `<h1>${hash.slice(1)}</h1><h2>${data[hash.slice(1)]["pD"]}</h2><article id="article">${data[hash.slice(1)]["pC"]}</article>`
+				ind.innerHTML = ind.innerHTML + "<tr><a href='?'>- back</a></tr>"
 			}
 		}
 	});
