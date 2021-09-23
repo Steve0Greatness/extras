@@ -22,7 +22,7 @@ document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
       <a target="_parent" href="/alts">
           <button type="button">Alts</button>
       </a>
-      <a target="_parent" href="/extra_projects">
+      <a target="_parent" href="/extras">
           <button type="button">Extras</button>
       </a>
       <button type="button" onclick="lightSwitch()">Light Switch</button>
