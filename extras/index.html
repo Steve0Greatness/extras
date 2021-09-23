@@ -4,8 +4,8 @@
 <body>
 	<header id="header"></header>
 	Index of pages
-	<div id="index">
-	</div>
+	<table id="index">
+	</table>
 	<script src="../src/script.js">
 	</script>
 	<script type="text/javascript">
@@ -14,7 +14,7 @@
 			.then(data => {
 				var ind = document.getElementById('index')
 				for (let i = 0; i < data.length; i++) {
-					let link = "<a href='./" + data[i]["fileName"] + "'>" + data[i]["name"] + "</a> <br>"
+					let link = "<tr> <td><a href='./" + data[i]["fileName"] + "'>" + data[i]["name"] + "</a></td> <td>" + data[i]["desc"] + "</td> </tr>"
 					ind.innerHTML += link
 				}
 			})

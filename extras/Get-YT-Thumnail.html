@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html id="page" lang="en">
+
+<body>
+	<header id="header"></header>
+		<input type="text" id="vid-ID" value="dQw4w9WgXcQ"> <button onclick="submit()">Submit</button><br>
+		<img src="https://i3.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350">
+  <script src="/src/script.js"></script>
+	<script type="text/javascript">
+		function submit() {
+			document.getElementById("vid-Thumb").src = `https://i3.ytimg.com/vi/${document.getElementById("vid-ID").value}/maxresdefault.jpg`
+		}
+	</script>
+</body>
+
+</html>
