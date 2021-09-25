@@ -3,12 +3,38 @@
 
 <body>
 	<header id="header"></header>
-		<input type="text" id="vid-ID" value="dQw4w9WgXcQ"> <button onclick="submit()">Submit</button><br>
-		<img src="https://i3.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350">
+	<input type="text" id="vid-ID" value="dQw4w9WgXcQ" onchange="submit()"><br>
+	<a href="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" target="new" id="vid-Thumb-Link"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350"></a><br>
+	<input type="text" id="copyText" value="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" readonly onclick="copyText(document.getElementById('copyText'))"> <button onclick="copyText(document.getElementById('copyText'))">Copy</button>
+	<select id="sOB" value="maxresdefault" onchange="submit()">
+		<option value="hqdefault">smaller</option>
+		<option value="maxresdefault" selected>bigger</option>
+	</select>
+	<h1>Why?</h1>
+	IDK, why did you click this?
+	<h1>Why this one?</h1>
+	No Google analytics to track you, and no ads to slow down your computer
+	<h1>How?</h1>
+	It's easy, simply copy the id(the part in the url after <span class="code">watch?v=</span>. Eg, <span class="code">dQw4w9WgXcQ</span> is the id for Rick Astly's "Never Gonna Give You Up") of the YouTube video, then paste it into the box above.
+	<h1>More</h1>
+	Here are some more things I did... I guess.
+	<ol>
+		<li>Click the preview to open it in a new tab</li>
+		<li>Click the text that shows the link to copy it</li>
+		<li>Everything updates upon a change</li>
+	</ol>
   <script src="/src/script.js"></script>
 	<script type="text/javascript">
 		function submit() {
-			document.getElementById("vid-Thumb").src = `https://i3.ytimg.com/vi/${document.getElementById("vid-ID").value}/maxresdefault.jpg`
+			let source = `https://i.ytimg.com/vi/${document.getElementById("vid-ID").value}/maxresdefault.jpg`
+			document.getElementById("vid-Thumb").src = source
+			document.getElementById("vid-Thumb-Link").href = source
+			document.getElementById("copyText").value = `https://i.ytimg.com/vi/${document.getElementById("vid-ID").value}/${document.getElementById("sOB").value}.jpg`
+		}
+		function copyText(element) {
+			element.select()
+			element.setSelectionRange(0, 99999)
+			document.execCommand("copy")
 		}
 	</script>
 </body>

@@ -38,8 +38,8 @@ html.n {
   --noteTxtCo: #222;
   --inCo: #111;
   --inlinkCo: #ad0;
-  --selCo: #ed0;
-  --selTxtCo: #555;
+  --selCo: #0d06;
+  --selTxtCo: #fff;
 	--taCo: black;
 	--taTxtCo: white;
 	--linkLeCo: var(--linkCo);
@@ -68,7 +68,7 @@ body {
   font-family: var(--mainFont);
 }
 
-button {
+button, select, option, input {
 	background-color: var(--buCo);
 	color: var(--buTxtCo);
   border: solid 2px var(--buBoCo);

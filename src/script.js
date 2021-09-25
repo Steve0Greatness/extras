@@ -1,9 +1,4 @@
-/*var url = window.location.origin;
-if (url.includes('https://blog.')) {
-	url = "https://Steve0Greatnessgithubio.stevesgreatness.repl.co"
-} else {
-	url = ""
-}*/
+
 if (localStorage.getItem('theme') == null || localStorage.getItem('theme') == '' || localStorage.getItem('theme') == 'd') {
 	localStorage.setItem('theme', 'n')
 	document.getElementById('page').className = 'n'
