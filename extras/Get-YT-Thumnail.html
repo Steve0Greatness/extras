@@ -1,41 +1,115 @@
 <!DOCTYPE html>
-<html id="page" lang="en">
+<html lang="en">
+
+<head>
+	<link rel="icon" href="https://www.youtube.com/s/desktop/4eebcda0/img/favicon.ico">
+	<title>YouTube Thumbnail Grabber</title>
+	<style type="text/css">
+		@import url("https://fonts.googleapis.com/css2?family=Roboto");
+
+		html.n {
+			background: #333;
+			color: white;
+			--color: white;
+			--inputs: #000;
+			--button: #555;
+		}
+
+		html.l {
+			background: #eee;
+			color: black;
+			--color: black;
+			--inputs: #fff;
+			--inputsBorder: #ccc;
+			--button: #ddd;
+		}
+
+		html {
+			font-family: "Roboto";
+		}
+
+		input, select {
+			color: var(--color);
+			background: var(--inputs);
+			border: var(--inputsBorder);
+			padding: 3px;
+			font-family: inherit;
+		}
+
+		button {
+			color: var(--color);
+			background: var(--button);
+			border: var(--inputsBorder);
+			padding: 3px;
+			font-family: inherit;
+		}
+
+		.code {
+			color: var(--color);
+			background: var(--button);
+			font-family: monospace;
+		}
+
+		img.lB {
+			margin-bottom: -3px;
+		}
+
+		#vid-ID {
+			margin-bottom: 3px;
+		}
+	</style>
+</head>
 
 <body>
-	<header id="header"></header>
 	<input type="text" id="vid-ID" value="dQw4w9WgXcQ" onchange="submit()"><br>
 	<a href="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" target="new" id="vid-Thumb-Link"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350"></a><br>
 	<input type="text" id="copyText" value="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" readonly onclick="copyText(document.getElementById('copyText'))"> <button onclick="copyText(document.getElementById('copyText'))">Copy</button>
 	<select id="sOB" value="maxresdefault" onchange="submit()">
 		<option value="hqdefault">smaller</option>
 		<option value="maxresdefault" selected>bigger</option>
-	</select>
-	<h1>Why?</h1>
-	IDK, why did you click this?
-	<h1>Why this one?</h1>
-	No Google analytics to track you, and no ads to slow down your computer
-	<h1>How?</h1>
-	It's easy, simply copy the id(the part in the url after <span class="code">watch?v=</span>. Eg, <span class="code">dQw4w9WgXcQ</span> is the id for Rick Astly's "Never Gonna Give You Up") of the YouTube video, then paste it into the box above.
-	<h1>More</h1>
-	Here are some more things I did... I guess.
-	<ol>
-		<li>Click the preview to open it in a new tab</li>
-		<li>Click the text that shows the link to copy it</li>
-		<li>Everything updates upon a change</li>
-	</ol>
-  <script src="/src/script.js"></script>
+	</select><br>
+	<div id="opened">
+		<h1>Why?</h1>
+		IDK, why did you click this?
+		<h1>Why this one?</h1>
+		No Google analytics to track you, and no ads to slow down your computer
+		<h1>How?</h1>
+		It's easy, simply copy the id(the part in the url after <span class='code'>watch?v=</span>. Eg, <span class='code'>dQw4w9WgXcQ</span> is the id for Rick Astly's "Never Gonna Give You Up") of the YouTube video, then paste it into the box above.
+		<h1>More</h1>
+		Here are some more things I did... I guess.
+		<ol>
+			<li>Click the preview to open it in a new tab</li>
+			<li>Click the text that shows the link to copy it</li>
+			<li>Everything updates upon a change</li>
+		</ol>
+		<h1>Please note</h1>
+		This is not endorsed by <img class="lB" src="//www.google.com/favicon.ico" width="16">Google or <img class="lB" src="//www.youtube.com/s/desktop/4eebcda0/img/favicon.ico" width="16">Youtube in any way shape or form.<br>
+		Also, some videos may not have any available preview, mostly older ones.
+	</div>
+  <!--<script src="/src/script.js"></script>-->
 	<script type="text/javascript">
+		var videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs"]
+		var docvidID = document.getElementById("vid-ID")
 		function submit() {
-			let source = `https://i.ytimg.com/vi/${document.getElementById("vid-ID").value}/maxresdefault.jpg`
+			let source = `https://i.ytimg.com/vi/${docvidID.value}/maxresdefault.jpg`
 			document.getElementById("vid-Thumb").src = source
 			document.getElementById("vid-Thumb-Link").href = source
-			document.getElementById("copyText").value = `https://i.ytimg.com/vi/${document.getElementById("vid-ID").value}/${document.getElementById("sOB").value}.jpg`
+			document.getElementById("copyText").value = `https://i.ytimg.com/vi/${docvidID.value}/${document.getElementById("sOB").value}.jpg`
 		}
 		function copyText(element) {
 			element.select()
 			element.setSelectionRange(0, 99999)
 			document.execCommand("copy")
 		}
+
+		var videoID = Math.floor(Math.random() * videos.length)
+		docvidID.value = videos[videoID]
+		submit()
+
+		if (localStorage.getItem('theme') == null) {
+			localStorage.setItem("theme", "n")
+		}
+		document.getElementsByTagName("html")[0].className = localStorage.getItem("theme")
 	</script>
 </body>
 

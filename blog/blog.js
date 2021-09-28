@@ -1,10 +1,10 @@
-fetch('./blog.json')
+fetch('blog.json')
 	.then(response => response.json())
 	.then(data => {
 		var ind = document.getElementById('index')
 		let hash = location.search
 		console.log(hash)
-		let names = data["names"]
+		let names = Object.keys(data)
 		let content = document.getElementById('content')
 		for (let i = 0; i < names.length; i++) {
 			let x = data[names[i]]

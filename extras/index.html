@@ -6,10 +6,10 @@
 	Index of pages
 	<table id="index">
 	</table>
-	<script src="../src/script.js">
+	<script src="/src/script.js">
 	</script>
 	<script type="text/javascript">
-		fetch("./api.json")
+		fetch("api.json")
 			.then(blob => blob.json())
 			.then(data => {
 				var ind = document.getElementById('index')
