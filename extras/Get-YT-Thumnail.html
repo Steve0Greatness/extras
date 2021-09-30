@@ -4,6 +4,7 @@
 <head>
 	<link rel="icon" href="https://www.youtube.com/s/desktop/4eebcda0/img/favicon.ico">
 	<title>YouTube Thumbnail Grabber</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
 		@import url("https://fonts.googleapis.com/css2?family=Roboto");
 
@@ -13,6 +14,7 @@
 			--color: white;
 			--inputs: #000;
 			--button: #555;
+			--preview: #666;
 		}
 
 		html.l {
@@ -22,6 +24,7 @@
 			--inputs: #fff;
 			--inputsBorder: #ccc;
 			--button: #ddd;
+			--preview: #ccc;
 		}
 
 		html {
@@ -57,17 +60,37 @@
 		#vid-ID {
 			margin-bottom: 3px;
 		}
+
+		#closeImg {
+			position: relative;
+			bottom: 11em;
+			cursor: pointer;
+		}
+
+		#img {
+			margin-bottom: 0.5em;
+			margin-top: 0.5em;
+			background: var(--preview);
+			padding: 0.5em;
+			display: table;
+		}
 	</style>
 </head>
 
 <body>
-	<input type="text" id="vid-ID" value="dQw4w9WgXcQ" onchange="submit()"><br>
-	<a href="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" target="new" id="vid-Thumb-Link"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350"></a><br>
-	<input type="text" id="copyText" value="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" readonly onclick="copyText(document.getElementById('copyText'))"> <button onclick="copyText(document.getElementById('copyText'))">Copy</button>
+	<input type="text" id="vid-ID" value onchange="submit()"><br>
+	<div id="img">
+		<a onclick="closeImg()" id="closeImg">X</a>
+		<a href target="new" id="vid-Thumb-Link">
+			<img src id="vid-Thumb" width="350">
+		</a>
+	</div>
+	<input type="text" id="copyText" value readonly onclick="copyText(document.getElementById('copyText'))"> <button onclick="copyText(document.getElementById('copyText'))">Copy</button>
 	<select id="sOB" value="maxresdefault" onchange="submit()">
 		<option value="hqdefault">smaller</option>
 		<option value="maxresdefault" selected>bigger</option>
 	</select><br>
+
 	<div id="opened">
 		<h1>Why?</h1>
 		IDK, why did you click this?
@@ -86,9 +109,8 @@
 		This is not endorsed by <img class="lB" src="//www.google.com/favicon.ico" width="16">Google or <img class="lB" src="//www.youtube.com/s/desktop/4eebcda0/img/favicon.ico" width="16">Youtube in any way shape or form.<br>
 		Also, some videos may not have any available preview, mostly older ones.
 	</div>
-  <!--<script src="/src/script.js"></script>-->
 	<script type="text/javascript">
-		var videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs"]
+		var videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs", "vFjXKOXdgGo", "AHFFcKDwKws", "rBs7EEPLJ68"]
 		var docvidID = document.getElementById("vid-ID")
 		function submit() {
 			let source = `https://i.ytimg.com/vi/${docvidID.value}/maxresdefault.jpg`
@@ -100,6 +122,13 @@
 			element.select()
 			element.setSelectionRange(0, 99999)
 			document.execCommand("copy")
+		}
+		function closeImg() {
+			document.getElementById("img").innerHTML = `<button onclick="reloadImg()">Load Preview</button>`
+		}
+		function reloadImg() {
+			document.getElementById("img").innerHTML = `<a onclick="closeImg()" id="closeImg">X</a><a href="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" target="new" id="vid-Thumb-Link"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350"></a>`
+			submit()
 		}
 
 		var videoID = Math.floor(Math.random() * videos.length)

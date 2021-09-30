@@ -13,7 +13,7 @@ fetch('blog.json')
 		}
 		if (hash != null || hash != "") {
 			if (names.indexOf(hash.slice(1)) != -1) {
-				content.innerHTML = `<h1>${hash.slice(1)}</h1><h2>${data[hash.slice(1)]["pD"]}</h2><article id="article">${data[hash.slice(1)]["pC"]}</article>`
+				content.innerHTML = `<h1>${data[hash.slice(1)]["name"]}</h1><h2>${data[hash.slice(1)]["pD"]}</h2><article id="article">${data[hash.slice(1)]["pC"]}</article>`
 				ind.innerHTML = ind.innerHTML + "<tr><a href='?'>- back</a></tr>"
 			}
 		}
