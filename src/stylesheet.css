@@ -25,6 +25,8 @@ html.l {
 	--taTxtCo: black;
 	--linkLeCo: #F7E45D;
 }
+
+/*normal theme
 html.n {
   --navCo: #111;
   --headCo: #333;
@@ -41,6 +43,28 @@ html.n {
   --selCo: #0d06;
   --selTxtCo: #fff;
 	--taCo: black;
+	--taTxtCo: white;
+	--linkLeCo: var(--linkCo);
+}
+*/
+
+/*halloween themed*/
+html.n {
+	--navCo: #3e6433;
+	--headCo: #114e00;
+	--linkCo: #0a0;
+	--maCo: #485a43;
+	--maTxtCo: #ccc;
+	--buCo: #114e00;
+	--buTxtCo: #aaa;
+	--buBoCo: #f4b900;
+	--noteCo: #f4b900;
+	--noteTxtCo: #aaa;
+	--inCo: #1a3b11;
+	--inlinkCo: #ad0;
+	--selCo: #0d06;
+	--selTxtCo: #fff;
+	--taCo: #1a3b12;
 	--taTxtCo: white;
 	--linkLeCo: var(--linkCo);
 }
@@ -117,6 +141,9 @@ a.indexed, #index a {
 .code {
 	background: var(--buTxtCo); 
 	color: var(--buCo);
+	margin-top: 2px;
+	margin-bottom: 2px;
+	border-radius: 3px;
 }
 .code.block {
 	display: block;
