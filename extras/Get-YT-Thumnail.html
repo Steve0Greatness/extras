@@ -110,9 +110,14 @@
 		Also, some videos may not have any available preview, mostly older ones.
 	</div>
 	<script type="text/javascript">
+		const imgDoc = document.getElementById("img")
+		const reloadBu = `<button onclick="reloadImg()">Load Preview</button>`
 		var videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs", "vFjXKOXdgGo", "AHFFcKDwKws", "rBs7EEPLJ68"]
 		var docvidID = document.getElementById("vid-ID")
 		function submit() {
+			if (checkReloadNeed()) {
+				reloadImg()
+			}
 			let source = `https://i.ytimg.com/vi/${docvidID.value}/maxresdefault.jpg`
 			document.getElementById("vid-Thumb").src = source
 			document.getElementById("vid-Thumb-Link").href = source
@@ -124,10 +129,17 @@
 			document.execCommand("copy")
 		}
 		function closeImg() {
-			document.getElementById("img").innerHTML = `<button onclick="reloadImg()">Load Preview</button>`
+			imgDoc.innerHTML = reloadBu
+		}
+		function checkReloadNeed() {
+			if (imgDoc.innerHTML == reloadBu) {
+				return true
+			} else {
+				return false
+			}
 		}
 		function reloadImg() {
-			document.getElementById("img").innerHTML = `<a onclick="closeImg()" id="closeImg">X</a><a href="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" target="new" id="vid-Thumb-Link"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350"></a>`
+			imgDoc.innerHTML = `<a onclick="closeImg()" id="closeImg">X</a><a href="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" target="new" id="vid-Thumb-Link"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350"></a>`
 			submit()
 		}
 

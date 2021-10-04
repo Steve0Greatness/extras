@@ -1,4 +1,9 @@
-
+var mainSiteBu = ""
+if (location.origin.includes("repl.co")) {
+	mainSiteBu = `<a target="_parent" href="https://Steve0Greatness.github.io${location.pathname + location.search}">
+		<button type="button">Open Github version</button>
+	</a>`
+}
 if (localStorage.getItem('theme') == null || localStorage.getItem('theme') == '' || localStorage.getItem('theme') == 'd') {
 	localStorage.setItem('theme', 'n')
 	document.getElementById('page').className = 'n'
@@ -20,6 +25,7 @@ document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
       <a target="_parent" href="/extras">
           <button type="button">Extras</button>
       </a>
+			${mainSiteBu}
       <button type="button" onclick="lightSwitch()">Light Switch</button>
   </div>`;
 
