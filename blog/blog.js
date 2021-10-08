@@ -25,3 +25,4 @@ if (localStorage.getItem('theme') == null || localStorage.getItem('theme') == ''
 	document.getElementById('page').className = 'n'
 }
 var pageUrl = window.location.origin
+

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="n">
 
 <head>
-	<link rel="icon" href="https://www.youtube.com/s/desktop/4eebcda0/img/favicon.ico">
+	<!--The data that the website gives your browser, so that it can render the favicon(icon), the title, the viewport(resizing text and images), and the CSS-->
+	<link rel="icon" href="//www.youtube.com/s/desktop/4eebcda0/img/favicon.ico">
 	<title>YouTube Thumbnail Grabber</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
@@ -15,6 +16,8 @@
 			--inputs: #000;
 			--button: #555;
 			--preview: #666;
+			--scrollBackground: #222;
+			--scroll: #111;
 		}
 
 		html.l {
@@ -25,13 +28,20 @@
 			--inputsBorder: #ccc;
 			--button: #ddd;
 			--preview: #ccc;
+			--scrollBackground: #ddd;
+			--scroll: #fff;
+		}
+
+		a {
+			color: inherit;
 		}
 
 		html {
 			font-family: "Roboto";
 		}
 
-		input, select {
+		input,
+		select {
 			color: var(--color);
 			background: var(--inputs);
 			border: var(--inputsBorder);
@@ -74,17 +84,47 @@
 			padding: 0.5em;
 			display: table;
 		}
+
+		img.ytChannel {
+			border-radius: 50px;
+		}
+
+		::-webkit-scrollbar-track-piece {
+			background-color: var(--scrollBackground);
+		}
+
+		::-webkit-scrollbar {
+			width: 15px;
+			height: 15px;
+		}
+
+		::-webkit-scrollbar-thumb:vertical {
+			height: 30px;
+			background-color: var(--scroll);
+		}
 	</style>
+	<!--It's surprisingly easy to get the thumbnail of a YouTube video, infact, YouTube makes it extremely easy.-->
 </head>
 
 <body>
-	<input type="text" id="vid-ID" value onchange="submit()"><br>
-	<div id="img">
-		<a onclick="closeImg()" id="closeImg">X</a>
-		<a href target="new" id="vid-Thumb-Link">
-			<img src id="vid-Thumb" width="350">
-		</a>
+	<!--When you've desabled JS(why?)-->
+	<noscript>
+		It seems you don't have JavaScript enabled, please enable it! JavaScript is very important, and this page can't run without
+		it.
+		<br>
+	</noscript>
+	<!--Thumbnail grabber-->
+	<div id="top">
+		<input type="text" id="vid-ID" value onclick="selectTxt(document.getElementById('vid-ID'))" onchange="submit()"><br>
+		<div id="img">
+			<!--the image-->
+			<a onclick="closeImg()" id="closeImg">X</a>
+			<a href target="new" id="vid-Thumb-Link">
+				<img src id="vid-Thumb" width="350">
+			</a>
+		</div>
 	</div>
+	<!--Copying the url-->
 	<input type="text" id="copyText" value readonly onclick="copyText(document.getElementById('copyText'))"> <button onclick="copyText(document.getElementById('copyText'))">Copy</button>
 	<select id="sOB" value="maxresdefault" onchange="submit()">
 		<option value="hqdefault">smaller</option>
@@ -92,45 +132,117 @@
 	</select><br>
 
 	<div id="opened">
-		<h1>Why?</h1>
-		IDK, why did you click this?
-		<h1>Why this one?</h1>
-		No Google analytics to track you, and no ads to slow down your computer
-		<h1>How?</h1>
-		It's easy, simply copy the id(the part in the url after <span class='code'>watch?v=</span>. Eg, <span class='code'>dQw4w9WgXcQ</span> is the id for Rick Astly's "Never Gonna Give You Up") of the YouTube video, then paste it into the box above.
-		<h1>More</h1>
+		<!--Information about it-->
+		<h1 id="NC">Notes and Credits</h1>
+		<h2 id="DC">Credits for development</h2>
+		Youtube: the easy way to get thumbnails, the icon, and the UI.<br>
+		JavaScript: for making my life easy, and not having to do this in PHP<br>
+		Youtube's use friendly thumbnail infostructer: for making it so that I don't have to use the YouTube API(which sucks)
+		<h2 id="VC">Video Credits</h2>
+		<table id="credits">
+			<tr>
+				<td>
+					<a href="https://www.youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw">
+						<img src="https://yt3.ggpht.com/Si7ZhtmpX84wj6MoJYLs8kwALw2Hm53wzbrPamoU-z3qvCKs2X3zPNYKMSJEvPDLUHzbvTfLcg=s48-c-k-c0x00ffffff-no-nd-rj" class="ytChannel" width="24">Rick Astley</a>
+				</td>
+				<td>
+					<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Rick Astley - Never Gonna Give You Up (Official Music Video)</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="https://www.youtube.com/channel/UCq6aw03lNILzV96UvEAASfQ">
+						<img src="https://yt3.ggpht.com/ytc/AKedOLQ8xW396ah5Yz0nu6X4RcQkrpCj4VV3Zgy-V0zFzg=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Bill wurtz</a>
+				</td>
+				<td>
+					<a href="https://www.youtube.com/watch?v=xuCn8ux2gbs">history of the entire world, i guess</a>
+				</td>
+				</tr>
+			<tr>
+				<td>
+					<a href="https://www.youtube.com/channel/UCqJ-Xo29CKyLTjn6z2XwYAw">
+						<img src="https://yt3.ggpht.com/vziSFteDKRq7F0hADzblE6X2242LoqMWodI7aXgz9ETG5U3JmY7bRAFmnginoqHCM5rX5mNi=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Game Maker's Toolkit</a>
+				</td>
+				<td>
+					<a href="https://www.youtube.com/watch?v=vFjXKOXdgGo">How I learned Unity in 3 simple* steps</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="https://www.youtube.com/channel/UCZzR7tqZKAXWT8uOi-RHuVA">
+						<img src="https://yt3.ggpht.com/ytc/AKedOLQyOufFRv5HF9koUd4sKev8aMf8o9R9c9WBhp5eVA=s48-c-k-c0x00ffffff-no-rj" width="24" class="ytChannel">FootofaFerret</a>
+				</td>
+				<td>
+					<a href="https://www.youtube.com/watch?v=AHFFcKDwKws">Disney's Best Shows Are ENDING! (Owl House, Amphibia, Ducktales)</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="https://www.youtube.com/channel/UCvZ7mna_BRD75nXbn-DZ9Nw">
+						<img src="https://yt3.ggpht.com/babtPWv8QrSe8DqXouAH0h_N9y9Y-yktiwAetYAx4lLVrtX1AkF2przQt3K3ocT0CNgPBPs-4w=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Steve0Greatness</a>
+				</td>
+				<td>
+					<a href="https://www.youtube.com/watch?v=AHFFcKDwKws">Making a house.</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="https://www.youtube.com/channel/UCj74rJ9Lgl3WTngq675wxKg">
+						<img src="https://yt3.ggpht.com/oQq1J4OvgO99a9t1bf-tbka1JaoUHF7tQVZd4IbOEKo1tM1QVph52YhrKpwnSV6kAjXvAniAgw=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Noodle
+					</a>
+				</td>
+				<td>
+					<a href="https://www.youtube.com/watch?v=aS3-iSEwNhs">The Crunch Culture Conundrum</a>
+				</td>
+			</tr>
+		</table>
+		<h2 id="AC">About the Creator</h2>
+		Hi! I'm Steve0Greatness<img src="https://yt3.ggpht.com/babtPWv8QrSe8DqXouAH0h_N9y9Y-yktiwAetYAx4lLVrtX1AkF2przQt3K3ocT0CNgPBPs-4w=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="16">. I have interests in web development, coding, and some content creation; but I wouldn't consider myself that great at it. I made this because I sometimes like to look at the thumnnail for a video, but I find it hard, as there's no "view thumbnail" button.
+		<h1 id="whyThisOne">Why this one?</h1>
+		No Google analytics to track you, and no ads to slow down your computer. TBH, I don't even know how to do those, and I also don't have an adcents account.
+		<h1 id="how">How?</h1>
+		It's easy, simply copy the id(the part in the url after <span class='code'>watch?v=</span>. Eg, <span class='code'>dQw4w9WgXcQ</span> is the id for Rick Astly's "Never Gonna Give You Up") of the YouTube video, then paste it into the box above. If you don't know how to get the id, use <a href="#getVidId">this</a>(found below).
+		<h1 id="more">More</h1>
 		Here are some more things I did... I guess.
-		<ol>
+		<ol id="moreList">
 			<li>Click the preview to open it in a new tab</li>
 			<li>Click the text that shows the link to copy it</li>
 			<li>Everything updates upon a change</li>
 		</ol>
-		<h1>Please note</h1>
+		<h1 id="note">Please note</h1>
 		This is not endorsed by <img class="lB" src="//www.google.com/favicon.ico" width="16">Google or <img class="lB" src="//www.youtube.com/s/desktop/4eebcda0/img/favicon.ico" width="16">Youtube in any way shape or form.<br>
 		Also, some videos may not have any available preview, mostly older ones.
+		<!--Id grabber-->
+		<h1 id="getVidId">Don't know how to get the Youtube Id?</h1>
+		Paste the Url of the video in here<br>
+		<input type="text" id="getVideoId" onclick="selectTxt(document.getElementById('getVideoId'))" onchange="updateId()"><br>
 	</div>
+	<!--this is the scripts-->
 	<script type="text/javascript">
+		//setting some constants, they are useful for stuff.
 		const imgDoc = document.getElementById("img")
 		const reloadBu = `<button onclick="reloadImg()">Load Preview</button>`
-		var videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs", "vFjXKOXdgGo", "AHFFcKDwKws", "rBs7EEPLJ68"]
-		var docvidID = document.getElementById("vid-ID")
+		const docvidID = document.getElementById("vid-ID")
+		//Setting the new image
 		function submit() {
-			if (checkReloadNeed()) {
-				reloadImg()
-			}
+			if (checkReloadNeed()) {reloadImg()}
+			if (docvidID.value.includes("youtube.com")) {alert("make sure you use the ID of the video, not the url, if you're confused, see 'How?' below")}
 			let source = `https://i.ytimg.com/vi/${docvidID.value}/maxresdefault.jpg`
 			document.getElementById("vid-Thumb").src = source
 			document.getElementById("vid-Thumb-Link").href = source
 			document.getElementById("copyText").value = `https://i.ytimg.com/vi/${docvidID.value}/${document.getElementById("sOB").value}.jpg`
 		}
+		//copything an element's text
 		function copyText(element) {
-			element.select()
-			element.setSelectionRange(0, 99999)
+			selectTxt(element)
 			document.execCommand("copy")
 		}
-		function closeImg() {
-			imgDoc.innerHTML = reloadBu
+		function selectTxt(element) {
+			element.select()
+			element.setSelectionRange(0, 99999)
 		}
+		//stuff relating to the image
+		function closeImg() {imgDoc.innerHTML = reloadBu}
 		function checkReloadNeed() {
 			if (imgDoc.innerHTML == reloadBu) {
 				return true
@@ -142,15 +254,26 @@
 			imgDoc.innerHTML = `<a onclick="closeImg()" id="closeImg">X</a><a href="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" target="new" id="vid-Thumb-Link"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350"></a>`
 			submit()
 		}
-
-		var videoID = Math.floor(Math.random() * videos.length)
-		docvidID.value = videos[videoID]
-		submit()
-
-		if (localStorage.getItem('theme') == null) {
-			localStorage.setItem("theme", "n")
+		//setting a default image(seen in the videos const)
+		const videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs", "vFjXKOXdgGo", "AHFFcKDwKws", "rBs7EEPLJ68", "aS3-iSEwNhs"]
+		function loadDefault() {
+			var videoID = Math.floor(Math.random() * videos.length)
+			docvidID.value = videos[videoID]
+			submit()
 		}
+		loadDefault()
+		//setting the theme.
+		if (localStorage.getItem('theme') == null) {localStorage.setItem("theme", "n")}
 		document.getElementsByTagName("html")[0].className = localStorage.getItem("theme")
+		//getting the id from a url
+		function updateId() {
+			var value = document.getElementById("getVideoId").value
+			value = value.split(/[?&]/)
+			var finalValue = value[1].substr(2, value[1].length)
+			document.getElementById("vid-ID").value = finalValue
+			submit()
+			window.scrollTo({top: 0, behavior: 'smooth'});
+		}
 	</script>
 </body>
 
