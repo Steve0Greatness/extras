@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="n">
+<html lang="en-US" class="n">
 
 <head>
 	<!--The data that the website gives your browser, so that it can render the favicon(icon), the title, the viewport(resizing text and images), and the CSS-->
@@ -18,6 +18,7 @@
 			--preview: #666;
 			--scrollBackground: #222;
 			--scroll: #111;
+			--aboutBorder: black;
 		}
 
 		html.l {
@@ -30,6 +31,7 @@
 			--preview: #ccc;
 			--scrollBackground: #ddd;
 			--scroll: #fff;
+			--aboutBorder: white;
 		}
 
 		a {
@@ -102,6 +104,16 @@
 			height: 30px;
 			background-color: var(--scroll);
 		}
+
+		#opened {
+			margin-top: 1em;
+			border: 3px var(--aboutBorder) solid;
+			padding: 3px;
+		}
+
+		summary {
+			cursor: pointer;
+		}
 	</style>
 	<!--It's surprisingly easy to get the thumbnail of a YouTube video, infact, YouTube makes it extremely easy.-->
 </head>
@@ -109,9 +121,8 @@
 <body>
 	<!--When you've desabled JS(why?)-->
 	<noscript>
-		It seems you don't have JavaScript enabled, please enable it! JavaScript is very important, and this page can't run without
-		it.
-		<br>
+		Your browser doesn't have JavaScript enabled, or doesn't support it.<br>
+		Please enable it, or upgrade your browser.<br>
 	</noscript>
 	<!--Thumbnail grabber-->
 	<div id="top">
@@ -131,7 +142,8 @@
 		<option value="maxresdefault" selected>bigger</option>
 	</select><br>
 
-	<div id="opened">
+	<details id="opened">
+		<summary title="about, credits and more.">About this</summary>
 		<!--Information about it-->
 		<h1 id="NC">Notes and Credits</h1>
 		<h2 id="DC">Credits for development</h2>
@@ -212,11 +224,11 @@
 		<h1 id="note">Please note</h1>
 		This is not endorsed by <img class="lB" src="//www.google.com/favicon.ico" width="16">Google or <img class="lB" src="//www.youtube.com/s/desktop/4eebcda0/img/favicon.ico" width="16">Youtube in any way shape or form.<br>
 		Also, some videos may not have any available preview, mostly older ones.
-		<!--Id grabber-->
-		<h1 id="getVidId">Don't know how to get the Youtube Id?</h1>
-		Paste the Url of the video in here<br>
-		<input type="text" id="getVideoId" onclick="selectTxt(document.getElementById('getVideoId'))" onchange="updateId()"><br>
-	</div>
+	</details>
+	<!--Id grabber-->
+	<h1 id="getVidId">Don't know how to get the Youtube Id?</h1>
+	Paste the Url of the video in here<br>
+	<input type="text" id="getVideoId" onclick="selectTxt(document.getElementById('getVideoId'))" onchange="updateId()">
 	<!--this is the scripts-->
 	<script type="text/javascript">
 		//setting some constants, they are useful for stuff.
@@ -251,7 +263,7 @@
 			}
 		}
 		function reloadImg() {
-			imgDoc.innerHTML = `<a onclick="closeImg()" id="closeImg">X</a><a href="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" target="new" id="vid-Thumb-Link"><img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" id="vid-Thumb" width="350"></a>`
+			imgDoc.innerHTML = `<a onclick="closeImg()" id="closeImg">X</a><a href target="new" id="vid-Thumb-Link"><img src id="vid-Thumb" width="350"></a>`
 			submit()
 		}
 		//setting a default image(seen in the videos const)
