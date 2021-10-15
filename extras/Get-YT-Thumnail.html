@@ -89,6 +89,7 @@
 
 		img.ytChannel {
 			border-radius: 50px;
+			margin-bottom: -3px;
 		}
 
 		::-webkit-scrollbar-track-piece {
@@ -114,6 +115,10 @@
 		summary {
 			cursor: pointer;
 		}
+
+		#NC {
+			display: inline;
+		}
 	</style>
 	<!--It's surprisingly easy to get the thumbnail of a YouTube video, infact, YouTube makes it extremely easy.-->
 </head>
@@ -138,80 +143,82 @@
 	<!--Copying the url-->
 	<input type="text" id="copyText" value readonly onclick="copyText(document.getElementById('copyText'))"> <button onclick="copyText(document.getElementById('copyText'))">Copy</button>
 	<select id="sOB" value="maxresdefault" onchange="submit()">
-		<option value="hqdefault">smaller</option>
-		<option value="maxresdefault" selected>bigger</option>
+		<option value="maxresdefault" selected id="bigger">bigger</option>
+		<option value="hqdefault" id="smaller">smaller</option>
 	</select><br>
 
 	<details id="opened">
 		<summary title="about, credits and more.">About this</summary>
 		<!--Information about it-->
-		<h1 id="NC">Notes and Credits</h1>
-		<h2 id="DC">Credits for development</h2>
-		Youtube: the easy way to get thumbnails, the icon, and the UI.<br>
-		JavaScript: for making my life easy, and not having to do this in PHP<br>
-		Youtube's use friendly thumbnail infostructer: for making it so that I don't have to use the YouTube API(which sucks)
-		<h2 id="VC">Video Credits</h2>
-		<table id="credits">
-			<tr>
-				<td>
-					<a href="https://www.youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw">
-						<img src="https://yt3.ggpht.com/Si7ZhtmpX84wj6MoJYLs8kwALw2Hm53wzbrPamoU-z3qvCKs2X3zPNYKMSJEvPDLUHzbvTfLcg=s48-c-k-c0x00ffffff-no-nd-rj" class="ytChannel" width="24">Rick Astley</a>
-				</td>
-				<td>
-					<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Rick Astley - Never Gonna Give You Up (Official Music Video)</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="https://www.youtube.com/channel/UCq6aw03lNILzV96UvEAASfQ">
-						<img src="https://yt3.ggpht.com/ytc/AKedOLQ8xW396ah5Yz0nu6X4RcQkrpCj4VV3Zgy-V0zFzg=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Bill wurtz</a>
-				</td>
-				<td>
-					<a href="https://www.youtube.com/watch?v=xuCn8ux2gbs">history of the entire world, i guess</a>
-				</td>
+		<details open>
+			<summary>
+				<h1 id="NC">Notes and Credits</h1>
+			</summary>
+			<h2 id="DC">Credits for development</h2>
+			Youtube: the easy way to get thumbnails, the icon, and the UI.<br>
+			JavaScript: for making my life easy, and not having to do this in PHP<br>
+			Youtube's use friendly thumbnail infostructer: for making it so that I don't have to use the YouTube API(which sucks)
+			<h2 id="VC">Video Credits</h2>
+			<table id="credits">
+				<tr>
+					<td>
+						<a href="https://www.youtube.com/channel/UCuAXFkgsw1L7xaCfnd5JJOw">
+							<img src="https://yt3.ggpht.com/Si7ZhtmpX84wj6MoJYLs8kwALw2Hm53wzbrPamoU-z3qvCKs2X3zPNYKMSJEvPDLUHzbvTfLcg=s48-c-k-c0x00ffffff-no-nd-rj" class="ytChannel" width="24">Rick Astley</a>
+					</td>
+					<td>
+						<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Rick Astley - Never 	Gonna Give You Up (Official Music Video)</a>
+					</td>
 				</tr>
-			<tr>
-				<td>
-					<a href="https://www.youtube.com/channel/UCqJ-Xo29CKyLTjn6z2XwYAw">
-						<img src="https://yt3.ggpht.com/vziSFteDKRq7F0hADzblE6X2242LoqMWodI7aXgz9ETG5U3JmY7bRAFmnginoqHCM5rX5mNi=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Game Maker's Toolkit</a>
-				</td>
-				<td>
-					<a href="https://www.youtube.com/watch?v=vFjXKOXdgGo">How I learned Unity in 3 simple* steps</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="https://www.youtube.com/channel/UCZzR7tqZKAXWT8uOi-RHuVA">
-						<img src="https://yt3.ggpht.com/ytc/AKedOLQyOufFRv5HF9koUd4sKev8aMf8o9R9c9WBhp5eVA=s48-c-k-c0x00ffffff-no-rj" width="24" class="ytChannel">FootofaFerret</a>
-				</td>
-				<td>
-					<a href="https://www.youtube.com/watch?v=AHFFcKDwKws">Disney's Best Shows Are ENDING! (Owl House, Amphibia, Ducktales)</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="https://www.youtube.com/channel/UCvZ7mna_BRD75nXbn-DZ9Nw">
-						<img src="https://yt3.ggpht.com/babtPWv8QrSe8DqXouAH0h_N9y9Y-yktiwAetYAx4lLVrtX1AkF2przQt3K3ocT0CNgPBPs-4w=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Steve0Greatness</a>
-				</td>
-				<td>
-					<a href="https://www.youtube.com/watch?v=AHFFcKDwKws">Making a house.</a>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<a href="https://www.youtube.com/channel/UCj74rJ9Lgl3WTngq675wxKg">
-						<img src="https://yt3.ggpht.com/oQq1J4OvgO99a9t1bf-tbka1JaoUHF7tQVZd4IbOEKo1tM1QVph52YhrKpwnSV6kAjXvAniAgw=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Noodle
-					</a>
-				</td>
-				<td>
-					<a href="https://www.youtube.com/watch?v=aS3-iSEwNhs">The Crunch Culture Conundrum</a>
-				</td>
-			</tr>
-		</table>
-		<h2 id="AC">About the Creator</h2>
-		Hi! I'm Steve0Greatness<img src="https://yt3.ggpht.com/babtPWv8QrSe8DqXouAH0h_N9y9Y-yktiwAetYAx4lLVrtX1AkF2przQt3K3ocT0CNgPBPs-4w=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="16">. I have interests in web development, coding, and some content creation; but I wouldn't consider myself that great at it. I made this because I sometimes like to look at the thumnnail for a video, but I find it hard, as there's no "view thumbnail" button.
-		<h1 id="whyThisOne">Why this one?</h1>
-		No Google analytics to track you, and no ads to slow down your computer. TBH, I don't even know how to do those, and I also don't have an adcents account.
+				<tr>
+					<td>
+						<a href="https://www.youtube.com/channel/UCq6aw03lNILzV96UvEAASfQ">
+							<img src="https://yt3.ggpht.com/ytc/AKedOLQ8xW396ah5Yz0nu6X4RcQkrpCj4VV3Zgy-V0zFzg=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Bill wurtz</a>
+					</td>
+					<td>
+						<a href="https://www.youtube.com/watch?v=xuCn8ux2gbs">history of the entire world, i guess</a>
+					</td>
+					</tr>
+				<tr>
+					<td>
+						<a href="https://www.youtube.com/channel/UCqJ-Xo29CKyLTjn6z2XwYAw">
+							<img src="https://yt3.ggpht.com/vziSFteDKRq7F0hADzblE6X2242LoqMWodI7aXgz9ETG5U3JmY7bRAFmnginoqHCM5rX5mNi=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Game Maker's Toolkit</a>
+					</td>
+					<td>
+						<a href="https://www.youtube.com/watch?v=vFjXKOXdgGo">How I learned Unity in 3 simple* steps</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="https://www.youtube.com/channel/UCZzR7tqZKAXWT8uOi-RHuVA">
+							<img src="https://yt3.ggpht.com/ytc/AKedOLQyOufFRv5HF9koUd4sKev8aMf8o9R9c9WBhp5eVA=s48-c-k-c0x00ffffff-no-rj" width="24" class="ytChannel">FootofaFerret</a>
+					</td>
+					<td>
+						<a href="https://www.youtube.com/watch?v=AHFFcKDwKws">Disney's Best Shows Are ENDING! (Owl House, Amphibia, Ducktales)</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="https://www.youtube.com/channel/UCvZ7mna_BRD75nXbn-DZ9Nw">
+							<img src="https://yt3.ggpht.com/babtPWv8QrSe8DqXouAH0h_N9y9Y-yktiwAetYAx4lLVrtX1AkF2przQt3K3ocT0CNgPBPs-4w=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Steve0Greatness</a>
+					</td>
+					<td>
+						<a href="https://www.youtube.com/watch?v=AHFFcKDwKws">Making a house.</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="https://www.youtube.com/channel/UCj74rJ9Lgl3WTngq675wxKg">
+							<img src="https://yt3.ggpht.com/oQq1J4OvgO99a9t1bf-tbka1JaoUHF7tQVZd4IbOEKo1tM1QVph52YhrKpwnSV6kAjXvAniAgw=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="24">Noodle
+						</a>
+					</td>
+					<td>
+						<a href="https://www.youtube.com/watch?v=aS3-iSEwNhs">The Crunch Culture Conundrum</a>
+					</td>
+				</tr>
+			</table>
+			<h2 id="AC">About the Creator</h2>
+			Hi! I'm Steve0Greatness<img src="https://yt3.ggpht.com/babtPWv8QrSe8DqXouAH0h_N9y9Y-yktiwAetYAx4lLVrtX1AkF2przQt3K3ocT0CNgPBPs-4w=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="16">. I have interests in web development, coding, and some content creation; but I wouldn't consider myself that great at it. I made this because I sometimes like to look at the thumnnail for a video, but I find it hard, as there's no "view thumbnail" button.
+		</details>
 		<h1 id="how">How?</h1>
 		It's easy, simply copy the id(the part in the url after <span class='code'>watch?v=</span>. Eg, <span class='code'>dQw4w9WgXcQ</span> is the id for Rick Astly's "Never Gonna Give You Up") of the YouTube video, then paste it into the box above. If you don't know how to get the id, use <a href="#getVidId">this</a>(found below).
 		<h1 id="more">More</h1>
@@ -223,7 +230,8 @@
 		</ol>
 		<h1 id="note">Please note</h1>
 		This is not endorsed by <img class="lB" src="//www.google.com/favicon.ico" width="16">Google or <img class="lB" src="//www.youtube.com/s/desktop/4eebcda0/img/favicon.ico" width="16">Youtube in any way shape or form.<br>
-		Also, some videos may not have any available preview, mostly older ones.
+		Also, some videos may not have a bigger image, mostly older ones.<br>
+		An example of this is <a href="https://youtu.be/jNQXAC9IVRw">Me at the zoo</a> by <a href="https://www.youtube.com/channel/UC4QobU6STFB0P71PMvOGN5A"><img src="https://yt3.ggpht.com/ytc/AKedOLQnZE41ddP2lTkQrvDR2vhTOaVh4TXRTgBWaQ=s48-c-k-c0x00ffffff-no-rj" width="16" class="ytChannel">jawed</a>, also known as the 1st proper video on YouTube that wasn't just a test of their system; <a href="javascript:updateWithId('jNQXAC9IVRw')">If you want to see for yourself</a>; this isn't only limited to Me at the zoo, it's also there on other old ones, such as <a href="//youtu.be/LeAltgu_pbM">My Snowboarding Skillz</a> by <a href="https://youtube.com/user/mw"><img src="https://yt3.ggpht.com/ytc/AKedOLSY2KGx5p5FNItA4konJqEQuDZa6pd0m50hvQ=s48-c-k-c0x00ffffff-no-rj" width="16" class="ytChannel">mw</a>. Inorder to view the thumbnails of these older videos, you set the size of the image to smaller, now you should see it. Of course, this isn't really good, but it'll do for now.
 	</details>
 	<!--Id grabber-->
 	<h1 id="getVidId">Don't know how to get the Youtube Id?</h1>
@@ -235,14 +243,15 @@
 		const imgDoc = document.getElementById("img")
 		const reloadBu = `<button onclick="reloadImg()">Load Preview</button>`
 		const docvidID = document.getElementById("vid-ID")
+		const sOB = document.getElementById("sOB")
 		//Setting the new image
 		function submit() {
 			if (checkReloadNeed()) {reloadImg()}
 			if (docvidID.value.includes("youtube.com")) {alert("make sure you use the ID of the video, not the url, if you're confused, see 'How?' below")}
-			let source = `https://i.ytimg.com/vi/${docvidID.value}/maxresdefault.jpg`
+			let source = `https://i.ytimg.com/vi/${docvidID.value}/${sOB.value}.jpg`
 			document.getElementById("vid-Thumb").src = source
 			document.getElementById("vid-Thumb-Link").href = source
-			document.getElementById("copyText").value = `https://i.ytimg.com/vi/${docvidID.value}/${document.getElementById("sOB").value}.jpg`
+			document.getElementById("copyText").value = `https://i.ytimg.com/vi/${docvidID.value}/${sOB.value}.jpg`
 		}
 		//copything an element's text
 		function copyText(element) {
@@ -285,6 +294,12 @@
 			document.getElementById("vid-ID").value = finalValue
 			submit()
 			window.scrollTo({top: 0, behavior: 'smooth'});
+		}
+		//making it so that a link, or a button, can update the Id
+		function updateWithId(id) {
+			window.scrollTo({top: 0, behavior: 'smooth'});
+			docvidID.value = id
+			submit()
 		}
 	</script>
 </body>

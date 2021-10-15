@@ -10,7 +10,7 @@ if (localStorage.getItem('theme') == null || localStorage.getItem('theme') == ''
 }
 
 document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
-  <img src="https://cdn2.scratch.mit.edu/get_image/user/61820378_32x32.png" alt='S0G' width="32" height="32" id="logo"> 
+  <img src="//uploads.scratch.mit.edu/users/avatars/61820378.png" alt='S0G' width="32" height="32" id="logo"> 
   Hey there<span style="font-style: italic;">!</span></h1>
   <div class="nav">
       <a target="_parent" href="/">
@@ -29,8 +29,8 @@ document.getElementById('header').innerHTML = `<h1 style="margin: 0px;">
       <button type="button" onclick="lightSwitch()">Light Switch</button>
   </div>`;
 
-var pageName = window.location.pathname.replace('/', ' ') + 'Steve0Greatness'
-pageName = pageName.replace('/', '--').replace('.html', '')
+var pageName = location.pathname.split("/")
+if (pageName[pageName.length - 1] == "") {if (pageName[pageName.length - 2] == "") { pageName = "Steve0Greatness" } else { pageName = pageName[pageName.length - 2].toUpperCase() + " | Steve0Greatness" }}else {pageName = pageName[pageName.length - 1].toUpperCase() + " | Steve0Greatness"}
 console.log(pageName)
 document.getElementsByTagName('head')[0].innerHTML += `
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,18 +38,6 @@ document.getElementsByTagName('head')[0].innerHTML += `
   <title id="title">${pageName}</title>
 	<link rel="shortcut icon" href="https://cdn2.scratch.mit.edu/get_image/user/61820378_16x16.png">
 	<link rel="stylesheet" type="text/css" href="/src/stylesheet.css">`;
-
-function getPages(url) {
-	return new Promise((resolve, reject) => {
-		fetch(url)
-			.then((resp) => resp.json())
-			.then(({ tree }) => {
-				const pages = tree.filter((file) => file.path.endsWith('.html'));
-				resolve(pages);
-			})
-			.catch(reject)
-	});
-}
 
 function lightSwitch() {
 	if (localStorage.getItem('theme') == null) {
@@ -72,15 +60,9 @@ function lightSwitch() {
 var theme = localStorage.getItem('theme')
 var html = document.getElementById('page')
 html.className = theme
-console.log(html, theme)
-if (window.location.pathname == "/extra_projects/Am-I-Banned.html") {
-
-}
-document.cookie = "SameSite=Strict; promo_shown=1; Max-Age=2600000; Secure"
-
 function showThenHideNote(num) {
 	var n = document.getElementById('note' + num)
 	n.style = ""
-	setTimeout(function() {n.style = "animation: fadeOut 3s;"}, 3000)
-	setTimeout(function() {n.style = "opacity: 0;"}, 6000)
+	setTimeout(function () { n.style = "animation: fadeOut 3s;" }, 3000)
+	setTimeout(function () { n.style = "opacity: 0;" }, 6000)
 }

@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jomhuria&family=Open+Sans&display=swap');
 
 :root {
   --mainFont: "Open Sans";
-  --secFont: Jomhuria;
 	font-display: optional;
 }
 html.l {
@@ -48,7 +46,7 @@ html.n {
 }
 */
 
-/*halloween themed*/
+/*halloween theme 2021*/
 html.n {
 	--navCo: #3e6433;
 	--headCo: #114e00;
@@ -95,11 +93,12 @@ body {
 button, select, option, input {
 	background-color: var(--buCo);
 	color: var(--buTxtCo);
-  border: solid 2px var(--buBoCo);
-  margin: 3px;
-  font-family: var(--secFont);
-  font-size: 25px;
-  cursor: pointer;
+	border: solid 2px var(--buBoCo);
+	margin: 3px;
+	font-family: var(--mainFont);
+	font-size: 15px;
+	cursor: pointer;
+	font-weight: bold;
 }
 
 .notice {
@@ -190,5 +189,23 @@ textarea {
 	}
 	to { 
 		opacity: 0;
+	}
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+	25% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	75% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
 	}
 }

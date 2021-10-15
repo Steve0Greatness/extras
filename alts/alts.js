@@ -1,8 +1,8 @@
+const search = location.search
 fetch('alts.json')
 	.then(response => response.json())
 	.then(data => {
 		var name = Object.keys(data)
-		var search = location.search;
 		let ind = ""
 		let l
 		let logo = document.getElementById("logo")
