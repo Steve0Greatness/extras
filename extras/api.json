@@ -4,27 +4,39 @@
 		"fileName": "SecretLives.html",
 		"desc": "This is based off of the 4/1/21 joke that Scratch did.",
 		"status": null,
-		"date": "5/4/21"
+		"date": "5/4/21",
+		"isExternal": false
 	},
 	{
 		"name": "Am I Banned?",
 		"fileName": "Am-I-Banned.html",
 		"desc": "Check to see if I'm banned on Scratch",
 		"status": "not banned",
-		"date": "8/8/21"
+		"date": "8/8/21",
+		"isExternal": false
 	},
 	{
 		"name": "Quote Signature",
 		"fileName": "QuoteSignature.html",
 		"desc": "Quote my signature on Scratch.",
 		"status": null,
-		"date": "8/16/21"
+		"date": "8/16/21",
+		"isExternal": false
 	},
 	{
 		"name": "Get YouTube Thumbails",
 		"fileName": "Get-YT-Thumnail.html",
 		"desc": "Get a youtube thumbnail!",
 		"status": null,
-		"date": "9/23/21"
+		"date": "9/23/21",
+		"isExternal": false
+	},
+	{
+		"name": "Are you afraid of the dark",
+		"fileName": "//forms.gle/r2EAeVhReTieE7T5A",
+		"isExternal": true,
+		"desc": "A simple survey",
+		"status": "Active",
+		"date": "10/16/21"
 	}
 ]

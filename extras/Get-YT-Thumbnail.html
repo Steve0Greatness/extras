@@ -4,7 +4,7 @@
 <head>
 	<!--The data that the website gives your browser, so that it can render the favicon(icon), the title, the viewport(resizing text and images), and the CSS-->
 	<link rel="icon" href="//www.youtube.com/s/desktop/4eebcda0/img/favicon.ico">
-	<title>YouTube Thumbnail Grabber</title>
+	<title>YouTube thumbnail Grabber</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
 		@import url("https://fonts.googleapis.com/css2?family=Roboto");
@@ -106,7 +106,7 @@
 			background-color: var(--scroll);
 		}
 
-		#opened {
+		details:not(.borderless) {
 			margin-top: 1em;
 			border: 3px var(--aboutBorder) solid;
 			padding: 3px;
@@ -129,7 +129,7 @@
 		Your browser doesn't have JavaScript enabled, or doesn't support it.<br>
 		Please enable it, or upgrade your browser.<br>
 	</noscript>
-	<!--Thumbnail grabber-->
+	<!--thumbnail grabber-->
 	<div id="top">
 		<input type="text" id="vid-ID" value onclick="selectTxt(document.getElementById('vid-ID'))" onchange="submit()"><br>
 		<div id="img">
@@ -143,14 +143,19 @@
 	<!--Copying the url-->
 	<input type="text" id="copyText" value readonly onclick="copyText(document.getElementById('copyText'))"> <button onclick="copyText(document.getElementById('copyText'))">Copy</button>
 	<select id="sOB" value="maxresdefault" onchange="submit()">
-		<option value="maxresdefault" selected id="bigger">bigger</option>
-		<option value="hqdefault" id="smaller">smaller</option>
+		<option value="maxresdefault" selected id="bigger" title="recommended">Newer</option>
+		<option value="hqdefault" id="smaller" title="best for older videos">Older</option>
 	</select><br>
+	<!--other settings-->
+	<details id="settings">
+		<summary>Settings</summary>
+		<input type="number" onchange="updatePreSize()" value="350" id="pxSize">
+	</details>
 
 	<details id="opened">
 		<summary title="about, credits and more.">About this</summary>
 		<!--Information about it-->
-		<details open>
+		<details open class="borderless">
 			<summary>
 				<h1 id="NC">Notes and Credits</h1>
 			</summary>
@@ -215,6 +220,14 @@
 						<a href="https://www.youtube.com/watch?v=aS3-iSEwNhs">The Crunch Culture Conundrum</a>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<a href="https://www.youtube.com/channel/UC4QobU6STFB0P71PMvOGN5A"><img src="https://yt3.ggpht.com/ytc/AKedOLQnZE41ddP2lTkQrvDR2vhTOaVh4TXRTgBWaQ=s48-c-k-c0x00ffffff-no-rj" width="24" class="ytChannel">jawed</a>
+					</td>
+					<td>
+						<a href="https://www.youtube.com/watch?v=jNQXAC9IVRw">Me at the zoo</a>
+					</td>
+				</tr>
 			</table>
 			<h2 id="AC">About the Creator</h2>
 			Hi! I'm Steve0Greatness<img src="https://yt3.ggpht.com/babtPWv8QrSe8DqXouAH0h_N9y9Y-yktiwAetYAx4lLVrtX1AkF2przQt3K3ocT0CNgPBPs-4w=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="16">. I have interests in web development, coding, and some content creation; but I wouldn't consider myself that great at it. I made this because I sometimes like to look at the thumnnail for a video, but I find it hard, as there's no "view thumbnail" button.
@@ -229,17 +242,20 @@
 			<li>Everything updates upon a change</li>
 		</ol>
 		<h1 id="note">Please note</h1>
-		This is not endorsed by <img class="lB" src="//www.google.com/favicon.ico" width="16">Google or <img class="lB" src="//www.youtube.com/s/desktop/4eebcda0/img/favicon.ico" width="16">Youtube in any way shape or form.<br>
-		Also, some videos may not have a bigger image, mostly older ones.<br>
-		An example of this is <a href="https://youtu.be/jNQXAC9IVRw">Me at the zoo</a> by <a href="https://www.youtube.com/channel/UC4QobU6STFB0P71PMvOGN5A"><img src="https://yt3.ggpht.com/ytc/AKedOLQnZE41ddP2lTkQrvDR2vhTOaVh4TXRTgBWaQ=s48-c-k-c0x00ffffff-no-rj" width="16" class="ytChannel">jawed</a>, also known as the 1st proper video on YouTube that wasn't just a test of their system; <a href="javascript:updateWithId('jNQXAC9IVRw')">If you want to see for yourself</a>; this isn't only limited to Me at the zoo, it's also there on other old ones, such as <a href="//youtu.be/LeAltgu_pbM">My Snowboarding Skillz</a> by <a href="https://youtube.com/user/mw"><img src="https://yt3.ggpht.com/ytc/AKedOLSY2KGx5p5FNItA4konJqEQuDZa6pd0m50hvQ=s48-c-k-c0x00ffffff-no-rj" width="16" class="ytChannel">mw</a>. Inorder to view the thumbnails of these older videos, you set the size of the image to smaller, now you should see it. Of course, this isn't really good, but it'll do for now.
+		<h2>Unendourced</h2>
+		This is not endorsed by <img class="lB" src="//www.google.com/favicon.ico" width="16">Google or <img class="lB" src="//www.youtube.com/s/desktop/4eebcda0/img/favicon.ico" width="16">Youtube in any way shape or form.
+		<h2>thumbnail shape.</h2>
+		Also, the new shape of thumbnails doesn't work on older videos such as <a href="https://youtu.be/jNQXAC9IVRw">Me at the zoo</a> by <a href="https://www.youtube.com/channel/UC4QobU6STFB0P71PMvOGN5A"><img src="https://yt3.ggpht.com/ytc/AKedOLQnZE41ddP2lTkQrvDR2vhTOaVh4TXRTgBWaQ=s48-c-k-c0x00ffffff-no-rj" width="16" class="ytChannel">jawed</a>, so it doesn't let you switch to it. This is so that you don't get that YouTube thumbnail 404.<br>
+		Also, if a video you tried doesn't exist, it uses my own <a href="https://u.cubeupload.com/Steve_Greatness/CouldntFindThumnail.png" target="_new">custom 404 thumbnail</a>
 	</details>
 	<!--Id grabber-->
-	<h1 id="getVidId">Don't know how to get the Youtube Id?</h1>
+	<h1 id="getVidId">Get by ID</h1>
 	Paste the Url of the video in here<br>
 	<input type="text" id="getVideoId" onclick="selectTxt(document.getElementById('getVideoId'))" onchange="updateId()">
 	<!--this is the scripts-->
 	<script type="text/javascript">
 		//setting some constants, they are useful for stuff.
+		const videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs", "vFjXKOXdgGo", "AHFFcKDwKws", "rBs7EEPLJ68", "aS3-iSEwNhs", "jNQXAC9IVRw"]
 		const imgDoc = document.getElementById("img")
 		const reloadBu = `<button onclick="reloadImg()">Load Preview</button>`
 		const docvidID = document.getElementById("vid-ID")
@@ -249,9 +265,16 @@
 			if (checkReloadNeed()) {reloadImg()}
 			if (docvidID.value.includes("youtube.com")) {alert("make sure you use the ID of the video, not the url, if you're confused, see 'How?' below")}
 			let source = `https://i.ytimg.com/vi/${docvidID.value}/${sOB.value}.jpg`
+			if (isNanUrl(source)) {
+				updateSizeNoSub("smaller")
+				source = `https://i.ytimg.com/vi/${docvidID.value}/${sOB.value}.jpg`
+				if (isNanUrl(source)) {
+					source = `https://u.cubeupload.com/Steve_Greatness/CouldntFindthumbnail.png`
+				}
+			}
 			document.getElementById("vid-Thumb").src = source
 			document.getElementById("vid-Thumb-Link").href = source
-			document.getElementById("copyText").value = `https://i.ytimg.com/vi/${docvidID.value}/${sOB.value}.jpg`
+			document.getElementById("copyText").value = source
 		}
 		//copything an element's text
 		function copyText(element) {
@@ -272,11 +295,10 @@
 			}
 		}
 		function reloadImg() {
-			imgDoc.innerHTML = `<a onclick="closeImg()" id="closeImg">X</a><a href target="new" id="vid-Thumb-Link"><img src id="vid-Thumb" width="350"></a>`
+			imgDoc.innerHTML = `<a onclick="closeImg()" id="closeImg">X</a><a href target="new" id="vid-Thumb-Link"><img src id="vid-Thumb" width="${document.getElementById("pxSize").value}"></a>`
 			submit()
 		}
 		//setting a default image(seen in the videos const)
-		const videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs", "vFjXKOXdgGo", "AHFFcKDwKws", "rBs7EEPLJ68", "aS3-iSEwNhs"]
 		function loadDefault() {
 			var videoID = Math.floor(Math.random() * videos.length)
 			docvidID.value = videos[videoID]
@@ -289,8 +311,26 @@
 		//getting the id from a url
 		function updateId() {
 			var value = document.getElementById("getVideoId").value
-			value = value.split(/[?&]/)
-			var finalValue = value[1].substr(2, value[1].length)
+			var finalValue
+			if (value.includes("youtu.be")) {
+				value = value.split(/\//)
+				if (value.includes("https:")) {
+					finalValue = value[3]
+				} else {
+					finalValue = value[1]
+				}
+			} else if (value.includes("yotube-nocookie")) {
+				value = value.split(/\//)
+				if (value.includes("https:") || value[0] == "" && value[1] == "") {
+					finalValue = value[4]
+				} else {
+					finalValue = value[2]
+				}
+			} else {
+				value = value.split(/[?&]/)
+				finalValue = value[1].substr(2, value[1].length)
+			}
+			console.log(value)
 			document.getElementById("vid-ID").value = finalValue
 			submit()
 			window.scrollTo({top: 0, behavior: 'smooth'});
@@ -300,6 +340,29 @@
 			window.scrollTo({top: 0, behavior: 'smooth'});
 			docvidID.value = id
 			submit()
+		}
+		//setting the size via JS
+		function updateSize(name) {
+			window.scrollTo({top: 0, behavior: 'smooth'});
+			document.getElementById(name).selected = true
+			submit()
+		}
+		function updateSizeNoSub(name) {
+			window.scrollTo({top: 0, behavior: 'smooth'});
+			document.getElementById(name).selected = true
+		}
+		function updatePreSize() {
+			submit()
+			document.getElementById("vid-Thumb").width = document.getElementById("pxSize").value
+			console.log(document.getElementById("pxSize").value)
+		}
+		//is it 404
+		function isNanUrl(url) {
+			url = "https://cors.9gr.repl.co/" + url.substr(8, url.length)
+			var xmlHttp = new XMLHttpRequest();
+    	xmlHttp.open("HEAD", url, false);
+    	xmlHttp.send();
+    	return xmlHttp.status == 404;
 		}
 	</script>
 </body>

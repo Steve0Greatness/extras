@@ -14,8 +14,9 @@
 			.then(data => {
 				var ind = document.getElementById('index')
 				for (let i = 0; i < data.length; i++) {
-					let link = "<tr> <td><a href='./" + data[i]["fileName"] + "'>" + data[i]["name"] + "</a></td> <td>" + data[i]["desc"] + "</td> </tr>"
-					ind.innerHTML += link
+					let isExternal
+					if (data[i]["isExternal"]) { isExternal = "External link"} else { isExternal = "" }
+					ind.innerHTML += "<tr> <td><a href='" + data[i]["fileName"] + "'>" + data[i]["name"] + "</a></td> <td>" + data[i]["desc"] + "</td><td>" + isExternal + "</td></tr>"
 				}
 			})
 	</script>
