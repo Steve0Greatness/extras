@@ -15,8 +15,15 @@
 				var ind = document.getElementById('index')
 				for (let i = 0; i < data.length; i++) {
 					let isExternal
-					if (data[i]["isExternal"]) { isExternal = "External link"} else { isExternal = "" }
-					ind.innerHTML += "<tr> <td><a href='" + data[i]["fileName"] + "'>" + data[i]["name"] + "</a></td> <td>" + data[i]["desc"] + "</td><td>" + isExternal + "</td></tr>"
+					let target
+					if (data[i]["isExternal"]) { 
+						isExternal = "External link"
+						target = "_new"
+					} else {
+						isExternal = ""
+						target = ""
+					}
+					ind.innerHTML += "<tr> <td><a target='" + target + "' href='" + data[i]["fileName"] + "'>" + data[i]["name"] + "</a></td> <td>" + data[i]["desc"] + "</td><td>" + isExternal + "</td></tr>"
 				}
 			})
 	</script>

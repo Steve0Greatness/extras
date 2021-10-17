@@ -25,7 +25,7 @@
 	},
 	{
 		"name": "Get YouTube Thumbails",
-		"fileName": "Get-YT-Thumnail.html",
+		"fileName": "Get-YT-Thumbnail.html",
 		"desc": "Get a youtube thumbnail!",
 		"status": null,
 		"date": "9/23/21",
