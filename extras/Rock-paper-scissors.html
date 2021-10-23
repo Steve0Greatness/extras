@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Rock, paper, scissors</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Mali&display=swap');
+		.notPlayed,
+		.tie {
+			background: #ccc;
+			color: #002;
+		}
+
+		.rock {
+			background: url("https://u.cubeupload.com/Steve_Greatness/rock19421960720.png");
+			background-position-y: 100px;
+		}
+
+		.paper {
+			background: url("https://www.publicdomainpictures.net/pictures/190000/velka/crumpled-paper-146988600714V.jpg");
+			background-position-y: -100px;
+		}
+
+		.scissors {
+			background: url("https://cdn.pixabay.com/photo/2014/04/03/10/54/scissors-311690_960_720.png");
+			background-position-y: 200px;
+			background-position-x: -600px;
+		}
+
+		#winLose {
+			padding-bottom: 10em;
+		}
+
+		button {
+			border: none;
+			background: green;
+			font-size: 16px;
+			padding: 2px;
+			color: white;
+			font-family: inherit;
+		}
+
+		:root {
+			font-family: 'Mali', cursive;
+		}
+	</style>
+</head>
+
+<body>
+	<!--The buttons-->
+	<div id="buttonArea">
+		<button onclick="playGame(0)"><img src="https://cdn.pixabay.com/photo/2012/02/29/16/08/rock-19421_960_720.jpg" alt="rock" height="16">rock</button>
+		<button onclick="playGame(1)"><img src="https://www.maxpixel.net/static/photo/2x/Printable-Blank-Sheet-Print-Lined-Paper-White-297179.png" height="16">paper</button>
+		<button onclick="playGame(2)"><img src="https://c1.peakpx.com/wallpaper/996/634/404/scissors-cut-office-metal-tool-wallpaper.jpg" alt="scissors" height="16">scissors</button>
+	</div>
+	<!--This is where it checks if it's a win or a lose-->
+	<div id="winLose" class="notPlayed">
+		Waiting for player input.
+	</div>
+	<details>
+		<summary>Notes and Credits</summary>
+		<h1>Images</h1>
+		All images used are from the public domain, but here are the credits anyways,<br>
+		<ul>
+			<li><h2>On the buttons</h2></li>
+			<ul>
+				<li>the scissors are from <a href="https://www.peakpx.com/">Peakpx</a>, wallpaper sevice</li>
+				<li>the rock is from <a href="https://pixabay.com/">pixabay</a>, a public domain image service</li>
+				<li>the paper is from <a href="https://www.maxpixel.net/">Max Pixel</a>, which seems to be an image sharing service.</li>
+			</ul>
+			<li><h2>The win/lose screen</h2></li>
+			<ul>
+				<li>The crumpled paper(paper wins) is from <a href="//publicdomainpictures.net">Public Domain Pictures</a>, a service that gives public domain pictures... it's litterally the name...</li>
+				<li>the scissors cutting paper(scissors win) is from <a href="https://pixabay.com/">pixabay</a>, a public domain image service</li>
+				<li>the rock on the scissors(rock win) was made by me, but used the rock and scissors stock images from the buttons.</li>
+			</ul>
+		</ul>
+		<h1>Font</h1>
+		The font used is <a href="https://fonts.google.com/specimen/Mali">Mali</a> by <a href="https://fonts.google.com/?query=Cadson+Demak">Cadson Demak</a>, provided by <a href="//fonts.gooogle.com">Google Fonts</a>.
+		<h1>Where the idea came from</h1>
+		It really came out of nowhere, just something I thought would be cool.
+	</details>
+	<script type="text/javascript">
+		/*0 = rock, 1 = paper, 2 = scissors. An easy way to remember that is:
+		0 looks like a rock,
+		1 means 1 piece of paper,
+		2 as in 2 blades on scissors
+		*/
+		//setting the names of the players
+		const player1Name = "Player"
+		const player2Name = "Computer"
+		//Running the game against the computer
+		function playGame(playerChoice) {
+			//Just for the Computer to choose
+			let compChoice = Math.round(Math.random() * 2)
+			// checking who won
+			let wlt = document.getElementById("winLose")
+			let win = checkWin(playerChoice, compChoice)
+			wlt.innerHTML = win[0] + " wins! " + win[1]
+			wlt.className = win[2]
+		}
+		//Checking who won.
+		function checkWin(player1, player2) {
+			//return [playerWhoWon, message, classToUse]
+			// paper wins
+			if (player1 == 1 && player2 == 0) {
+				return [player1Name, "Paper beats rock.", "paper"]
+			} else if (player1 == 0 && player2 == 1) {
+				return [player2Name, "Paper beats rock.", "paper"]
+			} 
+			// scissors wins
+			else if (player1 == 1 && player2 == 2) {
+				return [player2Name, "Scissors beats paper.", "scissors"]
+			} else if (player1 == 2 && player2 == 1) {
+				return [player1Name, "Scissors beats paper.", "scissors"]
+			}
+			// Rock wins
+			else if (player1 == 0 && player2 == 2) {
+				return [player1Name, "Rock beats scissors.", "rock"]
+			} else if (player1 == 2 && player2 == 0) {
+				return [player2Name, "Rock beats scissors.", "rock"]
+			}
+			// no one wins, it's a tie
+			else {
+				return ["Nobody", "It's a tie.", "tie"]
+			}
+		}
+	</script>
+</body>
+
+</html>

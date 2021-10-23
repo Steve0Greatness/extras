@@ -8,7 +8,7 @@ Go into `api.json` and add in this template, and fill out the info.
 	"name": "--name of the project--",
 	"fileName": "--name of file that it will direct to--",
 	"desc": "--description of project--",
-	"status": /*only if this is needed, it's not used on the main site*/,
+	"status": /*if there's no need for this, only add null*/,
 	"date": "--date of creation--"
 }
 ```

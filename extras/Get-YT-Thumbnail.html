@@ -149,7 +149,8 @@
 	<!--other settings-->
 	<details id="settings">
 		<summary>Settings</summary>
-		<input type="number" onchange="updatePreSize()" value="350" id="pxSize">
+		<input type="number" onchange="updatePreSize()" value="350" id="pxSize"><br>
+		<button onclick="loadDefault()" style="margin-top: 5px;">Load a Default Thumbnail</button>
 	</details>
 
 	<details id="opened">
@@ -228,6 +229,14 @@
 						<a href="https://www.youtube.com/watch?v=jNQXAC9IVRw">Me at the zoo</a>
 					</td>
 				</tr>
+				<tr>
+					<td>
+						<a href="https://www.youtube.com/c/pinkfong/"><img src="https://yt3.ggpht.com/ytc/AKedOLRsQkXgS8FgWtktP4pF8ET9-BsjRheTfxn7fhwwag=s88-c-k-c0x00ffffff-no-rj" width="24" class="ytChannel">Pinkfong Baby Shark - Kids' Songs & Stories</a>
+					</td>
+					<td>
+						<a href="https://youtu.be/XqZsoesa55w">Baby Shark Dance | #babyshark Most Viewed Video | Animal Songs | PINKFONG Songs for Children</a>
+					</td>
+				</tr>
 			</table>
 			<h2 id="AC">About the Creator</h2>
 			Hi! I'm Steve0Greatness<img src="https://yt3.ggpht.com/babtPWv8QrSe8DqXouAH0h_N9y9Y-yktiwAetYAx4lLVrtX1AkF2przQt3K3ocT0CNgPBPs-4w=s48-c-k-c0x00ffffff-no-rj" class="ytChannel" width="16">. I have interests in web development, coding, and some content creation; but I wouldn't consider myself that great at it. I made this because I sometimes like to look at the thumnnail for a video, but I find it hard, as there's no "view thumbnail" button.
@@ -255,7 +264,7 @@
 	<!--this is the scripts-->
 	<script type="text/javascript">
 		//setting some constants, they are useful for stuff.
-		const videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs", "vFjXKOXdgGo", "AHFFcKDwKws", "rBs7EEPLJ68", "aS3-iSEwNhs", "jNQXAC9IVRw"]
+		const videos = ["dQw4w9WgXcQ", "xuCn8ux2gbs", "vFjXKOXdgGo", "AHFFcKDwKws", "rBs7EEPLJ68", "aS3-iSEwNhs", "jNQXAC9IVRw", "XqZsoesa55w"]
 		const imgDoc = document.getElementById("img")
 		const reloadBu = `<button onclick="reloadImg()">Load Preview</button>`
 		const docvidID = document.getElementById("vid-ID")
@@ -300,6 +309,7 @@
 		}
 		//setting a default image(seen in the videos const)
 		function loadDefault() {
+			updateSizeNoSub("bigger")
 			var videoID = Math.floor(Math.random() * videos.length)
 			docvidID.value = videos[videoID]
 			submit()

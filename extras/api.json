@@ -35,8 +35,15 @@
 		"name": "Are you afraid of the dark",
 		"fileName": "//forms.gle/r2EAeVhReTieE7T5A",
 		"isExternal": true,
-		"desc": "A simple survey",
+		"desc": "Take a few seconds to answer this survey about if you're afraid on the dark... no I'm not telling you why!",
 		"status": "Active",
 		"date": "10/16/21"
+	},
+	{
+		"name": "Rock, Paper, Scissors",
+		"fileName": "Rock-paper-scissors.html",
+		"desc": "An online Rock, Paper, Scissors/Ro-Sham-Bo game. You play it against a computer, trust me, it's pretty random... and fair-ish",
+		"status": null,
+		"date": "10/22/21"
 	}
 ]
