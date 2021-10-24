@@ -23,7 +23,7 @@ var theme = localStorage.getItem('theme')
 function lightSwitch() {
 	if (localStorage.getItem('theme') == null) { setTheme(preferedTheme) }
 	var html = document.getElementById('page')
-	if (theme != 'l') { setTheme("l") } else { setTheme("l") }
+	if (theme != 'l') { setTheme("l") } else { setTheme("n") }
 	theme = localStorage.getItem("theme")
 }
 
