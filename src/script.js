@@ -16,7 +16,7 @@ document.getElementsByTagName('head')[0].innerHTML += `
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Site of Steve0Greatness">
   <title id="title">${pageName}</title>
-	<link rel="shortcut icon" href="https://cdn2.scratch.mit.edu/get_image/user/61820378_16x16.png">
+	<link rel="icon" href="/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="/src/stylesheet.css">`;
 
 var theme = localStorage.getItem('theme')

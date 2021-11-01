@@ -26,3 +26,5 @@ if (localStorage.getItem('theme') == null || localStorage.getItem('theme') == ''
 	document.getElementById('page').className = 'n'
 }
 var pageUrl = location.origin
+
+document.getElementById("newpostlink").href = newpost

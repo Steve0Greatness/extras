@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 :root {
-  --mainFont: "Open Sans";
+	--mainFont: "Open Sans";
 	font-display: optional;
 }
 html.l {
-  --navCo: #999;
+	--navCo: #999;
 	--headCo: #aaa;
 	--linkCo: #00b;
 	--maCo: #cecece;
@@ -26,20 +26,20 @@ html.l {
 
 /*normal theme
 html.n {
-  --navCo: #111;
-  --headCo: #333;
-  --linkCo: #0a0;
-  --maCo: #222;
-  --maTxtCo: #ccc;
-  --buCo: #444;
-  --buTxtCo: #aaa;
-  --buBoCo: #100;
-  --noteCo: #dea;
-  --noteTxtCo: #222;
-  --inCo: #111;
-  --inlinkCo: #ad0;
-  --selCo: #0d06;
-  --selTxtCo: #fff;
+	--navCo: #111;
+	--headCo: #333;
+	--linkCo: #0a0;
+	--maCo: #222;
+	--maTxtCo: #ccc;
+	--buCo: #444;
+	--buTxtCo: #aaa;
+	--buBoCo: #100;
+	--noteCo: #dea;
+	--noteTxtCo: #222;
+	--inCo: #111;
+	--inlinkCo: #ad0;
+	--selCo: #0d06;
+	--selTxtCo: #fff;
 	--taCo: black;
 	--taTxtCo: white;
 	--linkLeCo: var(--linkCo);
@@ -67,27 +67,21 @@ html.n {
 	--linkLeCo: var(--linkCo);
 }
 
-.H1 {
-  font-size: 40px;
-}
+.H1 { font-size: 40px; }
 
-.nav {
-	background-color: var(--navCo);
-}
+.nav { background-color: var(--navCo); }
 
 header {
-  text-align: center;
-  background: var(--headCo);
+	text-align: center;
+	background: var(--headCo);
 }
 
-a {
-	color: var(--linkCo);
-}
+a { color: var(--linkCo); }
 
 body {
-  background-color: var(--maCo);
-  color: var(--maTxtCo);
-  font-family: var(--mainFont);
+	background-color: var(--maCo);
+	color: var(--maTxtCo);
+	font-family: var(--mainFont);
 }
 
 button, select, option, input {
@@ -102,39 +96,39 @@ button, select, option, input {
 }
 
 .notice {
-  background: var(--noteCo);
-  color: var(--noteTxtCo);
-  text-align: center;
-  font-weight: bold;
-  font-size: 25px;
+	background: var(--noteCo);
+	color: var(--noteTxtCo);
+	text-align: center;
+	font-weight: bold;
+	font-size: 25px;
 }
 
 #index {
-  background: var(--inCo);
-  display: block;
+	background: var(--inCo);
+	display: block;
 }
 a.indexed, #index a {
-  color: var(--inlinkCo);
-  text-decoration: none;
-  font-weight: bold;
+	color: var(--inlinkCo);
+	text-decoration: none;
+	font-weight: bold;
 }
 .hidden {
-  display: none;
-  cursor: not-allowed;
+	display: none;
+	cursor: not-allowed;
 }
 .notFound {
-  font-family: cursive;
-  font-size: 50px;
-  text-align: center;
+	font-family: cursive;
+	font-size: 50px;
+	text-align: center;
 }
 ::selection {
-  background: var(--selCo);
-  color: var(--selTxtCo);
-  padding: 2px;
+	background: var(--selCo);
+	color: var(--selTxtCo);
+	padding: 2px;
 }
 .altRating {
-  font-size: 20px;
-  color: var(--noteCo);
+	font-size: 20px;
+	color: var(--noteCo);
 	background: var(--noteTxtCo);
 }
 .code {
@@ -153,12 +147,8 @@ a.indexed, #index a {
 	font-size: 24px;
 	font-weight: bold;
 }
-.bigHead.not {
-	color: limegreen; 
-}
-.bigHead.am {
-	color: red; 
-}
+.bigHead.not { color: limegreen; }
+.bigHead.am { color: red;  }
 @keyframes fadeIn {
 	from {
 		font-size: 48px;
@@ -184,28 +174,23 @@ textarea {
 	padding: 2px;
 }
 @keyframes fadeOut {
-	from {
-		opacity: 1;
-	}
-	to { 
-		opacity: 0;
-	}
+	from { opacity: 1; }
+	to { opacity: 0; }
 }
 
 @keyframes appear {
-	0% {
-		opacity: 0;
-	}
-	25% {
-		opacity: 0;
-	}
-	50% {
-		opacity: 1;
-	}
-	75% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 1;
-	}
+	0% { opacity: 0; }
+	25% { opacity: 0; }
+	50% { opacity: 1; }
+	75% { opacity: 1; }
+	100% { opacity: 1; }
+}
+
+.hiddenLink {
+	color: #fff0;
+	display: inline-block;
+}
+.hiddenLink:hover {
+	color: var(--buTxtCo);
+	cursor: help;
 }
