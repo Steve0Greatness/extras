@@ -54,5 +54,13 @@
 		"status": "Indev",
 		"isExternal": true,
 		"date": "11/2/21"
+	},
+	{
+		"name": "Profile Project Search",
+		"fileName": "User-Project-Search.html",
+		"desc": "Search all projects made by a user",
+		"status": null,
+		"date": "11/5/21",
+		"isExternal": false
 	}
 ]

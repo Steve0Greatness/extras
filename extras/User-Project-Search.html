@@ -2,8 +2,8 @@
 <html lang="en-US">
 
 <head>
-	<title>User Project Search</title>
-	<style>
+	<title>Profile Project Search</title>
+	<style name="styles">
 		div:not(#projects) {
 			display: inline-block;
 			text-align: center;
@@ -44,29 +44,52 @@
 			border-radius: 5px;
 			margin-bottom: 5px;
 		}
+
+		#scrollTop {
+			border-radius: 50px;
+			padding-bottom: 30px;
+			padding-top: 35px;
+			background: #d15;
+			position: fixed;
+			bottom: 0;
+			right: 1em;
+			display: none;
+		}
+		#scrollTop:hover {
+			background: #e26;
+			color: grey;
+		}
 	</style>
 </head>
 
 <body>
-	<form onsubmit="getData(); return false;">
+	<form onsubmit="getData(); return false;" id="searchBars">
 		<label for="searchText">User:</label>
 		<input type="text" id="user" placeholder="user"><br>
 		<label for="searchText">Search Projects:</label>
 		<input type="text" id="searchText" placeholder="search term"><br>
 		<input type="submit" value="Search">
 	</form>
-	<details>
+	<details name="N&C">
 		<summary>Notes and Credits</summary>
 		This uses <a href="https://scratchdb.lefty.one/">ScratchDB</a>(v2) by <a href="https://scratch.mit.edu/users/DatOneLefty/">DatOneLefty</a> inorder to get the projects made by a specific user.<br>
 		I got the idea from <a href="https://scratch.mit.edu/discuss/topic/493332/">this suggestion</a> on the Scratch forums, it was surprisingly easy to make.<br>
-		It takes longer to load the more projects someone has; searching for nothing with the username filled in shows all the user's projects, ordered oldest to newest, because that's how DatOneLefty did ScratchDB; and it may not be up to date because ScratchDB only has specific data-recollecting times.
+		It takes longer to load the more projects someone has; searching for nothing with the username filled in shows all the user's projects, ordered oldest to newest, because that's how DatOneLefty did ScratchDB; and it may not be up to date because ScratchDB only has specific data-recollecting times.<br>
+		By the way, if you have any design ideas, please let me know on <a href="//scratch.mit.edu/users/steve0greatness">my profile</a>.
 	</details>
 	<div id="projects">
 	</div>
+	<button onclick="scrollToTop()" id="scrollTop">Back to Top</button>
 	<script>
+		/*Setting somethings*/
+		//options
 		const options = {
-			size: 125
+			size: 125,
+			target: "new",
+			scrollAmmount: 50
 		}
+
+		//creating a searchtree(an object that contains all information about the search,)
 		const search = location.search.split(/[?&]/)
 		search.shift()
 		location.searchtree = {}
@@ -77,14 +100,29 @@
 				location.searchtree[search[i]] = search[i]
 			}
 		}
+
+		//other
 		const projects = document.getElementById("projects")
+
+		const scroll = document.getElementById("scrollTop")
+		window.onscroll = function() {
+			if (document.body.scrollTop > options["scrollAmmount"] || document.documentElement.scrollTop > options["scrollAmmount"]) {
+    		scroll.style.display = "block"
+  		} else {
+				scroll.style.display = "none"
+			}
+		}
+		
+		function scrollToTop() { window.scrollTo({top: 0, behavior: 'smooth'}) }
+
+		/*Main*/
+		//Changes the url to something that 
 		function getData() {
-			let q = ''
-			if (document.getElementById("searchText").value != null|undefined|'') {q = `&q=${document.getElementById("searchText").value}`}
-			location = `?u=${document.getElementById("user").value}${q}`
+			location = `?u=${document.getElementById("user").value}&q=${document.getElementById("searchText").value}`
 		}
 		if (Object.keys(location.searchtree).includes("u")) {
 			console.log(location.searchtree["u"])
+			if (location.searchtree) {location = "?"}
 			fetch("https://scratchdb.lefty.one/v2/project/info/user/" + location.searchtree["u"])
 				.then(blob => blob.json())
 				.then(data => {
@@ -95,14 +133,14 @@
 						let scratchID = datai["info"]["scratch_id"]
 						let title = datai["info"]["title"]
 						let project = document.createElement("div")
-						project.innerHTML = `<a href="https://scratch.mit.edu/projects/${scratchID}"><img target="new" src="https://uploads.scratch.mit.edu/projects/thumbnails/${scratchID}.png" width="${options["size"]}"><br>${title}</a>`
+						project.innerHTML = `<a target="new" href="https://scratch.mit.edu/projects/${scratchID}"><img src="https://uploads.scratch.mit.edu/projects/thumbnails/${scratchID}.png" width="${options["size"]}"><br>${title}</a>`
 						if (title.includes(location.searchtree["q"])) { projects.appendChild(project) }
 						document.getElementById("searchText").value = location.searchtree["q"]
 					}
 					document.getElementById("user").value = location.searchtree["u"]
 				})
 		} else {
-			console.log("didn't find")
+			projects.innerHTML = `<span style="font-style:italic">Search Something <span style="font-weight:bold">↑↑↑</span></span>`
 		}
 	</script>
 </body>
