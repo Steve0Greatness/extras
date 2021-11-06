@@ -5,26 +5,42 @@
 	<title>Rock, paper, scissors</title>
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Mali&display=swap');
+
 		.notPlayed,
 		.tie {
-			background: #ccc;
+			background: grey;
 			color: #002;
 		}
 
 		.rock {
 			background: url("https://u.cubeupload.com/Steve_Greatness/rock19421960720.png");
 			background-position-y: 100px;
+			color: purple;
 		}
 
 		.paper {
 			background: url("https://www.publicdomainpictures.net/pictures/190000/velka/crumpled-paper-146988600714V.jpg");
 			background-position-y: -100px;
+			color: black;
 		}
 
 		.scissors {
-			background: url("https://cdn.pixabay.com/photo/2014/04/03/10/54/scissors-311690_960_720.png");
-			background-position-y: 200px;
+			background: url("https://cdn.pixabay.com/photo/2014/04/03/10/54/scissors-311690_960_720.png") #fff;
+			background-position-y: 400px;
 			background-position-x: -600px;
+			color: black;
+		}
+
+		#scissors {
+			cursor: url("https://downloads.totallyfreecursors.com/cursor_files/scissors.ani"), url("https://downloads.totallyfreecursors.com/thumbnails/scissors.gif"), auto;
+		}
+
+		#rock {
+			cursor: url("https://cdn.custom-cursor.com/db/pointer/32/Stone_Cursor.png"), pointer;
+		}
+
+		#paper {
+			cursor: context-menu;
 		}
 
 		#winLose {
@@ -34,14 +50,36 @@
 		button {
 			border: none;
 			background: green;
-			font-size: 16px;
+			border-radius: 5px;
+			font-size: 32px;
 			padding: 2px;
+			padding-left: 4px;
+			padding-right: 4px;
 			color: white;
 			font-family: inherit;
 		}
 
+		details {
+			cursor: pointer;
+		}
+
 		:root {
 			font-family: 'Mali', cursive;
+			color: white;
+			background: black;
+		}
+
+		#buttonArea {
+			text-align: center;
+			margin-bottom: 1em;
+		}
+
+		a:any-link {
+			color: cyan;
+		}
+
+		a:any-link:visited {
+			color: #0cc;
 		}
 	</style>
 </head>
@@ -49,15 +87,16 @@
 <body>
 	<!--The buttons-->
 	<div id="buttonArea">
-		<button onclick="playGame(0)"><img src="https://cdn.pixabay.com/photo/2012/02/29/16/08/rock-19421_960_720.jpg" alt="rock" height="16">rock</button>
-		<button onclick="playGame(1)"><img src="https://www.maxpixel.net/static/photo/2x/Printable-Blank-Sheet-Print-Lined-Paper-White-297179.png" height="16">paper</button>
-		<button onclick="playGame(2)"><img src="https://c1.peakpx.com/wallpaper/996/634/404/scissors-cut-office-metal-tool-wallpaper.jpg" alt="scissors" height="16">scissors</button>
+		<button onclick="playGame(0)" id="rock"><img src="https://cdn.pixabay.com/photo/2012/02/29/16/08/rock-19421_960_720.jpg" alt="rock" height="24">ROCK</button>
+		<button onclick="playGame(1)" id="paper"><img src="https://www.maxpixel.net/static/photo/2x/Printable-Blank-Sheet-Print-Lined-Paper-White-297179.png" height="24">PAPER</button>
+		<button onclick="playGame(2)" id="scissors"><img src="https://c1.peakpx.com/wallpaper/996/634/404/scissors-cut-office-metal-tool-wallpaper.jpg" alt="scissors" height="24">SCISSORS</button>
 	</div>
 	<!--This is where it checks if it's a win or a lose-->
 	<div id="winLose" class="notPlayed">
 		Waiting for player input.
 	</div>
-	<details>
+	It's a random chance of if the computer, you, or nobody wins.
+	<details name="NaC">
 		<summary>Notes and Credits</summary>
 		<h1>Images</h1>
 		All images used are from the public domain, but here are the credits anyways,<br>
@@ -74,9 +113,14 @@
 				<li>the scissors cutting paper(scissors win) is from <a href="https://pixabay.com/">pixabay</a>, a public domain image service</li>
 				<li>the rock on the scissors(rock win) was made by me, but used the rock and scissors stock images from the buttons.</li>
 			</ul>
+			<li><h2>Cursors</h2></li>
+			<ul>
+				<li>Scissors from <a href="https://www.totallyfreecursors.com">Totally Free Cursors</a></li>
+				<li>Rock is from <a href="//custom-cursor.com">Custom Cursor</a></li>
+			</ul>
 		</ul>
 		<h1>Font</h1>
-		The font used is <a href="https://fonts.google.com/specimen/Mali">Mali</a> by <a href="https://fonts.google.com/?query=Cadson+Demak">Cadson Demak</a>, provided by <a href="//fonts.gooogle.com">Google Fonts</a>.
+		The font used is <a href="https://fonts.google.com/specimen/Mali">Mali</a> by <a href="https://fonts.google.com/?query=Cadson+Demak">Cadson Demak</a>, provided by <a href="//fonts.google.com">Google Fonts</a>.
 		<h1>Where the idea came from</h1>
 		It really came out of nowhere, just something I thought would be cool.
 	</details>
@@ -86,40 +130,48 @@
 		1 means 1 piece of paper,
 		2 as in 2 blades on scissors
 		*/
+
 		//setting the names of the players
 		const player1Name = "Player"
 		const player2Name = "Computer"
+
 		//Running the game against the computer
 		function playGame(playerChoice) {
 			//Just for the Computer to choose
 			let compChoice = Math.round(Math.random() * 2)
-			// checking who won
+
+			//Checking who won
 			let wlt = document.getElementById("winLose")
 			let win = checkWin(playerChoice, compChoice)
 			wlt.innerHTML = win[0] + " wins! " + win[1]
 			wlt.className = win[2]
 		}
+
 		//Checking who won.
 		function checkWin(player1, player2) {
-			//return [playerWhoWon, message, classToUse]
+			//return [winningPlayer, message, className]
+
 			// paper wins
 			if (player1 == 1 && player2 == 0) {
 				return [player1Name, "Paper beats rock.", "paper"]
 			} else if (player1 == 0 && player2 == 1) {
 				return [player2Name, "Paper beats rock.", "paper"]
 			} 
+
 			// scissors wins
 			else if (player1 == 1 && player2 == 2) {
 				return [player2Name, "Scissors beats paper.", "scissors"]
 			} else if (player1 == 2 && player2 == 1) {
 				return [player1Name, "Scissors beats paper.", "scissors"]
 			}
+
 			// Rock wins
 			else if (player1 == 0 && player2 == 2) {
 				return [player1Name, "Rock beats scissors.", "rock"]
 			} else if (player1 == 2 && player2 == 0) {
 				return [player2Name, "Rock beats scissors.", "rock"]
 			}
+
 			// no one wins, it's a tie
 			else {
 				return ["Nobody", "It's a tie.", "tie"]

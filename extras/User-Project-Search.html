@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	<title>User Project Search</title>
+	<style>
+		div:not(#projects) {
+			display: inline-block;
+			text-align: center;
+			padding: 1em;
+			margin-right: 3px;
+			margin-top: 3px;
+			background: #112;
+			border-radius: 5px;
+			width: 150px;
+			word-break: break-all;
+		}
+
+		#projects {
+			text-align: center;
+		}
+
+		:any-link {
+			color: white;
+			font-weight: bold;
+			text-decoration: none;
+		}
+
+		:any-link:visited {
+			color: #ddd;
+		}
+
+		body {
+			background: #223;
+			color: white;
+			font-family: Monospace;
+		}
+
+		input,
+		button {
+			background: #334;
+			border: none;
+			color: white;
+			border-radius: 5px;
+			margin-bottom: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<form onsubmit="getData(); return false;">
+		<label for="searchText">User:</label>
+		<input type="text" id="user" placeholder="user"><br>
+		<label for="searchText">Search Projects:</label>
+		<input type="text" id="searchText" placeholder="search term"><br>
+		<input type="submit" value="Search">
+	</form>
+	<details>
+		<summary>Notes and Credits</summary>
+		This uses <a href="https://scratchdb.lefty.one/">ScratchDB</a>(v2) by <a href="https://scratch.mit.edu/users/DatOneLefty/">DatOneLefty</a> inorder to get the projects made by a specific user.<br>
+		I got the idea from <a href="https://scratch.mit.edu/discuss/topic/493332/">this suggestion</a> on the Scratch forums, it was surprisingly easy to make.<br>
+		It takes longer to load the more projects someone has; searching for nothing with the username filled in shows all the user's projects, ordered oldest to newest, because that's how DatOneLefty did ScratchDB; and it may not be up to date because ScratchDB only has specific data-recollecting times.
+	</details>
+	<div id="projects">
+	</div>
+	<script>
+		const options = {
+			size: 125
+		}
+		const search = location.search.split(/[?&]/)
+		search.shift()
+		location.searchtree = {}
+		for (let i = 0; i < search.length; i++) {
+			if (search[i].includes("=")) {
+				location.searchtree[search[i].split(/=/)[0]] = search[i].split(/=/)[1]
+			} else {
+				location.searchtree[search[i]] = search[i]
+			}
+		}
+		const projects = document.getElementById("projects")
+		function getData() {
+			let q = ''
+			if (document.getElementById("searchText").value != null|undefined|'') {q = `&q=${document.getElementById("searchText").value}`}
+			location = `?u=${document.getElementById("user").value}${q}`
+		}
+		if (Object.keys(location.searchtree).includes("u")) {
+			console.log(location.searchtree["u"])
+			fetch("https://scratchdb.lefty.one/v2/project/info/user/" + location.searchtree["u"])
+				.then(blob => blob.json())
+				.then(data => {
+					let datap = data["projects"]
+					console.log(location.searchtree["q"])
+					for (let i = 0; i < datap.length; i++) {
+						let datai = datap[i]
+						let scratchID = datai["info"]["scratch_id"]
+						let title = datai["info"]["title"]
+						let project = document.createElement("div")
+						project.innerHTML = `<a href="https://scratch.mit.edu/projects/${scratchID}"><img target="new" src="https://uploads.scratch.mit.edu/projects/thumbnails/${scratchID}.png" width="${options["size"]}"><br>${title}</a>`
+						if (title.includes(location.searchtree["q"])) { projects.appendChild(project) }
+						document.getElementById("searchText").value = location.searchtree["q"]
+					}
+					document.getElementById("user").value = location.searchtree["u"]
+				})
+		} else {
+			console.log("didn't find")
+		}
+	</script>
+</body>
+
+</html>

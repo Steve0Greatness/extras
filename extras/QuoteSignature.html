@@ -1,25 +1,109 @@
 <!DOCTYPE html>
 <html id="page" lang="en-US">
 
-<body>
-	<header id="header"></header>
-	<textarea readonly id="copy">[quote=Steve0Greatness(signature)][url=https://steve0greatness.github.io/][img]https://cdn2.scratch.mit.edu/get_image/user/61820378_16x16.png[/img] [big]Steve0Greatness[/url], [url=https://ocular.jeffalo.net/user/Steve0Greatness]1000+ posts[/url], [color=#0dbfb7]Believe it or not, I'm NOT a 16 bit cat. (Er/Him)[/color][/big]
-	[url=https://scratch.mit.edu/discuss/post/4170676/]first post: June 28th, 2020[/url] - Main: [url=scratch.mit.edu/discuss/1]Suggestions[/url] - Personal Stickys:
-	[img]https://cdn.scratch.mit.edu/scratchr2/static/__d1ebf404f1417ff16e40f47414e36554__/djangobb_forum/themes/scratch_default_theme_copy/img/icon/sticky.png[/img] Sticky: [url=https://scratch.mit.edu/discuss/topic/414130/]The Official Guide to Lists of Suggestions[/url] by Super_Scratch_Bros20 [url=https://scratch.mit.edu/discuss/topic/414130/unread](New Posts)[/url]
-	[img]https://cdn.scratch.mit.edu/scratchr2/static/__d1ebf404f1417ff16e40f47414e36554__/djangobb_forum/themes/scratch_default_theme_copy/img/icon/sticky.png[/img] Sticky: [url=https://scratch.mit.edu/discuss/topic/494299/]The future of Scratch - Mockup Shop(2.0)[/url] by Steve0Greatness [url=https://scratch.mit.edu/discuss/topic/494299/unread](New Posts)[/url]
+<!--𝙍𝙚𝙖𝙙𝙈𝙚
+In the "Signature view", copy the html from you "Change your signature" page, found on the bottom of the forums homepage. Inorder to grab it, go into inspect element then copying the div with the class of postsignature(<div class="postsignature">), then just paste the whole thing over the div with the postsignature class here. Getting the source of you signature is as easy as (still on the "Change you signature" page) copying the BBCode ontop of the preview.
 
-	[i][color=#aaa]Last edited by Steve0Greatness (April 20, 2021 18:08:10)[/color][/i] [url=https://scratch.mit.edu/projects/497351957/]Report[/url] | [url=scratch.mit.edu/projects/497351957/]Quote[/url][/quote]</textarea>
-	<div class="note" style="opacity: 0;" id="note0">Notice: Text copied</div>
-	<button onclick='copyText(document.getElementById("copy")); showThenHideNote(0);'>Copy</button>
-  <script src="/src/script.js"></script>
+By the way, you'll have to do syntax hilighting youself.
+-->
+
+<head>
+	<title>Quote Signature</title>
+	<meta name="viewport" content="width=device-height, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.scratch.mit.edu/scratchr2/static/__fd54d8440ae146e24183f3a920f85c36__//djangobb_forum/themes/base.css">
+	<link rel="icon" href="https://scratch.mit.edu/favicon.ico">
+	<style>
+		html {
+			font-family: "helvetica neue", arial, sans-serif;
+		}
+
+		.note,
+		.postsignature {
+			border: 1px solid #e0e0e0;
+			background: #fff;
+		}
+
+		.note {
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+		}
+
+		.head {
+			background: #5FB5DA;
+			color: #fff;
+			padding: 5px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			border-bottom: 1px solid #e0e0e0;
+		}
+
+		.headsig {
+			background: #5FB5DA;
+			color: #fff;
+			padding: 5px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			border: 1px solid #e0e0e0;
+		}
+
+		.head2 {
+			background: #f7f7f7;
+			padding: 5px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			border-bottom: 1px solid #e0e0e0;
+		}
+
+		textarea {
+			margin-left: 25%;
+			margin-top: 2px;
+		}
+	</style>
+</head>
+
+<body>
+	<!--Notice-->
+	<div class="note" id="note0">
+		<div class="head2">Notice</div>
+		<span style="margin-left:5px">Text copied</span>
+	</div><br><br>
+	<!--Signature view-->
+	<div class="headsig">Signature</div>
+	<div class="postsignature"><a href="https://steve0greatness.github.io/"><img src="https://cdn2.scratch.mit.edu/get_image/user/61820378_16x16.png"> <span style="font-size:17px">Steve0Greatness</span></a><span style="font-size:17">, <a href="https://ocular.jeffalo.net/user/Steve0Greatness">1000+ posts</a>, <span style="color:#0dbfb7">CATSCATSCATSCATSCATSCATSCATSCATSCATSCATSCATS (Er/Him)</span></span><br><a href="https://scratch.mit.edu/discuss/post/4170676/">first post: June 28th, 2020</a> - Main: <a href="http://scratch.mit.edu/discuss/1">Suggestions</a> - Personal Stickys:<br><img src="https://cdn.scratch.mit.edu/scratchr2/static/__d1ebf404f1417ff16e40f47414e36554__/djangobb_forum/themes/scratch_default_theme_copy/img/icon/sticky.png"> Sticky: <a href="https://scratch.mit.edu/discuss/topic/414130/">The Official Guide to Lists of Suggestions</a> by Super_Scratch_Bros20 <a href="https://scratch.mit.edu/discuss/topic/414130/unread">(New Posts)</a><br><img src="https://cdn.scratch.mit.edu/scratchr2/static/__d1ebf404f1417ff16e40f47414e36554__/djangobb_forum/themes/scratch_default_theme_copy/img/icon/sticky.png"> Sticky: <a href="https://scratch.mit.edu/discuss/topic/494299/">The future of Scratch - Mockup Shop(2.0)</a> by Steve0Greatness <a href="https://scratch.mit.edu/discuss/topic/494299/unread">(New Posts)</a><br><br><span style="font-style:italic"><span style="color:#aaa">Last edited by Steve0Greatness (Augest 16, 2021 3:58:53)</span></span> <a href="https://scratch.mit.edu/projects/497351957/" style="color:#3e03ee">Report</a> | <a href='javascript:run()'>Quote</a></div>
+	<!--/Signature view--><br><br>
+	<div class="note"><div class="head2">Quote</div>
+	<!--Signature source-->
+	<textarea readonly id="copy" cols="95" rows="20">
+[quote=Steve0Greatness(signature)][url=https://steve0greatness.github.io/][img]https://cdn2.scratch.mit.edu/get_image/user/61820378_16x16.png[/img] [big]Steve0Greatness[/url], [url=https://ocular.jeffalo.net/user/Steve0Greatness]1000+ posts[/url], [color=#0dbfb7]Believe it or not, I'm NOT a 16 bit cat. (Er/Him)[/color][/big]
+[url=https://scratch.mit.edu/discuss/post/4170676/]first post: June 28th, 2020[/url] - Main: [url=scratch.mit.edu/discuss/1]Suggestions[/url] - Personal Stickys:
+[img]https://cdn.scratch.mit.edu/scratchr2/static/__d1ebf404f1417ff16e40f47414e36554__/djangobb_forum/themes/scratch_default_theme_copy/img/icon/sticky.png[/img] Sticky: [url=https://scratch.mit.edu/discuss/topic/414130/]The Official Guide to Lists of Suggestions[/url] by Super_Scratch_Bros20 [url=https://scratch.mit.edu/discuss/topic/414130/unread](New Posts)[/url]
+[img]https://cdn.scratch.mit.edu/scratchr2/static/__d1ebf404f1417ff16e40f47414e36554__/djangobb_forum/themes/scratch_default_theme_copy/img/icon/sticky.png[/img] Sticky: [url=https://scratch.mit.edu/discuss/topic/494299/]The future of Scratch - Mockup Shop(2.0)[/url] by Steve0Greatness [url=https://scratch.mit.edu/discuss/topic/494299/unread](New Posts)[/url]
+
+[i][color=#aaa]Last edited by Steve0Greatness (April 20, 2021 18:08:10)[/color][/i] [url=https://scratch.mit.edu/projects/497351957/]Report[/url] | [url=scratch.mit.edu/projects/497351957/]Quote[/url][/quote]
+	</textarea>
+	</div>
+	<!--/Signature source-->
 	<script>
+		//copying the text
 		function copyText(element) {
 			element.select()
 			element.setSelectionRange(0, 99999)
 			document.execCommand("copy")
+			getSelection().removeAllRanges()
 		}
-		copyText(document.getElementById("copy"))
-		showThenHideNote(0)
+		//show then hide the note
+		function showThenHideNote(num) {
+			var n = document.getElementById('note' + num)
+			n.style = ""
+		}
+		//running all the functions
+		function run() {
+			copyText(document.getElementById("copy"))
+			showThenHideNote(0)
+		}
+
+		/*Running the function*/
+		run()
 	</script>
 </body>
 

@@ -1,12 +1,87 @@
 <!DOCTYPE html>
-<html id="page" lang="en-US">
+<html lang="en-US">
+
+<head>
+	<title>Am I Banned?</title>
+	<link rel="icon" href="https://scratch.mit.edu/favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		html {
+			font-family: "helvetica neue", arial, sans-serif;
+			background: url("https://u.cubeupload.com/Steve_Greatness/Screenshot2021110460.png") no-repeat;
+			background-size: cover;
+			--padding: 2px;
+		}
+
+		@keyframes fadeIn {
+			from {
+				font-size: .5em;
+				opacity: 0;
+			}
+			to {
+				font-size: 3em;
+				opacity: 1;
+			}
+		}
+
+		.bigHead.not {
+			color: limegreen;
+		}
+
+		.bigHead.am {
+			color: red;
+		}
+
+		.bigHead {
+			animation: fadeIn 1s;
+			font-size: 3em;
+			font-weight: bold;
+			position: fixed;
+			top: .5em;
+			right: 2em;
+		}
+
+		h1 {
+			display: inline-block;
+		}
+
+		details {
+			position: fixed;
+			bottom: 0em;
+			background: #ccc;
+			padding: var(--padding);
+		}
+
+		summary {
+			cursor: pointer;
+			padding: var(--padding);
+		}
+	</style>
+</head>
 
 <body>
-	<header id="header"></header>
-	<h1>Am I Banned?</h1>
-	Here you can check if I'm banned. This is because there's no way for a <span class="code">non-admin</span> to see if someone's banned.<br>as of currently, I am...<br>
-	<span class="bigHead not">Not Banned</span>
-  <script src="/src/script.js"></script>
+	<details>
+		<summary>
+			<h1>Am I Banned?</h1>
+		</summary>
+		This is where you can check if I'm banned. The reason why I had to make this was because I 
+	</details>
+	<span class="bigHead" id="message">Loading...</span>
+	<script>
+		const banned = [{ class: "not", message: "Not Banned" }, { class: "am", message: "Banned" }]
+		const message = document.getElementById("message")
+		fetch("https://cors.9gr.repl.co/pastebin.com/raw/MiQFUnjx")
+			.then(blob => blob.text())
+			.then(data => {
+				if (data == "false") {
+					message.innerHTML = banned[0]["message"]
+					message.className = "bigHead " + banned[0]["class"]
+				} else {
+					message.innerHTML = banned[1]["message"]
+					message.className = "bigHead " + banned[1]["class"]
+				}
+			})
+	</script>
 </body>
 
 </html>
