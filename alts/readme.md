@@ -4,6 +4,6 @@ Go into the json file, and add this template, fill out all the information. That
 "--name--": {
 	"desc": "--description about account--",
 	"rate": "--rating/how dead it is--",
-	"accountId": //account id(found in the api for the page)
+	"accountId": /*account id(found in the api for the page)*/
 }
 ```

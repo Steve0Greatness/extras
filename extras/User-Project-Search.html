@@ -2,18 +2,22 @@
 <html lang="en-US">
 
 <head>
-	<title>Profile Project Search</title>
+	<title>Scratch Profile Project Search</title>
 	<style name="styles">
-		div:not(#projects) {
+		div:not(#projects):not(#inner):not(#header) {
 			display: inline-block;
 			text-align: center;
 			padding: 1em;
 			margin-right: 3px;
 			margin-top: 3px;
-			background: #112;
 			border-radius: 5px;
 			width: 150px;
 			word-break: break-all;
+		}
+
+		div:not(#projects):not(#inner):not(#header) img {
+			border: 1px black solid;
+			border-radius: 2px;
 		}
 
 		#projects {
@@ -21,63 +25,97 @@
 		}
 
 		:any-link {
-			color: white;
+			color: black;
 			font-weight: bold;
 			text-decoration: none;
 		}
 
 		:any-link:visited {
-			color: #ddd;
+			color: #004;
 		}
 
 		body {
-			background: #223;
-			color: white;
+			/*background: #223;
+			color: white;*/
+			background: url("https://cdn.scratch.mit.edu/scratchr2/static/__fd54d8440ae146e24183f3a920f85c36__/images/scratch-bg.png");
 			font-family: Monospace;
 		}
 
 		input,
 		button {
-			background: #334;
+			background: #ccc;
 			border: none;
-			color: white;
+			color: black;
 			border-radius: 5px;
 			margin-bottom: 5px;
+		}
+
+		::placeholder {
+			color: #55a;
 		}
 
 		#scrollTop {
 			border-radius: 50px;
 			padding-bottom: 30px;
 			padding-top: 35px;
-			background: #d15;
+			background: blue;
 			position: fixed;
 			bottom: 0;
 			right: 1em;
 			display: none;
+			color: #fff;
+			border: black solid 1px;
+			transition: color .5s, background .5s;
+			cursor: pointer;
 		}
+
 		#scrollTop:hover {
-			background: #e26;
 			color: grey;
+			background: #ccc;
+		}
+
+		div#header {
+			display: block;
+			background: #f7f7f7;
+			padding: 5px;
+			border-radius: 5px;
+		}
+
+		div#inner {
+			display: block;
+			background: #fff;
+			border: black 1px solid;
+			border-radius: 5px;
+		}
+
+		details>summary {
+			cursor: pointer;
 		}
 	</style>
+	<link rel="icon" href="//scratch.mit.edu/favicon.ico">
 </head>
 
 <body>
-	<form onsubmit="getData(); return false;" id="searchBars">
-		<label for="searchText">User:</label>
-		<input type="text" id="user" placeholder="user"><br>
-		<label for="searchText">Search Projects:</label>
-		<input type="text" id="searchText" placeholder="search term"><br>
-		<input type="submit" value="Search">
-	</form>
-	<details name="N&C">
-		<summary>Notes and Credits</summary>
-		This uses <a href="https://scratchdb.lefty.one/">ScratchDB</a>(v2) by <a href="https://scratch.mit.edu/users/DatOneLefty/">DatOneLefty</a> inorder to get the projects made by a specific user.<br>
-		I got the idea from <a href="https://scratch.mit.edu/discuss/topic/493332/">this suggestion</a> on the Scratch forums, it was surprisingly easy to make.<br>
-		It takes longer to load the more projects someone has; searching for nothing with the username filled in shows all the user's projects, ordered oldest to newest, because that's how DatOneLefty did ScratchDB; and it may not be up to date because ScratchDB only has specific data-recollecting times.<br>
-		By the way, if you have any design ideas, please let me know on <a href="//scratch.mit.edu/users/steve0greatness">my profile</a>.
-	</details>
+	<div id="inner">
+		<div id="header">
+			<form onsubmit="getData(); return false;" id="searchBars">
+				<img src id="userProfilePicture" width="35" align="left"><span id="userName" color="-webkit-link" onclick="userDisplay('inline')"></span> <label for="searchText" id="userLable">User:</label>
+				<input type="text" id="user" placeholder="user"> &gt;&gt; Search Projects<span id="num"></span><br>
+				<label for="searchText">Search Projects:</label>
+				<input type="text" id="searchText" placeholder="search term">
+				<input type="submit" value="Search"><br clear="left">
+			</form>
+			<details name="N&C">
+				<summary>Notes and Credits</summary>
+				This uses <a href="https://scratchdb.lefty.one/">ScratchDB</a>(v2) by <a href="https://scratch.mit.edu/users/DatOneLefty/">DatOneLefty</a> inorder to get the projects made by a specific user.<br>
+				I got the idea from <a href="https://scratch.mit.edu/discuss/topic/493332/">this suggestion</a> on the Scratch forums, it was surprisingly easy to make.<br>
+				It takes longer to load the more projects someone has; searching for nothing with the username filled in shows all the user's projects, ordered oldest to newest, because that's how DatOneLefty did ScratchDB; and it may not be up to date because ScratchDB only has specific data-recollecting times.<br>
+				By the way, if you have any design ideas, please let me know on <a href="//scratch.mit.edu/users/steve0greatness">my profile</a>.<br>
+				<a href="//scratch.mit.edu">Scratch</a> was used for styling and inorder to get the profile picture of the person
+			</details>
+	</div>
 	<div id="projects">
+	</div>
 	</div>
 	<button onclick="scrollToTop()" id="scrollTop">Back to Top</button>
 	<script>
@@ -122,26 +160,61 @@
 		}
 		if (Object.keys(location.searchtree).includes("u")) {
 			console.log(location.searchtree["u"])
-			if (location.searchtree) {location = "?"}
+			let d
 			fetch("https://scratchdb.lefty.one/v2/project/info/user/" + location.searchtree["u"])
 				.then(blob => blob.json())
 				.then(data => {
 					let datap = data["projects"]
-					console.log(location.searchtree["q"])
 					for (let i = 0; i < datap.length; i++) {
 						let datai = datap[i]
 						let scratchID = datai["info"]["scratch_id"]
 						let title = datai["info"]["title"]
 						let project = document.createElement("div")
-						project.innerHTML = `<a target="new" href="https://scratch.mit.edu/projects/${scratchID}"><img src="https://uploads.scratch.mit.edu/projects/thumbnails/${scratchID}.png" width="${options["size"]}"><br>${title}</a>`
+						project.innerHTML = `<a target="new" href="https://scratch.mit.edu/projects/${scratchID}"><img src="https://uploads.scratch.mit.edu/projects/thumbnails/${scratchID}.png" width="${options["size"]}" alt="${title}"><br>${title}</a>`
 						if (title.includes(location.searchtree["q"])) { projects.appendChild(project) }
 						document.getElementById("searchText").value = location.searchtree["q"]
 					}
 					document.getElementById("user").value = location.searchtree["u"]
+					document.getElementById("num").innerHTML = `(${datap.length})`
+				})
+			fetch("https://cors.9gr.repl.co/api.scratch.mit.edu/users/" + location.searchtree["u"])
+				.then(blob => blob.json())
+				.then(data => {
+					let userLable = document.getElementById("userLable")
+					let user = document.getElementById("user")
+					let pfp = document.getElementById("userProfilePicture")
+					let name = document.getElementById("userName")
+					pfp.src = `https://uploads.scratch.mit.edu/users/avatars/${data["id"]}.png`
+					userDisplay("none")
+					name.innerHTML = data["username"]
 				})
 		} else {
 			projects.innerHTML = `<span style="font-style:italic">Search Something <span style="font-weight:bold">↑↑↑</span></span>`
 		}
+		//functions
+		function userDisplay(type) {
+			userLable.style.display = type
+			user.style.display = type
+		}
+
+		async function metaDataSearch() {
+			let gotten = await fetch("https://scratchdb.lefty.one/v2/project/info/user/" + location.searchtree["u"])
+			if (gotten.ok) {
+				let data = gotten.json()
+				console.log(data)
+				let projects = data["projects"]
+				for (let i = 0; i < projects.length; i++) {
+					let project = projects[i]
+					let tag = document.createElement("div")
+					let other = await fetch("//cors.9gr.repl.co/api.scartch.mit.edu/projects/" + project["info"]["scratch_id"])
+					let metaData = other.json()
+					if (metaData["title"].includes(location.searchtree["q"]) || metaData["description"].includes(location.searchtree["q"]) || metaData["instructions"].includes(location.searchtree["q"])) {
+						tag.innerHTML = `<a target="new" href="https://scratch.mit.edu/projects/${metaData["id"]}"><img src="https://uploads.scratch.mit.edu/projects/thumbnails/${metaData["id"]}.png" width="${options["size"]}" alt="${metaData["title"]}"><br>${metaData["title"]}</a>`
+						document.getElementById("projects").appendChild(tag)
+					}
+				}
+				}
+			}
 	</script>
 </body>
 

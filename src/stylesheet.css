@@ -24,7 +24,7 @@ html.l {
 	--linkLeCo: #F7E45D;
 }
 
-/*normal theme
+/*normal theme*/
 html.n {
 	--navCo: #111;
 	--headCo: #333;
@@ -44,9 +44,9 @@ html.n {
 	--taTxtCo: white;
 	--linkLeCo: var(--linkCo);
 }
-*/
 
-/*halloween theme 2021*/
+
+/*halloween theme 2021
 html.n {
 	--navCo: #3e6433;
 	--headCo: #114e00;
@@ -66,7 +66,7 @@ html.n {
 	--taTxtCo: white;
 	--linkLeCo: var(--linkCo);
 }
-
+*/
 .H1 { font-size: 40px; }
 
 .nav { background-color: var(--navCo); }
