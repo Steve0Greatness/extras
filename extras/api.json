@@ -62,5 +62,13 @@
 		"status": null,
 		"date": "11/5/21",
 		"isExternal": false
+	},
+	{
+		"name": "Tic Tac Toe",
+		"fileName": "Tic-Tac-Toe.html",
+		"desc": "An online tic tac toe program",
+		"status": null,
+		"date": "11/12/21",
+		"isExternal": false
 	}
 ]

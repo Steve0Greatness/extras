@@ -3,7 +3,7 @@
 
 <head>
 	<title>Scratch Profile Project Search</title>
-	<style name="styles">
+	<style name="styles" type="text/css">
 		div:not(#projects):not(#inner):not(#header) {
 			display: inline-block;
 			text-align: center;
@@ -35,8 +35,6 @@
 		}
 
 		body {
-			/*background: #223;
-			color: white;*/
 			background: url("https://cdn.scratch.mit.edu/scratchr2/static/__fd54d8440ae146e24183f3a920f85c36__/images/scratch-bg.png");
 			font-family: Monospace;
 		}
@@ -79,6 +77,7 @@
 			background: #f7f7f7;
 			padding: 5px;
 			border-radius: 5px;
+			border-bottom: 1px black solid;
 		}
 
 		div#inner {
@@ -88,7 +87,7 @@
 			border-radius: 5px;
 		}
 
-		details>summary {
+		details > summary {
 			cursor: pointer;
 		}
 	</style>
@@ -99,7 +98,7 @@
 	<div id="inner">
 		<div id="header">
 			<form onsubmit="getData(); return false;" id="searchBars">
-				<img src id="userProfilePicture" width="35" align="left"><span id="userName" color="-webkit-link" onclick="userDisplay('inline')"></span> <label for="searchText" id="userLable">User:</label>
+				<img src id="userProfilePicture" width="35" align="left"><span id="userName" color="-webkit-link" onclick="userDisplay('inline'); addLink()"></span> <label for="searchText" id="userLable">User:</label>
 				<input type="text" id="user" placeholder="user"> &gt;&gt; Search Projects<span id="num"></span><br>
 				<label for="searchText">Search Projects:</label>
 				<input type="text" id="searchText" placeholder="search term">
@@ -115,10 +114,11 @@
 			</details>
 	</div>
 	<div id="projects">
+		<br><br>
 	</div>
 	</div>
 	<button onclick="scrollToTop()" id="scrollTop">Back to Top</button>
-	<script>
+	<script name="script" type="application/javascript">
 		/*Setting somethings*/
 		//options
 		const options = {
@@ -133,8 +133,16 @@
 		location.searchtree = {}
 		for (let i = 0; i < search.length; i++) {
 			if (search[i].includes("=")) {
-				location.searchtree[search[i].split(/=/)[0]] = search[i].split(/=/)[1]
+				let final = search[i].split(/=/)[1]
+				if (search[i].split(/=/)[1].includes("%20")) {
+					final = search[i].split(/=/)[1].split(/%20/).join(" ")
+				}
+				location.searchtree[search[i].split(/=/)[0]] = final
 			} else {
+				let final = search[i]
+				if (search[i].includes("%20")) {
+					final = search[i].split(/%20/).join(" ")
+				}
 				location.searchtree[search[i]] = search[i]
 			}
 		}
@@ -160,18 +168,20 @@
 		}
 		if (Object.keys(location.searchtree).includes("u")) {
 			console.log(location.searchtree["u"])
-			let d
 			fetch("https://scratchdb.lefty.one/v2/project/info/user/" + location.searchtree["u"])
 				.then(blob => blob.json())
 				.then(data => {
 					let datap = data["projects"]
+					projects.innerHTML = ""
 					for (let i = 0; i < datap.length; i++) {
 						let datai = datap[i]
 						let scratchID = datai["info"]["scratch_id"]
 						let title = datai["info"]["title"]
 						let project = document.createElement("div")
-						project.innerHTML = `<a target="new" href="https://scratch.mit.edu/projects/${scratchID}"><img src="https://uploads.scratch.mit.edu/projects/thumbnails/${scratchID}.png" width="${options["size"]}" alt="${title}"><br>${title}</a>`
-						if (title.includes(location.searchtree["q"])) { projects.appendChild(project) }
+						if (title.includes(location.searchtree["q"])) {
+							project.innerHTML = `<a target="new" href="https://scratch.mit.edu/projects/${scratchID}"><img src="https://uploads.scratch.mit.edu/projects/thumbnails/${scratchID}.png" width="${options["size"]}" alt="${title}"><br>${title}</a>`
+							projects.appendChild(project)
+						}
 						document.getElementById("searchText").value = location.searchtree["q"]
 					}
 					document.getElementById("user").value = location.searchtree["u"]
@@ -196,25 +206,15 @@
 			userLable.style.display = type
 			user.style.display = type
 		}
-
-		async function metaDataSearch() {
-			let gotten = await fetch("https://scratchdb.lefty.one/v2/project/info/user/" + location.searchtree["u"])
-			if (gotten.ok) {
-				let data = gotten.json()
-				console.log(data)
-				let projects = data["projects"]
-				for (let i = 0; i < projects.length; i++) {
-					let project = projects[i]
-					let tag = document.createElement("div")
-					let other = await fetch("//cors.9gr.repl.co/api.scartch.mit.edu/projects/" + project["info"]["scratch_id"])
-					let metaData = other.json()
-					if (metaData["title"].includes(location.searchtree["q"]) || metaData["description"].includes(location.searchtree["q"]) || metaData["instructions"].includes(location.searchtree["q"])) {
-						tag.innerHTML = `<a target="new" href="https://scratch.mit.edu/projects/${metaData["id"]}"><img src="https://uploads.scratch.mit.edu/projects/thumbnails/${metaData["id"]}.png" width="${options["size"]}" alt="${metaData["title"]}"><br>${metaData["title"]}</a>`
-						document.getElementById("projects").appendChild(tag)
-					}
-				}
-				}
-			}
+		
+		function addLink() {
+			let link = document.createElement("a")
+			link.href = `//scratch.mit.edu/users/${location.searchtree["u"]}/projects`
+			link.innerHTML = "(View user on Scratch)"
+			let span = document.getElementById("userName")
+			span.setAttribute("onclick", "")
+			span.appendChild(link)
+		}
 	</script>
 </body>
 

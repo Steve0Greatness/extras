@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Tic Tac Toe</title>
+	<link rel="icon" href="https://u.cubeupload.com/Steve_Greatness/TicTacToe.png">
+	<style id="tdBor">
+		:root {
+			--tdBorderHov: orange;
+		}
+	</style>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+		:root {
+			font-family: 'Lato', sans-serif;
+		}
+
+		td {
+			border: 3px white solid;
+			height: 4em;
+			width: 4em;
+			cursor: pointer;
+			text-align: center;
+			background: inherit;
+			color: inherit;
+			transition: color .75s, background .75s, border .25s;
+		}
+
+		td:hover {
+			background: #ccc6;
+			color: #aaa8;
+			border: 3px var(--tdBorderHov) solid;
+		}
+
+		body {
+			background: #000;
+			color: #fff;
+			text-align: center;
+		}
+
+		table {
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		::selection {
+			background: #fc0d;
+			color: black;
+		}
+
+		details>summary {
+			list-style: none;
+			cursor: pointer;
+			font-size: 2em;
+			border: #ccc 3px solid;
+		}
+
+		a:any-link {
+			color: #fc0;
+		}
+
+		a:any-link:visited {
+			color: #ed0;
+		}
+
+		button#restartButton {
+			color: white;
+			background: grey;
+			border: #ccc 2px solid;
+			border-radius: 5px;
+			padding: 3px;
+			cursor: not-allowed;
+			transition: color .5s, background .5s, border .75s;
+		}
+
+		button#restartButton.ready {
+			color: #000;
+			background: #777;
+			border: #444 2px solid;
+			cursor: pointer;
+		}
+
+		button#restartButton.ready:hover {
+			color: #115;
+			background: #88f;
+			border: #55a 2px solid;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Tic Tac Toe</h1>
+	<table id="game">
+		<tr>
+			<td onclick="play(0, 0)"></td>
+			<td onclick="play(0, 1)"></td>
+			<td onclick="play(0, 2)"></td>
+		</tr>
+		<tr>
+			<td onclick="play(1, 0)"></td>
+			<td onclick="play(1, 1)"></td>
+			<td onclick="play(1, 2)"></td>
+		</tr>
+		<tr>
+			<td onclick="play(2, 0)"></td>
+			<td onclick="play(2, 1)"></td>
+			<td onclick="play(2, 2)"></td>
+		</tr>
+	</table>
+	<div id="win"></div>
+	<div>It is player <span id="turn">X</span>'s turn</div>
+	<button id="restartButton">Restart</button>
+	<details>
+		<summary>Notes & Credits</summary>
+		Made with <a href="https://jquery.com/">jQuery</a>.
+	</details>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js">
+	</script>
+	<script>
+		const styleRoot = ":root {--tdBorderHov: #0af;}"
+		var object = [["","",""], ["","",""], ["","",""]]
+		var playerGoing = 0
+		const player = ["X", "O"]
+
+		function play(row, col) {
+			//check win
+			if ($("#win").html().includes("won!"|"draw")) {
+				$("#tdBor").html(styleRoot)
+				$("#restartButton").addClass("ready")
+				$("#restartButton").click(function(){restart()})
+				return;
+			}
+
+			//checking which player's going
+			let lable
+			if (playerGoing % 2 == 0) { lable = player[0] } else { lable = player[1] }
+
+			//edit the table
+			if (object[row][col] == "") {
+				object[row][col] = lable
+				$("#game").html(`<tr><td onclick="play(0, 0)">${object[0][0]}</td><td onclick="play(0, 1)">${object[0][1]}</td><td onclick="play(0, 2)">${object[0][2]}</td></tr><tr><td onclick="play(1, 0)">${object[1][0]}</td><td onclick="play(1, 1)">${object[1][1]}</td><td onclick="play(1, 2)">${object[1][2]}</td></tr><tr><td onclick="play(2, 0)">${object[2][0]}</td><td onclick="play(2, 1)">${object[2][1]}</td><td onclick="play(2, 2)">${object[2][2]}</td></tr>`)
+			}
+
+			//update player
+			playerGoing++
+			if (playerGoing % 2 == 0) { $("#turn").text(player[0]) } else { $("#turn").text(player[1]) }
+
+			//check win
+			if (checkWin() == 0) {
+				$("#win").html(player[0] + " won!")
+				$("#tdBor").html(styleRoot)
+				$("#restartButton").addClass("ready")
+				$("#restartButton").click(function(){restart()})
+				return;
+			} else if (checkWin() == 1) {
+				$("#win").html(player[1] + " won!")
+				$("#tdBor").html(styleRoot)
+				$("#restartButton").addClass("ready")
+				$("#restartButton").click(function(){restart()})
+				return;
+			}
+
+			if (checkTie()) {
+				$("#win").html("It's a draw.")
+				$("#tdBor").html(styleRoot)
+				$("#restartButton").addClass("ready")
+				$("#restartButton").click(function(){restart()})
+			}
+		}
+
+		function checkWin() {
+			if (checkValues(player[0])) { return 0; } else if (checkValues(player[1])) { return 1; }
+		}
+
+		function checkValues(playerNum) {
+			let a = []
+			//checks
+			//horizontally
+			for (let i = 0; i < 3; i++) {
+				a.push(object[i][0] == playerNum && object[i][1] == playerNum && object[i][2] == playerNum)
+			}
+
+			//diagonally
+			a.push(object[0][0] == playerNum && object[1][1] == playerNum && object[2][2] == playerNum)
+			a.push(object[0][2] == playerNum && object[1][1] == playerNum && object[2][0] == playerNum)
+
+			//vertically
+			for (let i = 0; i < 3; i++) {
+				a.push(object[0][i] == playerNum && object[1][i] == playerNum && object[2][i] == playerNum)
+			}
+
+			if (a.includes(true)) { return true; } else { return false; }
+		}
+
+		function restart() {
+			object = [["","",""], ["","",""], ["","",""]]
+			$("#game").html(`<tr><td onclick="play(0, 0)">${object[0][0]}</td><td onclick="play(0, 1)">${object[0][1]}</td><td onclick="play(0, 2)">${object[0][2]}</td></tr><tr><td onclick="play(1, 0)">${object[1][0]}</td><td onclick="play(1, 1)">${object[1][1]}</td><td onclick="play(1, 2)">${object[1][2]}</td></tr><tr><td onclick="play(2, 0)">${object[2][0]}</td><td onclick="play(2, 1)">${object[2][1]}</td><td onclick="play(2, 2)">${object[2][2]}</td></tr>`)
+			$("#win").html("")
+			$("#tdBor").html(":root {--tdBorderHov: orange;}")
+			playerGoing = 0
+			$("#restartButton").unbind()
+			$("#restartButton").removeClass("ready")
+		}
+
+		function checkTie() {
+			let t = []
+			for (let i = 0; i < 3; i++) {
+				for (let a = 0; a < 3; a++) {
+					t.push(object[i][a] != "")
+				}
+			}
+			return !(t.includes(false))
+		}
+	</script>
+</body>
+
+</html>
