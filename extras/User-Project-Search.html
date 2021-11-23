@@ -118,7 +118,7 @@
 	</div>
 	</div>
 	<button onclick="scrollToTop()" id="scrollTop">Back to Top</button>
-	<script name="script" type="application/javascript">
+	<script name="script" type="text/javascript">
 		/*Setting somethings*/
 		//options
 		const options = {
@@ -163,7 +163,7 @@
 
 		/*Main*/
 		//Changes the url to something that 
-		function getData() {
+		async function getData() {
 			location = `?u=${document.getElementById("user").value}&q=${document.getElementById("searchText").value}`
 		}
 		if (Object.keys(location.searchtree).includes("u")) {
@@ -178,7 +178,7 @@
 						let scratchID = datai["info"]["scratch_id"]
 						let title = datai["info"]["title"]
 						let project = document.createElement("div")
-						if (title.includes(location.searchtree["q"])) {
+						if (title.includes(location.searchtree["q"]) || title.includes(location.searchtree["q"].charAt(0).toUpperCase() + location.searchtree["q"].slice(1)) || title.includes(location.searchtree["q"].charAt(0).toLowerCase() + location.searchtree["q"].slice(1)) || title.includes(location.searchtree["q"].toUpperCase()) || title.includes(location.searchtree["q"].toLowerCase())) {
 							project.innerHTML = `<a target="new" href="https://scratch.mit.edu/projects/${scratchID}"><img src="https://uploads.scratch.mit.edu/projects/thumbnails/${scratchID}.png" width="${options["size"]}" alt="${title}"><br>${title}</a>`
 							projects.appendChild(project)
 						}
@@ -201,6 +201,7 @@
 		} else {
 			projects.innerHTML = `<span style="font-style:italic">Search Something <span style="font-weight:bold">↑↑↑</span></span>`
 		}
+		
 		//functions
 		function userDisplay(type) {
 			userLable.style.display = type

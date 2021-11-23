@@ -7,6 +7,7 @@
 	<style id="tdBor">
 		:root {
 			--tdBorderHov: orange;
+			--tdBorderAct: #850;
 		}
 	</style>
 	<style>
@@ -31,6 +32,12 @@
 			background: #ccc6;
 			color: #aaa8;
 			border: 3px var(--tdBorderHov) solid;
+		}
+
+		td:active {
+			background: #fff9;
+			color: #aaa8;
+			border: 3px var(--tdBorderAct) solid;
 		}
 
 		body {
@@ -65,9 +72,9 @@
 		}
 
 		button#restartButton {
-			color: white;
-			background: grey;
-			border: #ccc 2px solid;
+			color: grey;
+			background: #222;
+			border: #333 2px solid;
 			border-radius: 5px;
 			padding: 3px;
 			cursor: not-allowed;
@@ -75,9 +82,9 @@
 		}
 
 		button#restartButton.ready {
-			color: #000;
-			background: #777;
-			border: #444 2px solid;
+			color: #fff;
+			background: #77f;
+			border: #66f 2px solid;
 			cursor: pointer;
 		}
 
@@ -86,11 +93,59 @@
 			background: #88f;
 			border: #55a 2px solid;
 		}
+
+		button#restartButton.ready:active {
+			color: #001;
+			background: #00f;
+			border: #225 2px solid;
+		}
+
+		#win {
+			color: orange;
+			font-size: 20px;
+		}
+
+		input,
+		button {
+			background: #555;
+			margin: 5px;
+			color: white;
+			border: #333;
+			border-radius: 5px;
+			padding: 5px;
+		}
+
+		#randomPerson.ready {
+			text-align: center;
+			display: block;
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		#tic,
+		#tac,
+		#toe {
+			color: white;
+			transition: color 1s;
+		}
+
+		#tic:hover {
+			color: orange;
+		}
+
+		#tac:hover {
+			color: cyan;
+		}
+
+		#toe:hover {
+			color: yellow;
+		}
 	</style>
 </head>
 
 <body>
-	<h1>Tic Tac Toe</h1>
+	<h1><span id="tic">Tic</span> <span id="tac">Tac</span> <span id="toe">Toe</span></h1>
 	<table id="game">
 		<tr>
 			<td onclick="play(0, 0)"></td>
@@ -109,26 +164,33 @@
 		</tr>
 	</table>
 	<div id="win"></div>
-	<div>It is player <span id="turn">X</span>'s turn</div>
-	<button id="restartButton">Restart</button>
+	<div>It's <span id="turn">X</span>'s turn</div>
+	<p><button id="restartButton">Restart</button></p>
+
 	<details>
-		<summary>Notes & Credits</summary>
+		<summary>Notes & Credits(and extras)</summary>
 		Made with <a href="https://jquery.com/">jQuery</a>.
+		<h2>Who should go first?</h2>
+		<form onsubmit="randomlyChoose(); return false;">
+		<lable for="person1">One Player</lable><input id="person1"><br> <lable for="person1">Another Player</lable><input id="person2"><br> <input type="submit" value="Randomly Choose"></form>
+		<div id="randomPerson"></div><br clear="left">
 	</details>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js">
 	</script>
 	<script>
-		const styleRoot = ":root {--tdBorderHov: #0af;}"
+		const styleRoot = ":root {--tdBorderHov: #0af;--tdBorderAct: #088;}"
 		var object = [["","",""], ["","",""], ["","",""]]
 		var playerGoing = 0
 		const player = ["X", "O"]
 
 		function play(row, col) {
 			//check win
-			if ($("#win").html().includes("won!"|"draw")) {
+			if ($("#win").html().includes("won") || $("#win").html().includes("draw")) {
 				$("#tdBor").html(styleRoot)
 				$("#restartButton").addClass("ready")
 				$("#restartButton").click(function(){restart()})
+				console.log("end already happened")
 				return;
 			}
 
@@ -139,12 +201,12 @@
 			//edit the table
 			if (object[row][col] == "") {
 				object[row][col] = lable
-				$("#game").html(`<tr><td onclick="play(0, 0)">${object[0][0]}</td><td onclick="play(0, 1)">${object[0][1]}</td><td onclick="play(0, 2)">${object[0][2]}</td></tr><tr><td onclick="play(1, 0)">${object[1][0]}</td><td onclick="play(1, 1)">${object[1][1]}</td><td onclick="play(1, 2)">${object[1][2]}</td></tr><tr><td onclick="play(2, 0)">${object[2][0]}</td><td onclick="play(2, 1)">${object[2][1]}</td><td onclick="play(2, 2)">${object[2][2]}</td></tr>`)
+				setGameboard()
+				
+				//update player
+				playerGoing++
+				if (playerGoing % 2 == 0) { $("#turn").text(player[0]) } else { $("#turn").text(player[1]) }
 			}
-
-			//update player
-			playerGoing++
-			if (playerGoing % 2 == 0) { $("#turn").text(player[0]) } else { $("#turn").text(player[1]) }
 
 			//check win
 			if (checkWin() == 0) {
@@ -152,12 +214,14 @@
 				$("#tdBor").html(styleRoot)
 				$("#restartButton").addClass("ready")
 				$("#restartButton").click(function(){restart()})
+				$("#turn").text("nobody")
 				return;
 			} else if (checkWin() == 1) {
 				$("#win").html(player[1] + " won!")
 				$("#tdBor").html(styleRoot)
 				$("#restartButton").addClass("ready")
 				$("#restartButton").click(function(){restart()})
+				$("#turn").text("nobody")
 				return;
 			}
 
@@ -166,6 +230,7 @@
 				$("#tdBor").html(styleRoot)
 				$("#restartButton").addClass("ready")
 				$("#restartButton").click(function(){restart()})
+				$("#turn").text("nobody")
 			}
 		}
 
@@ -195,12 +260,13 @@
 
 		function restart() {
 			object = [["","",""], ["","",""], ["","",""]]
-			$("#game").html(`<tr><td onclick="play(0, 0)">${object[0][0]}</td><td onclick="play(0, 1)">${object[0][1]}</td><td onclick="play(0, 2)">${object[0][2]}</td></tr><tr><td onclick="play(1, 0)">${object[1][0]}</td><td onclick="play(1, 1)">${object[1][1]}</td><td onclick="play(1, 2)">${object[1][2]}</td></tr><tr><td onclick="play(2, 0)">${object[2][0]}</td><td onclick="play(2, 1)">${object[2][1]}</td><td onclick="play(2, 2)">${object[2][2]}</td></tr>`)
+			setGameboard()
 			$("#win").html("")
-			$("#tdBor").html(":root {--tdBorderHov: orange;}")
+			$("#tdBor").html(":root {--tdBorderHov: orange;--tdBorderAct: #850;}")
 			playerGoing = 0
 			$("#restartButton").unbind()
 			$("#restartButton").removeClass("ready")
+			$("#turn").text(player[0])
 		}
 
 		function checkTie() {
@@ -212,6 +278,16 @@
 			}
 			return !(t.includes(false))
 		}
+
+		function randomlyChoose() {
+			let people = [$("#person1").val(), $("#person2").val()]
+			let images = ["d/2017-D_Roosevelt_dime_obverse_transparent.png/608px-2017-D_Roosevelt_dime_obverse_transparent.png", "9/2017-D_Roosevelt_dime_reverse_transparent.png/607px-2017-D_Roosevelt_dime_reverse_transparent.png"]
+			let randomNumber = Math.round(Math.random())
+			$("#randomPerson").html(people[randomNumber])
+			$("#randomPerson").addClass("ready")
+		}
+
+		function setGameboard() {$("#game").html(`<tr><td onclick="play(0, 0)">${object[0][0]}</td><td onclick="play(0, 1)">${object[0][1]}</td><td onclick="play(0, 2)">${object[0][2]}</td></tr><tr><td onclick="play(1, 0)">${object[1][0]}</td><td onclick="play(1, 1)">${object[1][1]}</td><td onclick="play(1, 2)">${object[1][2]}</td></tr><tr><td onclick="play(2, 0)">${object[2][0]}</td><td onclick="play(2, 1)">${object[2][1]}</td><td onclick="play(2, 2)">${object[2][2]}</td></tr>`)}
 	</script>
 </body>
 
