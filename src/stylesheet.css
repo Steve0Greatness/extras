@@ -184,6 +184,10 @@ textarea {
 	100% { opacity: 1; }
 }
 
+p {
+	text-indent: 1em;
+}
+
 .hiddenLink {
 	color: #fff0;
 	display: inline-block;

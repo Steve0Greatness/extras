@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+	<title>Random String Generator</title>
+	<meta name="viewport" content="width=device-height, initial-scale=1">
+	<meta name="description" content="Generate a random string">
+	<style>
+		:root {
+			background: #000;
+			color: #fff;
+			font-family: sans-serif;
+
+		}
+
+		input,
+		textarea,
+		button {
+			color: #fff;
+			background: #555;
+			border: #222 3px solid;
+			border-radius: 5px;
+			transition: color .75s, background .75s, border-radius .75s, border .75s;
+		}
+
+		textarea {
+			width: -webkit-fill-available;
+			height: auto;
+		}
+
+		input::placeholder,
+		textarea::placeholder,
+		button::placeholder {
+			color: #ccc;
+		}
+
+		input:hover,
+		textarea:hover,
+		button:hover {
+			color: #fff;
+			background: #777;
+			border: #444 3px solid;
+			border-radius: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Random String Generator</h1>
+	Randomly generate a string.
+	<p><input type="number" placeholder="Ammount of characters" id="charAmount"><lable style="margin-left:1em" for="charAmount">Number of characters</lable></p>
+	<button id="gen">Generate</button><br>
+	<textarea id="output" readonly style="display:none">
+	</textarea>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+	const nothing = ""|null|undefined
+	function randomFromArray(array) {
+		return array[Math.floor(Math.random() * array.length)]
+	}
+	const characters = "qwertyuiopasdfghjklzxcvbnm1234567890QWERTYUIOPASDFGHJKLZXCVBNM=-".split("")
+	$("#gen").click(() => {
+		if ($("#charAmount").val() == nothing) { return; }
+		let string = ""
+		for (let i = 0; i < $("#charAmount").val(); i++) {
+			string += randomFromArray(characters)
+		}
+		$("#output").text(string).css("display", "")
+	})
+	$("#output").click(() => {
+		$("#output").focus()
+		$('#output').select()
+		document.execCommand("copy")
+	})
+	</script>
+</body>
+
+</html>

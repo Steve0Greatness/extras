@@ -70,5 +70,21 @@
 		"status": null,
 		"date": "11/12/21",
 		"isExternal": false
+	},
+	{
+		"name": "Replit Language Data",
+		"fileName": "https://ReplitData.stevesgreatness.repl.co",
+		"desc": "Data on all languages on Replit.",
+		"status": "Indev",
+		"isExternal": true,
+		"date": "11/26/21"
+	},
+	{
+		"name": "Random String Generator",
+		"fileName": "Radom-String-Gen.html",
+		"desc": "Randomly generates a Base64 string.",
+		"status": "",
+		"isExternal": false,
+		"date": "12/9/21"
 	}
 ]
