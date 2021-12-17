@@ -1,4 +1,4 @@
-const search = location.search
+var search = location.search
 fetch('alts.json')
 	.then(response => response.json())
 	.then(data => {

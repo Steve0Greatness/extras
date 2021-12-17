@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Random Scratch Project</title>
+	<style type="text/css">
+		:root {
+			font-family: sans-serif;
+			background: #333;
+			color: #fff;
+		}
+
+		:any-link {
+			color: #ccc;
+		}
+		
+		h1, h2, h3, h4, h5 {
+			margin: 0;
+			text-overflow: ellipsis;
+		}
+
+		#mainContent {
+			min-height: 291px;
+		}
+
+		button {
+			background: #555;
+			border: #444 solid 3px;
+			border-radius: 1em;
+			transition: background .5s, border-color .5s;
+		}
+
+		button:active:hover {
+			background: #666;
+			border-color: #555;
+		}
+
+		button:hover {
+			background: #444;
+			border-color: #666;
+		}
+
+		#otherContent {
+			margin-top: 1em;
+		}
+
+		.loadIn {
+			animation: 5s loadIn;
+		}
+
+		.dotA {
+			animation: 1s loadIn infinite;
+		}
+
+		.dotB {
+			animation: 1.5s loadIn infinite;
+		}
+
+		.dotC {
+			animation: 2s loadIn infinite;
+		}
+
+		@keyframes loadIn {
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
+		}
+	</style>
+</head>
+	
+<body>
+	<div id="mainContent">
+		Loading<span class="dotA">.</span><span class="dotB">.</span><span class="dotC">.</span>
+		<div class="loadIn">This may take a sec.</div>
+	</div>
+	<div id="otherContent">
+		<button onclick="run(true)">Generate Another</button> <span id="loading"></span>
+	</div>
+	<script type="application/javascript">
+		function run(isButton = false) {
+			fetch("https://cors.9gr.repl.co/api.scratch.mit.edu/proxy/featured")
+				.then(res => res.json())
+				.then(data => { 
+					let random = Math.floor(Math.random() * data.community_newest_projects[0].id)
+					if (isButton) { document.querySelector("#loading").innerHTML = `Loading<span class="dotA">.</span><span class="dotB">.</span><span class="dotC">.</span>` }
+					fetch("https://cors.9gr.repl.co/api.scratch.mit.edu/projects/" + random)
+						.then(res => res.json())
+						.then(data => {
+							if (Object.keys(data).includes("code")) {
+								run()
+							} else {
+								console.clear()
+								document.querySelector("#loading").innerHTML = ""
+								document.querySelector("#mainContent").innerHTML = `<a href="https://scratch.mit.edu/projects/${random}" target="new"><img src="${data.image}" height="200"><h1 style="min-height:38px">${data.title}</h1></a><h2>by <a href="//scratch.mit.edu/users/${data.author.username}" target="new"><img src="${data.author.profile.images["32x32"]}" height="16">${data.author.username}</a></h2>
+Shared on ${new Date(data.history.shared).getUTCMonth() + 1}, ${new Date(data.history.shared).getUTCDate() + 1} ${new Date(data.history.shared).getUTCFullYear()}`
+							}
+						})
+				})
+		}
+		run()
+	</script>
+</body>
+	
+</html>
