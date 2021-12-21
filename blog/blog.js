@@ -1,4 +1,4 @@
-const newpost = "?newest&newpost"
+const newpost = { link: "?newest&newpost", name: "", working: false }
 const search = location.search
 const ind = document.getElementById('indexBody')
 const content = document.getElementById('content')
@@ -13,29 +13,53 @@ function start() {
 				if (document.getElementById("select").value == "new") {
 					x = data[names[names.length - (1 + i)]]
 				}
-				console.log(i, names[i], x)
-				ind.innerHTML = ind.innerHTML + `<tr><td><a href="?${names[i]}">${x["name"]}</a></td> <td><span style="padding-left: 15px;">${x["pD"]}</span></td> </tr>`
+				ind.innerHTML = ind.innerHTML + `<tr> <td><a href="?${names[i]}">${x.name}</a></td> <td><span style="padding-left: 15px;">${x.pD}</span></td> </tr>`
 			}
 			if (search != null | "" | newpost) {
-				if (names.indexOf(search.slice(1)) != -1) {
-					content.innerHTML = `<h1>${data[search.slice(1)]["name"]}</h1><h2>${data[search.slice(1)]["pD"]}</h2><article id="article">${data[search.slice(1)]["pC"]}</article>`
-					ind.innerHTML = ind.innerHTML + "<tr><a href='?'>- back</a></tr>"
-				}
+				ind.innerHTML = "<tr> <td><a href='./'>- back</a></td> </tr>" + ind.innerHTML
 			}
 		})
 }
 
-window.onload = () => { start() }
+if (location.origin != "https://steve0greatness.github.io") {
+	if (newpost.working) {
+		ind.innerHTML += "<tr> <td><a href=\"" + newpost.link + "\">" + newpost.name + "</td> <td><span style=\"padding-left: 15px;\">Not Released</span></td> </tr>"
+	}
+}
+
+window.onload = () => { fetch('blog.json')
+		.then(res => res.json())
+		.then(data => {
+			let names = Object.keys(data)
+			for (let i = 0; i < names.length; i++) {
+				let x = data[names[i]]
+				if (document.getElementById("select").value == "new") {
+					x = data[names[names.length - (1 + i)]]
+				}
+				ind.innerHTML += `<tr> <td><a href="?${names[i]}">${x.name}</a></td> <td><span style="padding-left: 15px;">${x.pD}</span></td> </tr>`
+			}
+			if (search != null | "" | newpost.link) {
+				if (names.indexOf(search.slice(1)) != -1) {
+					let bP = data[search.slice(1)]
+					content.innerHTML = `<h1>${bP.name}</h1><h2>${bP.pD}</h2><article id="article">${bP.pC}</article>`
+					ind.innerHTML = "<tr> <td><a href='./'>- back</a></td> </tr>" + ind.innerHTML
+				}
+			}
+		}) }
 document.getElementById("select").addEventListener("change", () => { start() })
 
-if (search == newpost) {
+if (search == newpost.link) {
 	var lastModified
 	fetch("newpost.html")
 		.then(res => {
 			return res.text()
 		})
 		.then(data => {
-			content.innerHTML = `<h1>The Newest Post</h1><h2>this is where the date would go.</h2><div>${data}</div>`
+			let name = newpost.name
+			if (name === ""|null|undefined) {
+				name = "No Current Name"
+			}
+			content.innerHTML = `<h1>${name}</h1><h2>Note: this post(if there is one) is not released</h2><div>${data}</div>`
 		})
 }
 
@@ -44,5 +68,3 @@ if (localStorage.getItem('theme') == null || localStorage.getItem('theme') == ''
 	document.getElementById('page').className = 'n'
 }
 var pageUrl = location.origin
-
-document.getElementById("newpostlink").href = newpost

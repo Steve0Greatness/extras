@@ -4,11 +4,7 @@ disallow: /src/
 
 user-agent: magicsearchbot
 allow: /
-
-user-agent: magicsearchbot
-allow: /extra_projects/
-
-user-agent: magicsearchbot
+allow: /extras
 disallow: /404.html
 
 sitemap: https://steve0greatess.github.io/src/sitemap.txt

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-US">
+	
+<head>
+	<title>Make HTML ready for being put into a JSON</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Paprika&display=swap');
+
+		:root {
+			font-family: 'Paprika', cursive;
+		}
+
+		html.n {
+			background: black;
+			color: white;
+			--invertNormal: 90%;
+			--invertReadO: 75%;
+		}
+		html.l {
+			background: white;
+			color: black;
+			--invertNormal: 10%;
+			--invertReadO: 25%;
+		}
+		
+		section#output {
+			display: none;
+		}
+
+		textarea {
+			width: 1000px;
+			height: 325px;
+		}
+
+		textarea, button {
+			font-family: 'Paprika', cursive;
+			filter: invert(var(--invertNormal)) opacity(75%) drop-shadow(2px 4px 6px #000a) brightness(1.25);
+		}
+
+		textarea[readonly] {
+			filter: invert(var(--invertReadO)) opacity(75%) drop-shadow(2px 4px 6px #000) brightness(1.25);
+		}
+	</style>
+</head>
+	
+<body>
+	<section id="main">
+		<h1>Make HTML ready for JSON files</h1>
+		<textarea placeholder="Paste your HTML here." id="beforeHTML"></textarea><br>
+		<button onclick="convert()">Submit</button>
+	</section>
+	<section id="output">
+		<h1>Output</h1>
+		This is the final product! Just copy and paste it wherever you want(click the textbox to copy the final product)<br>
+		<textarea id="jsonOut" onclick="copy(this)" readonly title="click me to copy the text in me!"></textarea>
+	</section>
+	<section id="about">
+		<h1>Why?</h1>
+		Preparing HTML for JS is time consuming. First, you need to remove all indents, and newlines(which takes longer depending on how long the HTML is). Then you have to replace all the quotation marks(") with a back-slash and a quotation mark(\").<br>
+		TBH, I'm just trying to justify this because it's something I'm definitely using
+	</section>
+	<script type="application/javascript">
+		function convert() {
+			let beforeHTML = document.getElementById("beforeHTML").value
+			let afterHTML = beforeHTML.replace(/\t/g, "").replace(/[\n\r]+/g, "").replace(/\\/g, "\\\\").replace(/\"/g, "\\\"")
+			console.log(afterHTML)
+			document.getElementById("jsonOut").value = afterHTML
+			document.getElementById("output").style.display = "inline-block"
+		}
+
+		function copy(element) {
+			element.select()
+			element.setSelectionRange(0, 99999)
+			navigator.clipboard.writeText(element.value)
+		}
+
+		window.onload = () => {
+			document.documentElement.className = localStorage.getItem("theme")
+		}
+	</script>
+</body>
+	
+</html>

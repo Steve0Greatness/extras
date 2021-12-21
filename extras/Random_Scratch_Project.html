@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en-US">
 
 <head>
 	<title>Random Scratch Project</title>
@@ -20,22 +20,22 @@
 		}
 
 		#mainContent {
-			min-height: 291px;
+			min-height: 325px;
 		}
 
-		button {
+		button, details.buttonLook > summary {
 			background: #555;
 			border: #444 solid 3px;
 			border-radius: 1em;
 			transition: background .5s, border-color .5s;
 		}
 
-		button:active:hover {
+		button:active:hover, details.buttonLook > summary:active:hover {
 			background: #666;
 			border-color: #555;
 		}
 
-		button:hover {
+		button:hover, details.buttonLook > summary:hover {
 			background: #444;
 			border-color: #666;
 		}
@@ -68,18 +68,53 @@
 				opacity: 1;
 			}
 		}
+
+		details.buttonLook > summary {
+			list-style: none;
+			display: inline-block;
+			padding: 2px 9px;
+			cursor: pointer;
+			color: #000;
+			margin-bottom: .5em;
+		}
+
+		iframe {
+			border: none;
+			margin: .5em 0;
+		}
+
+		.desc {
+			height: 275px;
+			min-width: 290px;
+			word-break: break-word;
+			background: #444;
+			display: inline-block;
+			padding: 5px;
+			margin-right: 1em;
+			overflow: auto;
+			white-space: pre;
+			margin-bottom: .5em;
+		}
+
+		.descHead {
+			margin: 0;
+			border-bottom: 2px #557 solid;
+			padding-bottom: 5px;
+			margin-bottom: .25em;
+		}
 	</style>
 </head>
 	
 <body>
-	<div id="mainContent">
+	<div id="mainContent" accesskey="main">
 		Loading<span class="dotA">.</span><span class="dotB">.</span><span class="dotC">.</span>
 		<div class="loadIn">This may take a sec.</div>
 	</div>
-	<div id="otherContent">
+	<div id="otherContent" accesskey="bottom">
 		<button onclick="run(true)">Generate Another</button> <span id="loading"></span>
 	</div>
 	<script type="application/javascript">
+		var attempts = 0
 		function run(isButton = false) {
 			fetch("https://cors.9gr.repl.co/api.scratch.mit.edu/proxy/featured")
 				.then(res => res.json())
@@ -87,17 +122,32 @@
 					let random = Math.floor(Math.random() * data.community_newest_projects[0].id)
 					if (isButton) { document.querySelector("#loading").innerHTML = `Loading<span class="dotA">.</span><span class="dotB">.</span><span class="dotC">.</span>` }
 					fetch("https://cors.9gr.repl.co/api.scratch.mit.edu/projects/" + random)
-						.then(res => res.json())
+						.then(res => {
+							if (res.status == 404) {
+								run()
+								return;
+							}
+							return res.json()
+						})
 						.then(data => {
 							if (Object.keys(data).includes("code")) {
 								run()
 							} else {
-								console.clear()
 								document.querySelector("#loading").innerHTML = ""
 								document.querySelector("#mainContent").innerHTML = `<a href="https://scratch.mit.edu/projects/${random}" target="new"><img src="${data.image}" height="200"><h1 style="min-height:38px">${data.title}</h1></a><h2>by <a href="//scratch.mit.edu/users/${data.author.username}" target="new"><img src="${data.author.profile.images["32x32"]}" height="16">${data.author.username}</a></h2>
-Shared on ${new Date(data.history.shared).getUTCMonth() + 1}, ${new Date(data.history.shared).getUTCDate() + 1} ${new Date(data.history.shared).getUTCFullYear()}`
+Shared on ${new Date(data.history.shared).getUTCMonth() + 1}, ${new Date(data.history.shared).getUTCDate() + 1} ${new Date(data.history.shared).getUTCFullYear()}<br>
+<details class="buttonLook"><summary>Open iFrame</summary>
+<div id="project">
+<iframe src="https://scratch.mit.edu/projects/${random}/embed" allowtransparency="true" width="495" height="420" frameborder="0" scrolling="no" allowfullscreen></iframe>
+<div id="descs">
+<div class="desc"><h1 class="descHead">Notes and Credits</h1>${data.description}</div>
+<div class="desc"><h1 class="descHead">Instructions</h1>${data.instructions}</div>
+</div>
+</div>
+</details>`
 							}
 						})
+						.catch(err => {})
 				})
 		}
 		run()

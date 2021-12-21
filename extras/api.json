@@ -83,7 +83,7 @@
 		"name": "Random String Generator",
 		"fileName": "Radom-String-Gen.html",
 		"desc": "Randomly generates a Base64 string.",
-		"status": "",
+		"status": null,
 		"isExternal": false,
 		"date": "12/9/21"
 	},
@@ -91,8 +91,16 @@
 		"name": "Random Scratch Project",
 		"fileName": "Random_Scratch_Project.html",
 		"desc": "Grabs a random Scratch project",
-		"status": "",
+		"status": null,
 		"isExternal": false,
 		"date": "12/16/21"
+	},
+	{
+		"name": "Prepair HTML for JSON",
+		"fileName": "JSONreadyHTML.html",
+		"desc": "Prepair HTML to be put into a JSON",
+		"status": null,
+		"isExternal": false,
+		"date": "12/21/21"
 	}
 ]
