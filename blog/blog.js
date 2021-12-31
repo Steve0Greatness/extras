@@ -10,21 +10,25 @@ function start() {
 			let names = Object.keys(data)
 			for (let i = 0; i < names.length; i++) {
 				let x = data[names[i]]
+				let name = names[i]
 				if (document.getElementById("select").value == "new") {
-					x = data[names[names.length - (1 + i)]]
+					name = names[names.length - (1 + i)]
+					x = data[name]
 				}
-				ind.innerHTML = ind.innerHTML + `<tr> <td><a href="?${names[i]}">${x.name}</a></td> <td><span style="padding-left: 15px;">${x.pD}</span></td> </tr>`
+				ind.innerHTML = ind.innerHTML + `<tr> <td><a href="?${name}">${x.name}</a></td> <td><span style="padding-left: 15px;">${x.pD}</span></td> </tr>`
 			}
-			if (search != null | "" | newpost) {
-				ind.innerHTML = "<tr> <td><a href='./'>- back</a></td> </tr>" + ind.innerHTML
+			if (search != null | "" | newpost.link) {
+				if (names.indexOf(search.slice(1)) != -1) {
+					let bP = data[search.slice(1)]
+					content.innerHTML = `<h1>${bP.name}</h1><h2>${bP.pD}</h2><article id="article">${bP.pC}</article>`
+					ind.innerHTML = "<tr> <td><a href='./'>- back</a></td> </tr>" + ind.innerHTML
+				}
 			}
 		})
 }
 
-if (location.origin != "https://steve0greatness.github.io") {
-	if (newpost.working) {
-		ind.innerHTML += "<tr> <td><a href=\"" + newpost.link + "\">" + newpost.name + "</td> <td><span style=\"padding-left: 15px;\">Not Released</span></td> </tr>"
-	}
+if (location.origin != "https://steve0greatness.github.io" && newpost.working) {
+	ind.innerHTML += "<tr> <td><a href=\"" + newpost.link + "\">" + newpost.name + "</td> <td><span style=\"padding-left: 15px;\">Not Released</span></td> </tr>"
 }
 
 window.onload = () => { fetch('blog.json')
@@ -33,10 +37,12 @@ window.onload = () => { fetch('blog.json')
 			let names = Object.keys(data)
 			for (let i = 0; i < names.length; i++) {
 				let x = data[names[i]]
+				let name = names[i]
 				if (document.getElementById("select").value == "new") {
-					x = data[names[names.length - (1 + i)]]
+					name = names[names.length - (1 + i)]
+					x = data[name]
 				}
-				ind.innerHTML += `<tr> <td><a href="?${names[i]}">${x.name}</a></td> <td><span style="padding-left: 15px;">${x.pD}</span></td> </tr>`
+				ind.innerHTML = ind.innerHTML + `<tr> <td><a href="?${name}">${x.name}</a></td> <td><span style="padding-left: 15px;">${x.pD}</span></td> </tr>`
 			}
 			if (search != null | "" | newpost.link) {
 				if (names.indexOf(search.slice(1)) != -1) {

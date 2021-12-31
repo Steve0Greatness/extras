@@ -102,5 +102,13 @@
 		"status": null,
 		"isExternal": false,
 		"date": "12/21/21"
+	},
+	{
+		"name": "Scratch Assets",
+		"fileName": "scratchAssets.html",
+		"desc": "View an image from Scratch Assets.",
+		"status": null,
+		"isExternal": false,
+		"date": "12/30/21"
 	}
 ]

@@ -85,14 +85,14 @@
 
 		.desc {
 			height: 275px;
-			min-width: 290px;
+			width: 290px;
 			word-break: break-word;
 			background: #444;
 			display: inline-block;
 			padding: 5px;
 			margin-right: 1em;
 			overflow: auto;
-			white-space: pre;
+			white-space: pre-line;
 			margin-bottom: .5em;
 		}
 
@@ -106,13 +106,13 @@
 </head>
 	
 <body>
-	<div id="mainContent" accesskey="main">
+	<section id="mainContent" accesskey="main">
 		Loading<span class="dotA">.</span><span class="dotB">.</span><span class="dotC">.</span>
 		<div class="loadIn">This may take a sec.</div>
-	</div>
-	<div id="otherContent" accesskey="bottom">
+	</section>
+	<section id="otherContent" accesskey="bottom">
 		<button onclick="run(true)">Generate Another</button> <span id="loading"></span>
-	</div>
+	</section>
 	<script type="application/javascript">
 		var attempts = 0
 		function run(isButton = false) {
