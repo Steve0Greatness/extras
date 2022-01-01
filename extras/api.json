@@ -110,5 +110,13 @@
 		"status": null,
 		"isExternal": false,
 		"date": "12/30/21"
+	},
+	{
+		"name": "Scratch Forum Trust Levels",
+		"fileName": "scratch-trust.html",
+		"desc": "My version of ForumsFeed(https://github.com/LankyBox01/scratch-trust)",
+		"status": null,
+		"isExternal": false,
+		"date": "12/31/21"
 	}
 ]
