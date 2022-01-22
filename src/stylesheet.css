@@ -85,7 +85,8 @@ body {
 }
 
 button, select, option, input {
-	background-color: var(--buCo);
+	background: var(--buCo);
+	background-image: none;
 	color: var(--buTxtCo);
 	border: solid 2px var(--buBoCo);
 	margin: 3px;
@@ -93,6 +94,15 @@ button, select, option, input {
 	font-size: 15px;
 	cursor: pointer;
 	font-weight: bold;
+}
+
+@media not all and (min-resolution:.001dpcm) {
+  @media {
+		select {
+			-webkit-appearance: none;
+			padding-right: 15px;
+		}
+	}
 }
 
 .notice {
@@ -192,7 +202,23 @@ p {
 	color: #fff0;
 	display: inline-block;
 }
+
 .hiddenLink:hover {
 	color: var(--buTxtCo);
 	cursor: help;
+}
+
+.quote::before {
+	content: "\"";
+	font-size: 20px;
+}
+
+.quote::after {
+	content: "\"";
+	font-size: 20px;
+}
+
+:any-link.source {
+	verticle-align: top;
+	font-size: 11px;
 }

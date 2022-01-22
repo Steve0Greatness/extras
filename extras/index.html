@@ -4,7 +4,6 @@
 <body>
 	<header id="header"></header>
 	Welcome to the extras page! There is a bunch of stuff here, from stuff I find useful, to April fools jokes remade. And all of it's made by me.<br>
-	This page lists projects hosted on this site. To see my other projects, look at <a href="//stevesgreatness.repl.co/projects">the projects page</a>.<br>
 	<select id="select">
 		<option value="new" selected>Newest</option>
 		<option value="old">Oldest</option>
@@ -18,14 +17,15 @@
 	<script type="text/javascript">
 		function start() {
 			fetch("api.json")
-				.then(blob => blob.json())
+				.then(res => res.json())
 				.then(data => {
-					var ind = document.getElementById('indexBody')
+					var ind = document.getElementById("indexBody")
 					ind.innerHTML = ""
 					for (let i = 0; i < data.length; i++) {
 						let isExternal
 						let target
 						let current = data[data.length - (i + 1)]
+
 						if (document.getElementById("select").value == "old") {
 							current = data[i]
 						}
@@ -40,7 +40,7 @@
 					}
 				})
 		}
-		window.onload = () => { start() }
+		start()
 		document.getElementById("select").addEventListener("change", () => { start() })
 	</script>
 </body>

@@ -15,12 +15,16 @@
 			color: white;
 			--invertNormal: 90%;
 			--invertReadO: 75%;
+			--dropShadowTrans: #ccca;
+			--dropShadow: #ccc;
 		}
 		html.l {
 			background: white;
 			color: black;
 			--invertNormal: 10%;
 			--invertReadO: 25%;
+			--dropShadowTrans: #ccca;
+			--dropShadow: #ccc;
 		}
 		
 		section#output {
@@ -32,13 +36,17 @@
 			height: 325px;
 		}
 
-		textarea, button {
+		textarea, button, input {
 			font-family: 'Paprika', cursive;
-			filter: invert(var(--invertNormal)) opacity(75%) drop-shadow(2px 4px 6px #000a) brightness(1.25);
+			filter: invert(var(--invertNormal)) opacity(75%) drop-shadow(2px 4px 6px var(--dropShadowTrans)) brightness(1.25);
 		}
 
 		textarea[readonly] {
-			filter: invert(var(--invertReadO)) opacity(75%) drop-shadow(2px 4px 6px #000) brightness(1.25);
+			filter: invert(var(--invertReadO)) opacity(75%) drop-shadow(2px 4px 6px var(--dropShadow)) brightness(1.25);
+		}
+
+		textarea {
+			font: 16px sans-serif;
 		}
 	</style>
 </head>
@@ -47,6 +55,8 @@
 	<section id="main">
 		<h1>Make HTML ready for JSON files</h1>
 		<textarea placeholder="Paste your HTML here." id="beforeHTML"></textarea><br>
+		<label for="newline">Include newlines(this is recommended for if you're post contains preformated text, or if it's MD)</label><input type="checkbox" id="newline"><br>
+		<label for="tab">Include tabs(this is recommended for if you're post contains preformated text)</label><input type="checkbox" id="tab"><br>
 		<button onclick="convert()">Submit</button>
 	</section>
 	<section id="output">
@@ -62,7 +72,19 @@
 	<script type="application/javascript">
 		function convert() {
 			let beforeHTML = document.getElementById("beforeHTML").value
-			let afterHTML = beforeHTML.replace(/\t/g, "").replace(/[\n\r]+/g, "").replace(/\\/g, "\\\\").replace(/\"/g, "\\\"")
+			let afterHTML = beforeHTML
+			if (document.getElementById("newline").checked) {
+				afterHTML = afterHTML.replace(/\n/g, "\\n")
+			} else {
+				afterHTML = afterHTML.replace(/\n/g, "")
+			}
+			if (document.getElementById("tab").checked) {
+				afterHTML = afterHTML.replace(/\t/g, "\\t")
+			} else {
+				afterHTML = afterHTML.replace(/\t/g, "")
+			}
+			afterHTML = afterHTML.replace(/\\/g, "\\")
+			afterHTML = afterHTML.replace(/\"/g, "\\\"")
 			console.log(afterHTML)
 			document.getElementById("jsonOut").value = afterHTML
 			document.getElementById("output").style.display = "inline-block"

@@ -123,18 +123,14 @@
 					if (isButton) { document.querySelector("#loading").innerHTML = `Loading<span class="dotA">.</span><span class="dotB">.</span><span class="dotC">.</span>` }
 					fetch("https://cors.9gr.repl.co/api.scratch.mit.edu/projects/" + random)
 						.then(res => {
-							if (res.status == 404) {
+							if (!res.ok) {
 								run()
-								return;
 							}
 							return res.json()
 						})
 						.then(data => {
-							if (Object.keys(data).includes("code")) {
-								run()
-							} else {
-								document.querySelector("#loading").innerHTML = ""
-								document.querySelector("#mainContent").innerHTML = `<a href="https://scratch.mit.edu/projects/${random}" target="new"><img src="${data.image}" height="200"><h1 style="min-height:38px">${data.title}</h1></a><h2>by <a href="//scratch.mit.edu/users/${data.author.username}" target="new"><img src="${data.author.profile.images["32x32"]}" height="16">${data.author.username}</a></h2>
+							document.querySelector("#loading").innerHTML = ""
+							document.querySelector("#mainContent").innerHTML = `<a href="https://scratch.mit.edu/projects/${random}" target="new"><img src="${data.image}" height="200"><h1 style="min-height:38px">${data.title}</h1></a><h2>by <a href="//scratch.mit.edu/users/${data.author.username}" target="new"><img src="${data.author.profile.images["32x32"]}" height="16">${data.author.username}</a></h2>
 Shared on ${new Date(data.history.shared).getUTCMonth() + 1}, ${new Date(data.history.shared).getUTCDate() + 1} ${new Date(data.history.shared).getUTCFullYear()}<br>
 <details class="buttonLook"><summary>Open iFrame</summary>
 <div id="project">
@@ -145,9 +141,7 @@ Shared on ${new Date(data.history.shared).getUTCMonth() + 1}, ${new Date(data.hi
 </div>
 </div>
 </details>`
-							}
 						})
-						.catch(err => {})
 				})
 		}
 		run()

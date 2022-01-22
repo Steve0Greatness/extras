@@ -16,7 +16,7 @@
     	left: 2px;
     	float: left;
     	width: 1em;
-    	height: 12.25%;
+    	height: 9em;
 		}
 
 		#greyBar {
@@ -186,6 +186,9 @@
 		const userData = document.getElementById("userData")
 		if (search.has("username")) {
 			//pulling up useful info
+			if (search.get("username") == ""|null|undefined) {
+				location.search = ""
+			}
 			fetch("https://scratchdb.lefty.one/v3/forum/user/info/" + search.get("username"))
 				.then(res => {
 					if (res.ok) {

@@ -1,31 +1,36 @@
-var search = location.search
-fetch('alts.json')
-	.then(response => response.json())
-	.then(data => {
-		var name = Object.keys(data)
-		let ind = ""
-		let l
-		let logo = document.getElementById("logo")
-		if (search == '' || search == null) {
-			ind = document.getElementById('index')
-			l = name.length
-			for (let i = 0; i < l; i++) {
-				ind.innerHTML = ind.innerHTML + `<tr><td><a href="?${name[i]}">${name[i]}</a></td> <td>${data[name[i]]["rate"]}</td></tr>`
+var search = location.search.slice(1)
+function start() {
+	fetch('alts.json')
+		.then(res => res.json())
+		.then(data => {
+			var name = Object.keys(data).sort()
+			if (document.getElementById("sortBy").value == "zA") {
+				name.reverse()
 			}
-		} else {
-			search = search.slice(1)
-			console.log(data[search])
-			document.getElementById("cc").innerHTML = data[search]["desc"]
-			document.getElementById('altRating').innerHTML = data[search]["rate"]
-			document.getElementById("link").href = `https://scratch.mit.edu/users/${search}`
-			document.getElementById("link").innerHTML = "view on <img src='https://scratch.mit.edu/favicon.ico' width='16' style='margin-bottom: -2px;'>"
-			ind = document.getElementById('index')
-			l = name.length
-			ind.innerHTML = `<tr><a href="?">🠔 index</a></tr>`
-			for (let i = 0; i < l; i++) {
-				ind.innerHTML = ind.innerHTML + `<tr><td><a href="?${name[i]}">${name[i]}</a></td> <td>${data[name[i]]["rate"]}</td></tr>`
+			let ind = document.getElementById("index")
+			let logo = document.getElementById("logo")
+			let link = document.getElementById("link")
+			if (search != ''|null) {
+				ind.innerHTML = `<tr><a href="?">&lt;&lt;index</a></tr>`
+				sdata = data[search]
+
+				//data
+				document.getElementById("cc").innerHTML = sdata.desc
+				document.getElementById("altRating").innerHTML = sdata.rate
+
+				//link
+				link.href = `https://scratch.mit.edu/users/${search}`
+				link.innerHTML = "view on <img src='https://scratch.mit.edu/favicon.ico' width='16' style='margin-bottom: -2px;'>"
+
+				//logo
+				logo.src = `//cdn2.scratch.mit.edu/get_image/user/${sdata.accountId}_32x32.png`
+				logo.alt = search
+			} else {
+				ind.innerHTML = ""
 			}
-			logo.src = `//cdn2.scratch.mit.edu/get_image/user/${data[search]["accountId"]}_32x32.png`
-			logo.alt = search
-		}
-	});
+			name.forEach((n) => {
+				ind.innerHTML += `<tr><td><a href="?${n}">${n}</a></td> <td>${data[n].rate}</td></tr>`
+			})
+		})
+}
+start()
