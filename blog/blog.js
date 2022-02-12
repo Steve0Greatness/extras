@@ -1,4 +1,4 @@
-const newpost = { link: "?newest&newpost", name: "MD in the blog!", working: false, type: "md" }
+const newpost = { link: "?newest&newpost", name: "", working: false, type: "txt" }
 const search = location.search
 const ind = document.getElementById('indexBody')
 const content = document.getElementById('content')
@@ -24,6 +24,9 @@ function start() {
 					content.innerHTML = `<h1>${bP.name}</h1><h2>${bP.pD}</h2><article id="article">${bP.pC}</article>`
 					if (bP.fT === "md") {
 						content.innerHTML = `<h1>${bP.name}</h1><h2>${bP.pD}</h2><article id="article">${marked.parse(bP.pC)}</article>`
+					}
+					if (bP.fT === "txt") {
+						content.innerHTML = `<h1>${bP.name}</h1><h2>${bP.pD}</h2><article id="article" style="white-space:pre-wrap">${bP.pC}</article>`
 					}
 				}
 			}
@@ -56,10 +59,15 @@ window.onload = () => {
 					if (bP.fT === "md") {
 						content.innerHTML = `<h1>${bP.name}</h1><h2>${bP.pD}</h2><article id="article">${marked.parse(bP.pC)}</article>`
 					}
+
+					if (bP.fT === "txt") {
+						content.innerHTML = `<h1>${bP.name}</h1><h2>${bP.pD}</h2><article id="article" style="white-space:pre-wrap">${bP.pC}</article>`
+					}
 				}
 			}
 		})
 }
+//style="white-space:pre-wrap"
 document.getElementById("select").addEventListener("change", () => { start() })
 
 if (search == newpost.link) {
@@ -74,6 +82,10 @@ if (search == newpost.link) {
 			content.innerHTML = `<h1>${name}</h1><h2>Unreleased</h2><div>${data}</div>`
 			if (newpost.type == "md") {
 				content.innerHTML = `<h1>${name}</h1><h2>Unreleased</h2><div>${marked.parse(data)}</div>`
+			}
+			if (newpost.type == "txt") {
+				console.log("type is text")
+				content.innerHTML = `<h1>${name}</h1><h2>Unreleased</h2><div style="white-space:pre-wrap">${data}</div>`
 			}
 		})
 }
