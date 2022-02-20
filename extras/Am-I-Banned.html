@@ -1,4 +1,4 @@
-= <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US">
 
 <head>
@@ -68,18 +68,26 @@
 	</details>
 	<span class="bigHead" id="message">Loading...</span>
 	<script>
-		const banned = [{ class: "not", message: "Not Banned" }, { class: "am", message: "Banned" }]
+		const banned = [
+			{
+				class: "not",
+				message: "Not Banned"
+			},
+			{
+				class: "am",
+				message: "Banned"
+			}
+		]
 		const message = document.getElementById("message")
-		fetch("https://cors.9gr.repl.co/pastebin.com/raw/MiQFUnjx")
+		fetch("https://cors.9gr.repl.co/pastebin.com/raw/H6r1nXiz")
 			.then(blob => blob.text())
 			.then(data => {
-				if (data == "false") {
-					message.innerHTML = banned[0]["message"]
-					message.className = "bigHead " + banned[0]["class"]
-				} else {
-					message.innerHTML = banned[1]["message"]
-					message.className = "bigHead " + banned[1]["class"]
+				let dataNum = 0
+				if (data == "true") {
+					dataNum = 1
 				}
+				message.innerHTML = banned[dataNum].message
+				message.className = "bigHead " + banned[dataNum].class
 			})
 	</script>
 </body>

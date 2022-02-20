@@ -1,7 +1,8 @@
-const newpost = { link: "?newest&newpost", name: "", working: false, type: "txt" }
-const search = location.search
-const ind = document.getElementById('indexBody')
-const content = document.getElementById('content')
+const newpost = { link: "?newest&newpost", name: "FizzBuzz", working: false, type: "html" },
+	search = location.search,
+	ind = document.getElementById('indexBody'),
+	content = document.getElementById('content'),
+	select = document.getElementById("select")
 function start() {
 	ind.innerHTML = ""
 	fetch('blog.json')
@@ -11,7 +12,7 @@ function start() {
 			for (let i = 0; i < names.length; i++) {
 				let x = data[names[i]]
 				let name = names[i]
-				if (document.getElementById("select").value == "new") {
+				if (select.value == "new") {
 					name = names[names.length - (1 + i)]
 					x = data[name]
 				}
