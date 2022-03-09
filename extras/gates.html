@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Logic Gates</title>
+	<style>		
+		#output {
+			font-size: 2rem;
+			background-color: #ff0;
+		}
+
+		input[type=checkbox] {
+			display: none;
+		}
+
+		input[type=checkbox] + label::before {
+			height: 1rem;
+			display: inline-block;
+			background: #fa5523;
+			color: #522;
+			border: 1px #522 solid;
+			margin-right: 2px;
+			width: 3em;
+			padding: 1px 5px;
+			content: "FALSE";
+			border-radius: 9999px;
+		}
+
+		input[type=checkbox]:checked + label::before {
+			content: "TRUE";
+			color: #274;
+			border-color: #274;
+			background: #54f923;
+		}
+
+		select,
+		input,
+		:any-link {
+			background: #fff;
+			color: #000;
+			border: #000 solid 1px;
+			border-radius: 9999px;
+		}
+
+		:any-link {
+			padding: 1px 5px;
+			text-decoration: none;
+			transition: background .75s, color .75s, border-color .75s;
+		}
+
+		:any-link:hover {
+			background: #555;
+			color: #efefef;
+			border-color: #efefef;
+		}
+	</style>
+</head>
+	
+<body>
+	<span id="output"></span>
+	<form>
+		<div name="boolean1">
+			<input type="checkbox" id="boola" name="boola" title="Boolean #1">
+			<label for="boola">Boolean #1</label>
+		</div>
+		<div name="boolean2">
+			<input type="checkbox" id="boolb" name="boolb" title="Boolean #2">
+			<label for="boolb">Boolean #2</label>
+		</div>
+		<div name="logicgate">
+			<select name="gate" id="logicgatechoose" title="Logic Gate" required="true">
+				<optgroup label="X">
+					<option value="xor" selected="true" data-uses="2">XOR</option>
+					<option value="xnor" data-uses="2">XNOR</option>
+				</optgroup>
+				<optgroup label="not">
+					<option value="xnor" data-uses="2">XNOR</option>
+					<option value="nor" data-uses="2">NOR</option>
+					<option value="not" data-uses="1">NOT</option>
+					<option value="nand" data-uses="2">NAND</option>
+				</optgroup>
+				<optgroup label="or">
+					<option value="xor" data-uses="2">XOR</option>
+					<option value="xnor" data-uses="2">XNOR</option>
+					<option value="nor" data-uses="2">XOR</option>
+					<option value="or" data-uses="2">OR</option>
+				</optgroup>
+				<optgroup label="and">
+					<option value="nand" data-uses="2">NAND</option>
+					<option value="and" data-uses="2">AND</option>
+				</optgroup>
+				<optgroup label="other">
+					<option value="buffer" data-uses="1">BUFFER</option>
+					<option value="three_state" data-uses="2">THREE STATE</option>
+				</optgroup>
+			</select>
+			<label for="logicgatechoose">Logic Gate</label>
+		</div>
+		<input type="submit" title="Submit">
+	</form>
+	<p>What are Logic Gates? Read about them on <a href="https://en.wikipedia.org/wiki/Logic_gate">Wikipedia</a>.</p>
+	<script>
+		(() => {
+			const Logic = {
+				xor: (boola, boolb) => {
+					return (boola || boolb) && !(boola && boolb)
+				},
+				nor: (boola, boolb) => {
+					return !(boola || boolb)
+				},
+				xnor: (boola, boolb) => {
+					return (boola && boolb) || (!boola && !boolb)
+				},
+				nand: (boola, boolb) => {
+					return ((boola || boolb) && !(boola && boolb)) || !(boola && boolb)
+				},
+				or: (boola, boolb) => {
+					return boola || boolb
+				},
+				and: (boola, boolb) => {
+					return boola && boolb
+				},
+				not: (boola) => {
+					return !boola
+				},
+				buffer: (boola) => {
+					return boola
+				},
+				three_state: (boola, boolb) => {
+					if (boolb) return boola
+					return false
+				}
+			},
+				search = new URLSearchParams(location.search),
+				bool = {
+					a: false,
+					b: false
+				}
+			if (!search.has("gate")) return;
+			if (search.has("boola")) bool.a = true
+			if (search.has("boolb")) bool.b = true
+			let gate = search.get("gate")
+			output.innerText = Logic[gate](bool.a, bool.b)
+			document.getElementById("boola").checked = bool.a
+			document.getElementById("boolb").checked = bool.b
+			logicgatechoose.value = gate
+		})()
+	</script>
+</body>
+	
+</html>

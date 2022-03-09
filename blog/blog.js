@@ -1,4 +1,4 @@
-const newpost = { link: "?newest&newpost", name: "FizzBuzz", working: false, type: "html" },
+const newpost = { link: "?newest&newpost", name: "", working: false, type: "md" },
 	search = location.search,
 	ind = document.getElementById('indexBody'),
 	content = document.getElementById('content'),

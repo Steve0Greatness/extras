@@ -118,5 +118,13 @@
 		"status": null,
 		"isExternal": false,
 		"date": "12/31/21"
+	},
+	{
+		"name": "Logic Gates",
+		"fileName": "gates.html",
+		"desc": "Logic gates... look it up.",
+		"status": null,
+		"isExternal": false,
+		"date": "3/9/22"
 	}
 ]
