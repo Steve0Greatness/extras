@@ -1,4 +1,4 @@
-const newpost = { link: "?newest&newpost", name: "", working: false, type: "md" },
+const newpost = { link: "?newest&newpost", name: "The hunt for a way to get Roblox Assets", working: true, type: "md" },
 	search = location.search,
 	ind = document.getElementById('indexBody'),
 	content = document.getElementById('content'),
@@ -73,7 +73,7 @@ document.getElementById("select").addEventListener("change", () => { start() })
 
 if (search == newpost.link) {
 	var lastModified
-	fetch("newpost.html")
+	fetch("newpost")
 		.then(res => res.text())
 		.then(data => {
 			let name = newpost.name

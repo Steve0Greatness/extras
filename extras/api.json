@@ -126,5 +126,13 @@
 		"status": null,
 		"isExternal": false,
 		"date": "3/9/22"
+	},
+	{
+		"name": "TF2 Tips",
+		"fileName": "https://tf2-hints.netlify.app/",
+		"desc": "Collection of the TF2 Loading Tips in one place, and sorted",
+		"status": true,
+		"isExternal": true,
+		"date": "3/29/22"
 	}
 ]
