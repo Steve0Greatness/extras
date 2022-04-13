@@ -4,7 +4,7 @@
 	--mainFont: "Open Sans";
 	font-display: optional;
 }
-html.l {
+html.light {
 	--navCo: #999;
 	--headCo: #aaa;
 	--linkCo: #00b;
@@ -24,8 +24,7 @@ html.l {
 	--linkLeCo: #F7E45D;
 }
 
-/*normal theme*/
-html.n {
+html.normal {
 	--navCo: #111;
 	--headCo: #333;
 	--linkCo: #0a0;
@@ -45,38 +44,22 @@ html.n {
 	--linkLeCo: var(--linkCo);
 }
 
-
-/*halloween theme 2021
-html.n {
-	--navCo: #3e6433;
-	--headCo: #114e00;
-	--linkCo: #0a0;
-	--maCo: #485a43;
-	--maTxtCo: #ccc;
-	--buCo: #114e00;
-	--buTxtCo: #aaa;
-	--buBoCo: #f4b900;
-	--noteCo: #f4b900;
-	--noteTxtCo: #999;
-	--inCo: #1a3b11;
-	--inlinkCo: #ad0;
-	--selCo: #0d06;
-	--selTxtCo: #fff;
-	--taCo: #1a3b12;
-	--taTxtCo: white;
-	--linkLeCo: var(--linkCo);
+.H1 {
+	font-size: 40px;
 }
-*/
-.H1 { font-size: 40px; }
 
-.nav { background-color: var(--navCo); }
+.nav {
+	background-color: var(--navCo);
+}
 
 header {
 	text-align: center;
 	background: var(--headCo);
 }
 
-a { color: var(--linkCo); }
+:any-link {
+	color: var(--linkCo);
+}
 
 body {
 	background-color: var(--maCo);
@@ -84,7 +67,7 @@ body {
 	font-family: var(--mainFont);
 }
 
-button, select, option, input {
+button, select, option, input, :any-link.button {
 	background: var(--buCo);
 	background-image: none;
 	color: var(--buTxtCo);
@@ -94,15 +77,6 @@ button, select, option, input {
 	font-size: 15px;
 	cursor: pointer;
 	font-weight: bold;
-}
-
-@media not all and (min-resolution:.001dpcm) {
-  @media {
-		select {
-			-webkit-appearance: none;
-			padding-right: 15px;
-		}
-	}
 }
 
 .notice {
@@ -117,30 +91,36 @@ button, select, option, input {
 	background: var(--inCo);
 	display: block;
 }
-a.indexed, #index a {
+
+:any-link.indexed, #index :any-link {
 	color: var(--inlinkCo);
 	text-decoration: none;
 	font-weight: bold;
 }
+
 .hidden {
 	display: none;
 	cursor: not-allowed;
 }
+
 .notFound {
 	font-family: cursive;
 	font-size: 50px;
 	text-align: center;
 }
+
 ::selection {
 	background: var(--selCo);
 	color: var(--selTxtCo);
 	padding: 2px;
 }
+
 .altRating {
 	font-size: 20px;
 	color: var(--noteCo);
 	background: var(--noteTxtCo);
 }
+
 .code {
 	background: var(--buTxtCo); 
 	color: var(--buCo);
@@ -148,15 +128,18 @@ a.indexed, #index a {
 	margin-bottom: 2px;
 	border-radius: 3px;
 }
+
 .code.block {
 	display: block;
 	padding: 5px;
 }
+
 .bigHead {
 	animation: fadeIn 1s;
 	font-size: 24px;
 	font-weight: bold;
 }
+
 @keyframes fadeIn {
 	from {
 		font-size: 48px;
@@ -167,6 +150,7 @@ a.indexed, #index a {
 		opacity: 1;
 	}
 }
+
 textarea {
 	color: var(--taTxtCo);
 	background: var(--taCo);
@@ -176,22 +160,38 @@ textarea {
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
+
 .note {
 	background: var(--linkLeCo);
 	color: black;
 	padding: 2px;
 }
+
 @keyframes fadeOut {
-	from { opacity: 1; }
-	to { opacity: 0; }
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
 }
 
 @keyframes appear {
-	0% { opacity: 0; }
-	25% { opacity: 0; }
-	50% { opacity: 1; }
-	75% { opacity: 1; }
-	100% { opacity: 1; }
+	0% {
+		opacity: 0;
+	}
+	25% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	75% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 p {
@@ -219,6 +219,11 @@ p {
 }
 
 :any-link.source {
-	verticle-align: top;
 	font-size: 11px;
+}
+
+:any-link.button {
+	padding: 2px;
+	text-decoration: none;
+	display: inline-block;
 }
