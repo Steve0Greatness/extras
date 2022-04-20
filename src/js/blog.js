@@ -1,4 +1,9 @@
-const newpost = { link: "?newest&newpost", name: "The hunt for a way to get Roblox Assets", working: false, type: "md" },
+const newpost = {
+	link: "?newest&newpost", // no need to change
+	name: "",
+	working: false,
+	type: ""
+},
 	search = location.search,
 	ind = document.getElementById('indexBody'),
 	content = document.getElementById('content'),

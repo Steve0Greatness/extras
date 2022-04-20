@@ -16,6 +16,12 @@
 			display: none;
 		}
 
+		input[type=checkbox]:disabled + label::before {
+			content: "NULL";
+			background-color: #555;
+			color: white;
+		}
+
 		input[type=checkbox] + label::before {
 			height: 1rem;
 			display: inline-block;
@@ -55,6 +61,10 @@
 			background: #555;
 			color: #efefef;
 			border-color: #efefef;
+		}
+
+		option[data-uses="1"]::after {
+			content: "hhh";
 		}
 	</style>
 </head>
@@ -106,47 +116,59 @@
 		(() => {
 			const Logic = {
 				xor: (boola, boolb) => {
-					return (boola || boolb) && !(boola && boolb)
+					return (boola || boolb) && !(boola && boolb);
 				},
 				nor: (boola, boolb) => {
 					return !(boola || boolb)
 				},
 				xnor: (boola, boolb) => {
-					return (boola && boolb) || (!boola && !boolb)
+					return (boola && boolb) || (!boola && !boolb);
 				},
 				nand: (boola, boolb) => {
-					return ((boola || boolb) && !(boola && boolb)) || !(boola && boolb)
+					return ((boola || boolb) && !(boola && boolb)) || !(boola && boolb);
 				},
 				or: (boola, boolb) => {
-					return boola || boolb
+					return boola || boolb;
 				},
 				and: (boola, boolb) => {
-					return boola && boolb
+					return boola && boolb;
 				},
-				not: (boola) => {
-					return !boola
+				not: (boola, _) => {
+					return !boola;
 				},
-				buffer: (boola) => {
-					return boola
+				buffer: (boola, _) => {
+					return boola;
 				},
 				three_state: (boola, boolb) => {
-					if (boolb) return boola
-					return false
+					if (boolb) return boola;
+					return false;
 				}
 			},
 				search = new URLSearchParams(location.search),
 				bool = {
 					a: false,
 					b: false
+				};
+			logicgatechoose.addEventListener("change", function() {
+				let usesone = logicgatechoose.querySelectorAll("[data-uses=\"1\"]"),
+					boolb = document.getElementById("boolb");
+				for (let i = 0; i < usesone.length; i++) {
+					let uo = usesone[i];
+					if (logicgatechoose.value === uo.value) {
+						boolb.setAttribute("disabled", "true");
+						return;
+					}
+					boolb.removeAttribute("disabled");
 				}
+			})
 			if (!search.has("gate")) return;
-			if (search.has("boola")) bool.a = true
-			if (search.has("boolb")) bool.b = true
-			let gate = search.get("gate")
-			output.innerText = Logic[gate](bool.a, bool.b)
-			document.getElementById("boola").checked = bool.a
-			document.getElementById("boolb").checked = bool.b
-			logicgatechoose.value = gate
+			if (search.has("boola")) bool.a = true;
+			if (search.has("boolb")) bool.b = true;
+			let gate = search.get("gate");
+			output.innerText = Logic[gate](bool.a, bool.b);
+			document.getElementById("boola").checked = bool.a;
+			document.getElementById("boolb").checked = bool.b;
+			logicgatechoose.value = gate;
 		})()
 	</script>
 </body>
