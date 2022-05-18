@@ -24,7 +24,7 @@
 		"isExternal": false
 	},
 	{
-		"name": "Get YouTube Thumbails",
+		"name": "Get YouTube Thumbnails",
 		"fileName": "Get-YT-Thumbnail.html",
 		"desc": "Get a youtube thumbnail!",
 		"status": null,
@@ -75,7 +75,7 @@
 		"name": "Replit Language Data",
 		"fileName": "https://ReplitData.stevesgreatness.repl.co",
 		"desc": "Data on all languages on Replit.",
-		"status": "Indev",
+		"status": null,
 		"isExternal": true,
 		"date": "11/26/21"
 	},
@@ -96,9 +96,9 @@
 		"date": "12/16/21"
 	},
 	{
-		"name": "Prepair HTML for JSON",
+		"name": "Prepare HTML for JSON",
 		"fileName": "JSONreadyHTML.html",
-		"desc": "Prepair HTML to be put into a JSON",
+		"desc": "Prepare HTML to be put into a JSON",
 		"status": null,
 		"isExternal": false,
 		"date": "12/21/21"
@@ -134,5 +134,13 @@
 		"status": true,
 		"isExternal": true,
 		"date": "3/29/22"
+	},
+	{
+		"name": "Personal Stickies",
+		"fileName": "https://personal-stickies.stevesgreatness.repl.co/",
+		"desc": "Like Scratch forum stickies, but you pin your own topics.",
+		"status": true,
+		"isExternal": true,
+		"date": "5/18/22"
 	}
 ]
