@@ -91,7 +91,7 @@
 		"name": "Random Scratch Project",
 		"fileName": "Random_Scratch_Project.html",
 		"desc": "Grabs a random Scratch project",
-		"status": null,
+		"status": "Borked",
 		"isExternal": false,
 		"date": "12/16/21"
 	},
