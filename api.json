@@ -2,7 +2,7 @@
 	{
 		"name": "Secret Lives",
 		"fileName": "SecretLives.html",
-		"desc": "This is based off of the 4/1/21 joke that Scratch did.",
+		"desc": "This is based off of the April 1st, 2021 joke that Scratch did.",
 		"status": null,
 		"date": "5/4/21",
 		"isExternal": false
@@ -11,7 +11,7 @@
 		"name": "Am I Banned?",
 		"fileName": "Am-I-Banned.html",
 		"desc": "Check to see if I'm banned on Scratch",
-		"status": "not banned",
+		"status": "Borked(thanks Replit)",
 		"date": "8/8/21",
 		"isExternal": false
 	},
@@ -51,7 +51,7 @@
 		"name": "Clutter",
 		"fileName": "//clutter.stevesgreatness.repl.co",
 		"desc": "Compile Scratch projects together.",
-		"status": "Indev",
+		"status": "Canceled",
 		"isExternal": true,
 		"date": "11/2/21"
 	},
@@ -75,7 +75,7 @@
 		"name": "Replit Language Data",
 		"fileName": "https://ReplitData.stevesgreatness.repl.co",
 		"desc": "Data on all languages on Replit.",
-		"status": null,
+		"status": "Borked(thanks Replit)",
 		"isExternal": true,
 		"date": "11/26/21"
 	},
@@ -131,7 +131,7 @@
 		"name": "TF2 Tips",
 		"fileName": "https://tf2-hints.netlify.app/",
 		"desc": "Collection of the TF2 Loading Tips in one place, and sorted",
-		"status": true,
+		"status": null,
 		"isExternal": true,
 		"date": "3/29/22"
 	},
@@ -139,7 +139,7 @@
 		"name": "Personal Stickies",
 		"fileName": "https://personal-stickies.stevesgreatness.repl.co/",
 		"desc": "Like Scratch forum stickies, but you pin your own topics.",
-		"status": true,
+		"status": "Inactive",
 		"isExternal": true,
 		"date": "5/18/22"
 	}
