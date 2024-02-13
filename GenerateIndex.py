@@ -18,8 +18,8 @@ with open("index.html", "w", encoding="utf-8") as file:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extras Archive</title>
-    <meta property="og:title" content="Extras Archive" />
+    <title>Extras</title>
+    <meta property="og:title" content="Extras" />
     <meta property="og:url" content="https://steve0greatness.github.io/extras/" />
     <style>
         html, body {{ color: #fff; background-color: #333 }}
@@ -28,15 +28,15 @@ with open("index.html", "w", encoding="utf-8") as file:
         tr {{ padding: 5px; }}
         tr th, tr td {{ padding: 3px }}
         :any-link {{ color: cyan }}
-        :visited {{ color: #5cc }}
+        :any-link:visited {{ color: #5cc }}
         :any-link:active {{ color: #f00 }}
-    </style>
+    </style>                                                                   
 </head>
 
 <body>
     <a href="https://steve0greatness.github.io/">&laquo; Return to Site</a>
-    <h1>Extras Archive</h1>
-    <p>This is a legacy site, kept up for the sake of not breaking links.</p>
+    <h1>Extras</h1>
+    <p>This is a page for stuff that doesn't fit on the main site.</p>
     <table>
         <thead>
             <tr>
