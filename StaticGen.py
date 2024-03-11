@@ -94,6 +94,10 @@ tr th, tr td { padding: 3px }
     <title>Extras</title>
     <meta property="og:title" content="Extras" />
     <meta property="og:url" content="https://steve0greatness.github.io/extras" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://steve0greatness.github.io/OG-Image.png" />
+    <meta property="og:site_name" content="Steve0Greatness">
+    <meta property="og:locale" content="en_US">
     <style>{CSS}</style>
 </head>
 
