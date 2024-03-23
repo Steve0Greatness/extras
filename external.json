@@ -40,5 +40,12 @@
     "url": "https://steve0greatness.github.io/SA-Custom-Styling",
     "status": null,
     "created": "2023 Aug 5"
+  },
+  {
+    "title": "How Much π Do You Know?",
+    "description": "Test your memory of Pi!",
+    "url": "https://pi-memory-game.vercel.app/",
+    "status": null,
+    "created": "2023 Oct 5"
   }
 ]
