@@ -47,5 +47,12 @@
     "url": "https://pi-memory-game.vercel.app/",
     "status": null,
     "created": "2023 Oct 5"
+  },
+  {
+    "title": "Yet Another Fandom Debloater",
+    "description": "A userstyle and userscript combo that (partially) debloats the experience of Fandom.",
+    "url": "https://notabug.org/Steve0Greatness/Yet-Another-Fandom-Debloater",
+    "status": null,
+    "created": "2024 Apr 21"
   }
 ]
