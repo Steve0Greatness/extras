@@ -61,5 +61,13 @@
     "url": "https://steve0greatness.roundabout-host.com/ThemeIndex",
     "status": null,
     "created": "2024 May 11"
+  },
+  {
+    "title": "Tickers/Marquees",
+    "description": "Some reimplementations of marquee in CSS.",
+    "url": "https://codepen.io/Steve0Greatness/pen/eYavRpe",
+    "status": null,
+    "created": "2024 Jun 01"
   }
+
 ]
