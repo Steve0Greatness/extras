@@ -170,18 +170,21 @@
 	<p><button id="restartButton">Restart</button></p>
 
 	<details>
-		<summary>Notes & Credits(and extras)</summary>
+		<summary>Notes &amp; Credits(and extras)</summary>
 		Made with <a href="https://jquery.com/">jQuery</a>.
 		<h2>Who should go first?</h2>
 		<form onsubmit="randomlyChoose(); return false;">
-		<lable for="person1">One Player</lable><input id="person1"><br> <lable for="person1">Another Player</lable><input id="person2"><br> <input type="submit" value="Randomly Choose"></form>
+		<label for="person1">Player 1</label> <input id="person1"><br>
+        <label for="person1">Player 2</label> <input id="person2"><br>
+        <input type="submit" value="Randomly Choose">
+        </form>
 		<div id="randomPerson"></div>
 	</details>
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		const styleRoot = ":root {--tdBorderHov: #0af;--tdBorderAct: #088;}"
-		var object = [["","",""], ["","",""], ["","",""]]
+		var obj = [["","",""], ["","",""], ["","",""]]
 		var playerGoing = 0
 		const player = ["X", "O"]
 
@@ -200,8 +203,8 @@
 			if (playerGoing % 2 == 0) { lable = player[0] } else { lable = player[1] }
 
 			//edit the table
-			if (object[row][col] == "") {
-				object[row][col] = lable
+			if (obj[row][col] == "") {
+				obj[row][col] = lable
 				setGameboard()
 				
 				//update player
@@ -277,18 +280,35 @@
 					t.push(object[i][a] != "")
 				}
 			}
-			return !(t.includes(false))
+			return !t.includes(false)
 		}
 
 		function randomlyChoose() {
 			let people = [$("#person1").val(), $("#person2").val()]
-			let images = ["d/2017-D_Roosevelt_dime_obverse_transparent.png/608px-2017-D_Roosevelt_dime_obverse_transparent.png", "9/2017-D_Roosevelt_dime_reverse_transparent.png/607px-2017-D_Roosevelt_dime_reverse_transparent.png"]
 			let randomNumber = Math.round(Math.random())
 			$("#randomPerson").html(people[randomNumber])
 			$("#randomPerson").addClass("ready")
 		}
 
-		function setGameboard() {$("#game").html(`<tr><td onclick="play(0, 0)">${object[0][0]}</td><td onclick="play(0, 1)">${object[0][1]}</td><td onclick="play(0, 2)">${object[0][2]}</td></tr><tr><td onclick="play(1, 0)">${object[1][0]}</td><td onclick="play(1, 1)">${object[1][1]}</td><td onclick="play(1, 2)">${object[1][2]}</td></tr><tr><td onclick="play(2, 0)">${object[2][0]}</td><td onclick="play(2, 1)">${object[2][1]}</td><td onclick="play(2, 2)">${object[2][2]}</td></tr>`)}
+		function setGameboard() {
+            $("#game").html(
+            `<tr>
+                <td onclick="play(0, 0)">${object[0][0]}</td>
+                <td onclick="play(0, 1)">${object[0][1]}</td>
+                <td onclick="play(0, 2)">${object[0][2]}</td>
+            </tr>
+            <tr>
+                <td onclick="play(1, 0)">${object[1][0]}</td>
+                <td onclick="play(1, 1)">${object[1][1]}</td>
+                <td onclick="play(1, 2)">${object[1][2]}</td>
+            </tr>
+            <tr>
+                <td onclick="play(2, 0)">${object[2][0]}</td>
+                <td onclick="play(2, 1)">${object[2][1]}</td>
+                <td onclick="play(2, 2)">${object[2][2]}</td>
+            </tr>`
+            )
+        }
 	</script>
 </body>
 
