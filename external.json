@@ -1,26 +1,5 @@
 [
   {
-    "title": "Are you afraid of the dark",
-    "description": "Take a few seconds to answer this survey about if you're afraid on the dark... no I'm not telling you why!",
-    "url": "//forms.gle/r2EAeVhReTieE7T5A",
-    "status": "Active",
-    "created": "2021 Oct 16"
-  },
-  {
-    "title": "Clutter",
-    "description": "Compile Scratch projects together.",
-    "url": "//clutter.stevesgreatness.repl.co",
-    "status": "Canceled",
-    "created": "2021 Nov 02"
-  },
-  {
-    "title": "Replit Language Data",
-    "description": "Data on all languages on Replit.",
-    "url": "https://ReplitData.stevesgreatness.repl.co",
-    "status": "Borked(thanks Replit)",
-    "created": "2021 Nov 26"
-  },
-  {
     "title": "TF2 Tips",
     "description": "Collection of the TF2 Loading Tips in one place, and sorted",
     "url": "https://tf2-hints.netlify.app/",
@@ -58,7 +37,7 @@
   {
     "title": "Roundabout Theme Index",
     "description": "An index of themes of themes that can be used on the Git-centric forge software Roundabout",
-    "url": "https://steve0greatness.roundabout-host.com/ThemeIndex",
+    "url": "https://theme.roundabout-host.com/",
     "status": null,
     "created": "2024 May 11"
   },
