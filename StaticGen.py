@@ -10,7 +10,12 @@ if exists("index.htm"):
     RM("index.htm")
 
 def GetExtras():
-    ExtrasSlugs = [ file if file.endswith(".html") else None for file in LS(".") ]
+    ExtrasSlugs = [
+        file if file.endswith(".html")
+        else (file+"/index.html" if exists(file+"/index.html")
+        else None)
+        for file in LS(".")
+    ]
     Extras = []
     for slug in ExtrasSlugs:
         if slug is None:
@@ -54,12 +59,22 @@ def Generate():
     EXTRAS = GetExtras()
     for extra in reversed(EXTRAS):
         date = dt.strptime(extra["Created"], "%Y %b %d")
+        slug = extra["Slug"]
+        title = extra["Title"]
+        desc = extra["Description"]
+
+        datetime = date.strftime("%Y-%m-%d") + "T00:00:00Z"
+        datetime_display = date.strftime("%Y %b %d")
+
+        status = extra["Status"] if extra["Status"] is not None else "N/A"
+        external = "Yes" if extra["External"] else "No"
+
         ExtraHTML = f"""<tr>
-    <th><a href="{extra["Slug"]}">{extra["Title"]}</a></th>
-    <td>{extra["Description"]}</td>
-    <td><time datetime="{date.strftime("%Y-%m-%d")}T00:00:00Z">{date.strftime("%Y %b %d")}</time></td>
-    <td>{(extra["Status"] if extra["Status"] is not None else "N/A")}</td>
-    <td>{("Yes" if extra["External"] else "No")}</td>
+    <th><a href="{slug}">{title}</a></th>
+    <td>{desc}</td>
+    <td><time datetime="{datetime}">{datetime_display}</time></td>
+    <td>{status}</td>
+    <td>{external}</td>
 </tr>"""
         extras = extras + ExtraHTML
     for extra in EXTRAS:
